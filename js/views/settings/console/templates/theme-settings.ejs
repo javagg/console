@@ -1,0 +1,60 @@
+<h2><%= polyglot.t('settings.console.theme') %></h2>
+<div class="alert alert-info">
+    <%= polyglot.t('settings.console.theme.description', {'product': settings.product_name}) %>
+</div>
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="inputProductLogoFavIconUrl" class="col-lg-3 control-label"><%= polyglot.t('settings.console.theme.favicon_url') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputProductLogoFavIconUrl" placeholder=""
+                       value="<%- settings.product_logo_favicon_url %>">
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-product-logo-favicon"
+                                                      type="button"><i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputProductLogoHeaderUrl" class="col-lg-3 control-label"><%= polyglot.t('settings.console.theme.header_logo_url') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputProductLogoHeaderUrl" placeholder=""
+                       value="<%- settings.product_logo_header_url %>">
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-product-logo-header"
+                                                      type="button"><i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputProductLogoFooterUrl" class="col-lg-3 control-label"><%= polyglot.t('settings.console.theme.footer_logo_url') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputProductLogoFooterUrl" placeholder=""
+                       value="<%- settings.product_logo_footer_url %>">
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-product-logo-footer"
+                                                      type="button"><i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputBackgroundColor" class="col-lg-3 control-label"><%= polyglot.t('settings.console.theme.background_color') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputBackgroundColor" placeholder=""
+                       value="<%- settings.background_color %>">
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-background-color"
+                                                      type="button"><i
+                                class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="pull-right">
+    <button class="btn btn-primary btn-save" data-loading-text="<%= polyglot.t('saving') %>" disabled="disabled"><%= polyglot.t('save_and_reload') %></button>
+    <button class="btn btn-default btn-cancel" disabled="disabled"><%= polyglot.t('cancel') %></button>
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,85 @@
+<script type="text/x-template" id="settings-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-cog"></span>
+            <span> <%= polyglot.t('settings.mysql.mysql_settings') %></span>
+
+            <div class="pull-right">
+                <span class="role-count-container"></span>
+            </div>
+        </h1>
+    </div>
+    <div class="mysql_config">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal well" id="mysql_settings_form">
+
+                    <div id="mysql_node_settings">
+                    </div>
+
+                    <div class="form-group" id="mysql_gateway_settings">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="button" id="save_mysql_settings" class="btn disabled submit btn-default pull-right" data-loading-text="<%= polyglot.t('saving_changes') %>" data-done-text="<%= polyglot.t('changes_saved') %>"><%= polyglot.t('save_changes') %></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-error hide">
+                        <div class="col-lg-offset-2 col-lg-10">
+                        <span class="help-block mysql-settings-error alert alert-danger">
+                        </span>
+                        </div>
+                    </div>
+            </form>
+            <div id="restart_gateway" class="alert alert-danger restart-process hide">
+                <i class="icomoon-warning"></i> <%= polyglot.t('settings.restart_process_after_save', {process: "mysql_gateway"}) %></p>
+            </div>
+            <div id="restart_node" class="alert alert-danger restart-process hide">
+                <i class="icomoon-warning"></i> <%= polyglot.t('settings.restart_process_after_save', {process: "mysql_node"}) %></p>
+            </div>
+            <div id="restart_role" class="alert alert-danger hide">
+                <i class="icomoon-warning"></i> <%= polyglot.t('settings.restart_role_after_save', {role: "mysql"}) %></p>
+            </div>
+        </div>
+    </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="settings-mysql-node-config">
+    <div class="form-group">
+        <label class="control-label col-lg-2" for="capacity"><%= polyglot.t('settings.db.capacity') %></label>
+        <div class="col-lg-10">
+            <input id="capacity" type="text" name="capacity" value="<%- capacity %>" class="form-control">
+            <span class="help-block">
+                <%= polyglot.t('settings.db.capacity.help') %>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-lg-2" for="max_db_size"><%= polyglot.t('settings.db.max_db_size') %></label>
+        <div class="col-lg-10">
+            <div class="input-group">
+                <input id="max_db_size" type="text" name="max_db_size" value="<%- max_db_size %>" class="form-control">
+                <span class="input-group-addon">MB</span>
+            </div>
+            <span class="help-block">
+                <%= polyglot.t('settings.db.max_db_size.help') %>
+            </span>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="settings-mysql-gateway-config">
+    <div class="col-lg-10 col-lg-offset-2">
+        <label class="control-label">
+            <input id="allow_overprovisioning" type="checkbox" name="allow_overprovisioning" <%- allow_overprovisioning %>>
+            <%= polyglot.t('settings.db.allow_overprovisioning') %>
+        </label>
+        <span class="help-block">
+            <%= polyglot.t('settings.db.allow_overprovisioning.help') %>
+        </span>
+    </div>
+</script>

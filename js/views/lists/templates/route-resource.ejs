@@ -1,0 +1,7 @@
+<a href="#" class="list-group-item"><% if(resource.entity.host){print(resource.entity.host + '.')} %><%- resource.entity.domain.entity.name %>
+    <div class="pull-right">
+        <button style="display: none;" class="btn btn-warning btn-xs btn-unmap-route" data-click="unmapRouteClicked"><i
+                    class="icomoon-minus"></i>
+        </button>
+    </div>
+</a>

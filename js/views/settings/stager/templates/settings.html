@@ -1,0 +1,31 @@
+<script type="text/x-template" id="settings-template">
+    <h2><%= polyglot.t('settings.stager.stager_settings') %></h2>
+    <div class="stager_config"></div>
+</script>
+
+<script type="text/x-template" id="settings-stager-config">
+    <div class="row-fluid">
+        <div class="offset1 span10">
+            <form class="form-horizontal well form-check-dirty" id="stager_settings_form">
+
+                <div class="control-group">
+                  <label class="control-label" for="max_staging_duration"><%= polyglot.t('settings.stager.max_staging_duration') %></label>
+                  <div class="controls">
+                    <div class="input-append">
+                        <input id="max_staging_duration" type="text" name="max_staging_duration" value="<%- max_staging_duration %>">
+                        <span class="add-on"><%= polyglot.t('settings.seconds') %></span>
+                    </div>
+                    <span class="help-block">
+                        <%= polyglot.t('settings.stager.max_staging_duration.help') %>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="save_stager_settings" class="btn disabled submit"><%= polyglot.t('save_changes') %></button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</script>

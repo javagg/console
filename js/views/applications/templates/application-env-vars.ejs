@@ -1,0 +1,13 @@
+<h2><%= polyglot.t('application.environment_variables') %></h2>
+<div class="activity"></div>
+<div class="alert alert-info no-env-vars" style="display: none;">
+    <%= polyglot.t('application.env_vars_none') %>
+</div>
+<form class="form-horizontal env-vars" role="form">
+</form>
+<div class="save-buttons pull-right">
+    <button class="btn btn-primary btn-save" style="display: none;" data-loading-text="<%= polyglot.t('saving') %>"
+            disabled="disabled"><%= polyglot.t('save') %></button>
+    <button class="btn btn-default btn-cancel" style="display: none;"
+            disabled="disabled"><%= polyglot.t('cancel') %></button>
+</div>

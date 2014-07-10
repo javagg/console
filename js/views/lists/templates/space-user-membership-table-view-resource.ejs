@@ -1,0 +1,8 @@
+<tr id="<%- resource.metadata.guid %>" class="user <% if (is_admin) { %>clickable<% } %>">
+    <td <% if (is_admin) { %>class="linked_entity"<% } %>><%- resource.entity.username %></td>
+    <td><%- resource.entity.email %></td>
+    <td>
+        <button class="btn btn-xs btn-warning remove-user pull-right" style="display: none;" data-click="removeUserClicked"><i
+                    class="icomoon-minus"></i></button>
+    </td>
+</tr>

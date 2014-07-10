@@ -1,0 +1,119 @@
+<script type="text/x-template" id="deploy-template">
+    <h2 id="section-title"><%= polyglot.t('store.deploy.deploy_app') %></h2>
+
+    <div id="deploy-app" class="row">
+    </div>
+
+    <div id="deploy-log" class="hide">
+        <pre>
+        
+        </pre>
+    </div>
+
+    <div id="post-deploy">
+
+    </div>
+</script>
+
+<script type="text/x-template" id="app-details-template">
+    <div class="well row deploy-block">
+        <div class="deploy-app-details col-md-3">
+            <div>
+                <img class="app-icon" src="<%- app.icon %>">
+            </div>
+            <div class="description">
+                <%- app.desc %>
+            </div>
+        </div>
+
+        <form id="app-deploy-form" class="form-horizontal deploy-app-form col-md-9" data-app-src="<%- app.src %>"
+              data-app-commit="<%- app.commit %>" data-app-display-name="<%- app.name %>">
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="input-name"><%= polyglot.t('store.name_label') %></label>
+
+                <div class="col-lg-10">
+                    <input type="text" id="input-name" class="form-control" name="name" value="<%- random_app_id %>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="select-space"><%= polyglot.t('spaces.spaces') %></label>
+
+                <div class="col-lg-10">
+                    <select id="select-space" name="space">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="select-domain"><%= polyglot.t('space.domain') %></label>
+
+                <div class="col-lg-10">
+                    <select id="select-domain" name="domain" class="disabled">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="select-domain"><%= polyglot.t('store.placement_zone') %></label>
+
+                <div class="col-lg-10">
+                    <div id="input-placement-zone"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <label><input type="checkbox" id="input-autostart" name="autostart"> <%=
+                        polyglot.t('store.autostart_label') %></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button id="deploy-app-btn" class="btn btn-primary btn-lg pull-right"
+                        data-loading-text="<%= polyglot.t('store.deploy.deploying_app') %>"><i
+                        class="icomoon-cloud-upload"></i> <%= polyglot.t('store.deploy.deploy_app_button') %>
+                </button>
+            </div>
+        </form>
+
+        <div class="col-md-9 no-spaces-available hide">
+            You do not have the required roles to deploy an app to this space.
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="select-space-options-template">
+    <option value="<%- space_resource.metadata.guid %>"><%- space_resource.entity.organization.entity.name %>/<%-
+        space_resource.entity.name %>
+    </option>
+</script>
+
+<script type="text/x-template" id="select-domain-options-template">
+    <option value="<%- domain_resource.entity.name %>"><%- domain_resource.entity.name %>
+    </option>
+</script>
+
+<script type="text/x-template" id="deploy-success-template">
+    <div>
+        <h4 class="deploy-results"><%= polyglot.t('store.deploy.deploy_succeeded', { app_name: app_display_name }) %><%
+            if (autostart) { %> <%= polyglot.t('store.deploy.and_started') %><% } %>.
+            <a href="<%- app_details_url %>" class="btn btn-primary btn-lg pull-right"><i class="icomoon-screen"></i>
+                <%= polyglot.t('store.deploy.view_app') %></a>
+        </h4>
+
+    </div>
+</script>
+
+<script type="text/x-template" id="deploy-fail-template">
+    <div>
+        <h4 class="deploy-results">
+            <%= polyglot.t('store.deploy.deploy_failed', { app_name: app_display_name }) %>
+            <a href="#eventlog" class="btn btn-lg btn-event-log pull-right hidden"><i class="icomoon-file"></i> <%=
+                polyglot.t('store.deploy.view_event_log') %></a>
+            <a href="<%- app_details_url %>" class="btn btn-primary btn-lg pull-right"><i class="icomoon-screen"></i>
+                <%= polyglot.t('store.deploy.view_app') %></a>
+        </h4>
+
+    </div>
+</script>

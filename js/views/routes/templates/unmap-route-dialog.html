@@ -1,0 +1,13 @@
+<script type="text/x-template" id="unmap-route-dialog-body">
+    <div class="alert alert-danger error" style="display:none;"></div>
+    <div class="alert alert-warning">
+        <%= polyglot.t('routes.unmap.confirm', { 'host': route.entity.host }) %>
+    </div>
+</script>
+
+<script type="text/x-template" id="unmap-route-dialog-footer">
+    <button class="btn btn-warning btn-add btn-unmap-route"
+            data-loading-text="<%= polyglot.t('domains.dissociate_domain.dissociating') %>"><%=
+        polyglot.t('domains.dissociate_domain.dissociate') %>
+    </button>
+</script>

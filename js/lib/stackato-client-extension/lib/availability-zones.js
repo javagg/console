@@ -1,0 +1,2 @@
+define(["cloud-foundry-client/lib/collection"],function(i){var t=function(i){this.api=i,this.collection="availability_zones"};return t.prototype=Object.create(new i),t});
+//# sourceMappingURL=availability-zones.js.map

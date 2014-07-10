@@ -1,0 +1,11 @@
+<div class="list-group-item usage">
+    <strong><%- title %></strong>
+    <div class="progress" style="margin: 0 0 5px;">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= usage_value %>"
+             aria-valuemin="0" aria-valuemax="100" style="width: <%= usage_bar_width %>%;">
+        </div>
+    </div>
+    <p class="text-right" style="margin: 0">
+        <%= caption %>
+    </p>
+</div>

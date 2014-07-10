@@ -1,0 +1,14 @@
+<div class="form-group">
+    <label class="col-sm-4 control-label" title="<%- key %>"><%- key %></label>
+
+    <div class="col-sm-8">
+        <div class="input-group">
+            <input type="password" class="form-control value" data-key="<%- key %>" value="<%- value %>">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-show" type="button" title="<%= polyglot.t('show') %>"><i class="glyphicon glyphicon-eye-open"></i> </button>
+                <button style="display: none;" class="btn btn-default btn-hide" type="button" title="<%= polyglot.t('hide') %>"><i class="glyphicon glyphicon-eye-close"></i> </button>
+                <button class="btn btn-danger btn-delete maintenance_mode_disable" style="display: none;" type="button" title="<%= polyglot.t('delete') %>"><i class="icomoon-minus"></i> </button>
+            </span>
+        </div>
+    </div>
+</div>

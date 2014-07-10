@@ -1,0 +1,14 @@
+<h2><%= polyglot.t('settings.console.welcome') %></h2>
+<div class="alert alert-info">
+    <%= polyglot.t('settings.console.welcome.description') %>
+</div>
+<div id="welcome-editor"></div>
+<hr/>
+<div class="pull-left">
+    <button class="btn btn-default btn-load-default"><%= polyglot.t('settings.console.load_default') %></button>
+</div>
+<div class="pull-right">
+    <button class="btn btn-primary btn-save" data-loading-text="<%= polyglot.t('saving') %>" disabled="disabled"><%= polyglot.t('save_and_reload') %></button>
+    <button class="btn btn-default btn-cancel" disabled="disabled"><%= polyglot.t('cancel') %></button>
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,54 @@
+<script type="text/x-template" id="settings-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-cog"></span>
+            <span> <%= polyglot.t('settings.quotas.quota_definitions') %></span>
+
+            <div class="pull-right">
+            </div>
+        </h1>
+    </div>
+    <div class="quota-definitions-table">
+    </div>
+</script>
+
+<script type="text/x-template" id="edit-quota-definition-dialog-body">
+    <form class="quota-definition form form-horizontal" data-name="<%- quota.name %>">
+        <div class="form-group">
+            <label class="control-label col-lg-4" for="quota_name"><%= polyglot.t('settings.quotas.edit_quota.quota_name') %></label>
+            <div class="col-lg-8">
+                <input id="input-name" class="quota_name form-control" type="text" name="quota_name" value="<%- quota.name %>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-4" for="memory_limit_<%- quota.name %>"><%= polyglot.t('settings.quotas.memory_limit') %></label>
+
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <input id="input-memory_limit" class="form-control memory_limit" type="text" name="memory_limit_<%- quota.name %>" value="<%- quota.memory_limit %>">
+                    <span class="input-group-addon">MB</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-4" for="total_services_<%- quota.name %>"><%= polyglot.t('settings.quotas.total_services') %></label>
+            <div class="col-lg-8">
+                <input id="input-total_services" class="form-control total_services" type="text" name="total_services_<%- quota.name %>" value="<%- quota.total_services %>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-4" for="allow_sudo_<%- quota.name %>"><%= polyglot.t('settings.quotas.allow_sudo') %></label>
+            <div class="col-lg-8">
+                <input id="input-allow_sudo" class="form-control allow_sudo" type="checkbox" name="allow_sudo_<%- quota.name %>" <% if (quota.allow_sudo) { %>checked<% } %>>
+            </div>
+        </div>
+
+    </form>
+</script>
+
+<script type="text/x-template" id="edit-quota-definition-dialog-footer">
+    <button class="btn btn-primary btn-add btn-update-quota" data-loading-text="<%= polyglot.t('settings.quotas.edit_quota.updating') %>"><%= polyglot.t('settings.quotas.edit_quota.update') %></button>
+</script>

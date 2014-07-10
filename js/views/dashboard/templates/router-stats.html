@@ -1,0 +1,115 @@
+<script type="text/x-template" id="router-stats-template">
+
+    <div class="row">
+
+        <div class="col-xs-9">
+
+            <div class="row">
+                <div class="col-xs-12">
+                <div class="router-stats router-stats-incoming dashboard-section">
+                    <h4><%= polyglot.t('dashboard.router_stats') %>: <%= polyglot.t('dashboard.incoming_requests') %> <i id="current-requests-help" class="icon-question-sign"></i></h4>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div id="current-https" class="stat">
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <div id="current-http" class="stat">
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <div id="current-websockets" class="stat">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                <div class="router-stats router-stats-errors dashboard-section">
+                    <h4><%= polyglot.t('dashboard.router_stats') %>: <%= polyglot.t('dashboard.routing_errors') %> <i id="current-errors-help" class="icon-question-sign"></i></h4>
+
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div id="current-errors-https" class="stat">
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <div id="current-errors-http" class="stat">
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <div id="current-errors-proxy" class="stat">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                <div class="router-stats router-stats-distribution dashboard-section">
+                    <h4><%= polyglot.t('dashboard.load') %> <i id="load-distribution-help" class="icon-question-sign"></i></h4>
+
+                    <div class="row">
+                        <div class="col-xs-4" id="load-distribution-keys"></div>
+
+                        <div class="col-xs-4" style="max-height:180px;">
+                            <div class="router-distribution-header"><%= polyglot.t('dashboard.load.current') %></div>
+                            <canvas id="current-distribution" width="150" height="150"></canvas>
+                        </div>
+
+                        <div class="col-xs-4" style="max-height:180px;">
+                            <div class="router-distribution-header"><%= polyglot.t('dashboard.load.historical') %></div>
+                            <canvas id="lifetime-distribution" width="150" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+        </div>
+
+        <div class="col-xs-3 dashboard-section">
+            <div class="row">
+                <h4 class="col-xs-12"><%= polyglot.t('dashboard.historical_requests') %></h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 historical-request https-requests">
+                    <div id="total-https" class="historical-request-value responsive-text"> </div>
+                    <%= polyglot.t('dashboard.historical_requests.https') %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 historical-request http-requests">
+                    <div id="total-http" class="historical-request-value responsive-text"> </div>
+                    <%= polyglot.t('dashboard.historical_requests.http') %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 historical-request websockets-requests">
+                    <div id="total-websockets" class="historical-request-value responsive-text"> </div>
+                    <%= polyglot.t('dashboard.historical_requests.websockets') %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</script>

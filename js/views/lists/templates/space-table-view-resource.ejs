@@ -1,0 +1,8 @@
+<tr id="<%- resource.metadata.guid %>" class="space clickable">
+    <td class="linked_entity"><%- resource.entity.name %></td>
+    <% if (is_admin) { %>
+    <td><% if (resource.entity.is_default) { %><div class="label label-info label-default-space"><%= polyglot.t('space.is_default') %></div><% } %></td>
+    <% } %>
+    <td><a href="#" class="btn btn-xs btn-danger btn-delete-space pull-right" data-click="deleteSpaceClicked"
+           style="display: none;"><i class="icomoon-remove"></i></a></td>
+</tr>

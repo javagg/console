@@ -1,0 +1,27 @@
+<tr id="<%- resource.metadata.guid %>" class="application clickable">
+    <td class="linked_entity"><%- resource.entity.name %>
+        
+    </td>
+    <td>
+        <% if (resource.entity.restart_required) { %>
+            <div class="label label-warning restart-required" title="<%= polyglot.t('application.restart_required_message') %>"><span class="icomoon-loop"></span></div>
+        <% } %>
+    </td>
+    <td><%- resource.entity.space.entity.organization.entity.name %></td>
+    <td><%- resource.entity.space.entity.name %></td>
+    <td><span class="app-description"><span title="<%- resource.entity.description %>"
+                ><%- resource.entity.description %></span></span></td>
+    <td>
+        <span class="label
+                <% resource.entity.state === 'STARTED' ? print('label-success') : print('label-default'); %>"
+                ><%- resource.entity.state %></span>
+        
+    </td>
+    <td>
+        <% if (resource.entity.sso_enabled) { %>
+            <%= polyglot.t("applications.sso.stackato_user_access", {product_name: product_name}) %>
+        <% } else { %>
+            <%= polyglot.t("applications.sso.public_access") %>
+        <% } %>
+    </td>
+</tr>

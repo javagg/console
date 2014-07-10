@@ -1,0 +1,2 @@
+define(["cloud-foundry-client/lib/collection"],function(t){var e=function(t){this.api=t,this.collection="stackato/app_stores"};return e.prototype=Object.create(new t),e});
+//# sourceMappingURL=app-stores.js.map

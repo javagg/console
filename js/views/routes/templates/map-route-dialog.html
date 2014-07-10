@@ -1,0 +1,32 @@
+<script type="text/x-template" id="map-route-dialog-body">
+    <div class="lead">
+        <%= polyglot.t('routes.map.new_route') %>: 
+        <strong><span class="route-host">&lt;<%= polyglot.t('routes.map.host') %>&gt;</span>.<span class="route-domain">&lt;<%= polyglot.t('domains.name') %>&gt;</span></strong>
+    </div>
+    <div class="alert alert-danger" style="display:none;"></div>
+    <form role="form" class="form-horizontal map-route-form">
+        <div class="form-group">
+            <label for="host" class="col-lg-3 control-label"><%= polyglot.t('routes.map.host')
+                %></label>
+
+            <div class="col-lg-9">
+                <input type="text" id="host" name="host" class="form-control"
+                       placeholder="<%= polyglot.t('routes.map.host') %>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label"><%= polyglot.t('domains.name') %></label>
+
+            <div class="col-lg-9">
+                <div class="domain-select"></div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="map-route-dialog-footer">
+    <button class="btn btn-primary btn-add btn-map-route"
+            data-loading-text="<%= polyglot.t('domains.associate_domain.associating') %>"><%=
+        polyglot.t('domains.associate_domain.associate') %>
+    </button>
+</script>

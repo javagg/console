@@ -1,0 +1,81 @@
+<script type="text/x-template" id="setup-template">
+    <div class="page-header">
+        <h1>
+            <span><%= polyglot.t('setup.setup_first_admin') %></span>
+        </h1>
+    </div>
+    <div class="row">
+
+        <div class="alert alert-danger error-container" style="display: none;"></div>
+
+        <form class="form-horizontal" role="form" id="setup-form">
+            <div class="form-group">
+                <label class="control-label col-md-3" for="input-username"><%= polyglot.t('users.create_user.username') %></label>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="input-username" name="username" placeholder="<%= polyglot.t('users.create_user.username') %>"
+                           required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3" for="input-email"><%= polyglot.t('users.create_user.email') %></label>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="input-email" name="email" placeholder="<%= polyglot.t('users.create_user.email') %>"
+                           type="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3" for="input-password"><%= polyglot.t('users.password_label') %></label>
+
+                <div class="col-md-9">
+                    <input type="password" id="input-password" class="form-control" name="password"
+                           placeholder="<%= polyglot.t('users.password_label') %>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3" for="input-password2"><%=
+                    polyglot.t('users.confirm_password_label') %></label>
+
+                <div class="col-md-9">
+                    <input type="password" id="input-password2" class="form-control" name="password2"
+                           placeholder="<%= polyglot.t('users.confirm_password_label') %>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3" for="input-org"><%= polyglot.t('setup.organization') %></label>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="input-org" name="org" placeholder="<%= polyglot.t('setup.organization.placeholder') %>"
+                           required>
+                     <span class="help-block">
+                        <%= polyglot.t('setup.organization.help', {product_name: settings.product_name}) %>
+                     </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3" for="input-space"><%= polyglot.t('setup.space') %></label>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="input-space" name="space" placeholder="<%= polyglot.t('setup.space.placeholder') %>">
+                    <span class="help-block">
+                        <%= polyglot.t('setup.space.help') %>
+                     </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <div class="checkbox agree-to-tos">
+                        <label>
+                            <input type="checkbox" name="agree" required> <%= polyglot.t('setup.agree_terms', { 'product': settings.product_name }) %>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-setup btn btn-primary btn-lg pull-right"
+                    data-loading-text="<%= polyglot.t('users.setting_up_first_user') %>"><%= polyglot.t('setup.submit') %>
+            </button>
+        </form>
+    </div>
+</script>

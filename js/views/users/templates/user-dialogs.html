@@ -1,0 +1,70 @@
+<script type="text/x-template" id="change-password-dialog-body">
+    <div>
+        <form role="form" class="change-password-form form-horizontal">
+            <div class="form-group old-password-group">
+                <label class="control-label col-lg-4" for="input-password"><%= polyglot.t('users.old_password_label') %></label>
+
+                <div class="col-lg-8">
+                    <input type="password" id="input-old-password" class="form-control" name="old_password" placeholder="<%= polyglot.t('users.old_password_label') %>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-4" for="input-password"><%= polyglot.t('users.new_password_label') %></label>
+
+                <div class="col-lg-8">
+                    <input type="password" id="input-password" class="form-control" name="password" placeholder="<%= polyglot.t('users.new_password_label') %>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-4" for="input-password2"><%= polyglot.t('users.confirm_password_label') %></label>
+
+                <div class="col-lg-8">
+                    <input type="password" id="input-password2" class="form-control" name="password2" placeholder="<%= polyglot.t('users.confirm_password_label') %>" required>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-template" id="change-password-dialog-footer">
+    <button class="btn btn-primary change-password-btn" data-loading-text="<%= polyglot.t('user.changing_password') %>"><%=
+        polyglot.t('user.change_password') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="edit-details-dialog-body">
+    <div>
+        <form role="form" class="form-horizontal edit-user-details-form">
+	    <div class="form-group">
+		<label for="edit-user-given-name" class="col-lg-3 control-label"><%= polyglot.t('user.name.given_name') %></label>
+		<div class="col-lg-9">
+			<input type="text" id="edit-user-given-name" name="given-name" class="form-control" placeholder="<%= polyglot.t('user.name.given_name') %>" value="<%- user.attributes.name.givenName %>">
+		</div>
+	    </div>
+	    <div class="form-group">
+		<label for="edit-user-family-name" class="col-lg-3 control-label"><%= polyglot.t('user.name.family_name') %></label>
+		<div class="col-lg-9">
+			<input type="text" id="edit-user-family-name" name="family-name" class="form-control" placeholder="<%= polyglot.t('user.name.family_name') %>" value="<%- user.attributes.name.familyName %>">
+		</div>
+	    </div>
+	    <div class="form-group">
+		<label for="edit-user-email" class="col-lg-3 control-label"><%= polyglot.t('user.edit_details.email') %></label>
+		<div class="col-lg-9">
+			<input type="text" id="edit-user-email" type="email" name="email" class="form-control" placeholder="<%= polyglot.t('user.edit_details.email') %>" value="<%- user.attributes.email %>" required>
+		</div>
+	    </div>
+	    <!-- <div class="form-group">
+		<label for="edit-user-phone" class="col-lg-3 control-label"><%= polyglot.t('user.edit_details.phone') %></label>
+		<div class="col-lg-9">
+			<input type="text" id="edit-user-phone" name="phone" class="form-control" placeholder="<%= polyglot.t('user.edit_details.phone') %>" value="<%- user.attributes.phone %>">
+		</div>
+	    </div> -->
+	</form>
+    </div>
+</script>
+
+<script type="text/x-template" id="edit-details-dialog-footer">
+    <button class="btn btn-primary edit-details-btn" data-loading-text="<%= polyglot.t('user.saving_changes') %>"><%=
+        polyglot.t('user.save_changes') %>
+    </button>
+</script>

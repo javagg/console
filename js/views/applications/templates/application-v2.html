@@ -1,0 +1,405 @@
+<script type="text/x-template" id="application-template">
+    <div class="page-header">
+        <h1>
+            <small><span class="app_status"></span></small>
+            <span class="app-name"> <%- app.name %></span>
+            <small class="app-state"></small>
+            <div class="pull-right app-buttons">
+            </div>
+        </h1>
+        <span class="text-small">
+            <a href="#organizations/<%- app.space.entity.organization.metadata.guid %>"><%-
+                app.space.entity.organization.entity.name %></a> /
+            <a href="#spaces/<%- app.space.metadata.guid %>"><%- app.space.entity.name %></a>
+        </span>
+    </div>
+    <div class="restart_required" style="display: none;">
+        <div class="alert alert-warning">
+            <span class="icomoon-warning-2"></span> <%= polyglot.t('application.restart_required_message') %>
+        </div>
+    </div>
+    <div class="no_instances" style="display: none;">
+        <div class="alert alert-warning">
+            <span class="icomoon-warning-2"></span> 
+            <%= polyglot.t('application.about.status.no_instances') %>. <%= polyglot.t('application.about.status.check_logs') %>.
+        </div>
+    </div>
+    <div class="row app-view">
+        <div class="col-xs-3">
+            <ul class="nav nav-tabs tabs-left" id="application_tabs">
+                <li class="active"><a href="#tab_summary" data-toggle="tab"><%= polyglot.t('application.summary')%></a></li>
+                <li><a href="#tab_timeline" data-toggle="tab"><%= polyglot.t('application.timeline')%></a></li>
+
+                
+                <li><a href="#tab_env_vars" data-toggle="tab"><%= polyglot.t('application.environment_variables') %></a></li>
+                <li><a href="#tab_files" data-toggle="tab"><%= polyglot.t('application.files') %></a></li>
+                <li><a href="#tab_instances" data-toggle="tab"><%= polyglot.t('application.instances') %></a></li>
+                <li><a href="#tab_logs" data-toggle="tab"><%= polyglot.t('application.logs') %></a></li>
+                <li><a href="#tab_routes" data-toggle="tab"><%= polyglot.t('application.routes') %></a></li>
+                <li><a href="#tab_services" data-toggle="tab"><%= polyglot.t('application.services') %></a></li>
+                <li><a href="#tab_settings" data-toggle="tab"><%= polyglot.t('application.settings') %></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_summary">
+                    <h2>
+                        <%= polyglot.t('application.summary')%>
+                    </h2>
+                    <div class="summary-content">
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_timeline"></div>
+                <div class="tab-pane" id="tab_instances">
+                    <h2>
+                        <%= polyglot.t('application.instances')%>
+                    </h2>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><%= polyglot.t('application.instances.autoscaling_settings') %></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal app-instances-form" data-app-guid="">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label" for="emailupdatescheck">Autoscaling</label>
+                                            <div class="col-lg-8">
+                                                <div id="autoscaling-status" class="toggle-light"></div>
+                                                <input type="checkbox" disabled="disabled" class="hide" id="autoscaling-status-checkbox">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div id="non-autoscaling-controls" class="row">
+                                <div class="col-md-12" id="app-instances">
+                                    <div class="form-horizontal slider-block">
+                                        <div class="form-group">
+                                            <small class="label label-default slider-saving" id="app-instances-saving"><%=
+                                                polyglot.t('saving') %>
+                                            </small>
+                                            <small class="label label-success slider-saved" id="app-instances-saved"><%=
+                                                polyglot.t('saved') %>
+                                            </small>
+                                            <small class="label label-danger slider-failed" id="app-instances-failed"><%=
+                                                polyglot.t('save_failed') %>
+                                            </small>
+                                            <label class="col-lg-4 control-label" for="app-instances-label"><%=
+                                                polyglot.t('application.instances.app_instances') %></label>
+                                            
+                                            <div class="col-lg-7">
+                                                <input type="text" id="app-instances-label" class="slider-label" disabled>
+                                                <button id="refresh-app-instances" class="btn btn-link btn-sm pull-right"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+                                                <div id="slider-app-instances" class="slider-container"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="autoscaling-controls" class="hide row">
+                                <div class="col-md-12">
+                                    <div class="form-horizontal slider-block" id="cpu-threshold">
+                                        <div class="form-group">
+                                            <small class="label label-default slider-saving" id="cpu-threshold-saving"><%=
+                                                polyglot.t('saving') %>
+                                            </small>
+                                            <small class="label label-success slider-saved" id="cpu-threshold-saved"><%=
+                                                polyglot.t('saved') %>
+                                            </small>
+                                            <small class="label label-danger slider-failed" id="cpu-threshold-failed"><%=
+                                                polyglot.t('save_failed') %>
+                                            </small>
+                                            <label class="col-lg-4 control-label" for="cpu-threshold-label"><%=
+                                                polyglot.t('application.instances.cpu_threshold') %></label>
+
+                                            <div class="col-lg-8">
+                                                <input type="text" id="cpu-threshold-label" class="slider-label" disabled>
+                                                <div id="slider-cpu-threshold" class="slider-container"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="app-autoscaling-instances">
+                                    <div class="form-horizontal slider-block">
+                                        <div class="form-group">
+                                            <small class="label label-default slider-saving" id="app-autoscaling-instances-saving"><%=
+                                                polyglot.t('saving') %>
+                                            </small>
+                                            <small class="label label-success slider-saved" id="app-autoscaling-instances-saved"><%=
+                                                polyglot.t('saved') %>
+                                            </small>
+                                            <small class="label label-danger slider-failed" id="app-autoscaling-instances-failed"><%=
+                                                polyglot.t('save_failed') %>
+                                            </small>
+                                            <label class="col-lg-4 control-label" for="app-autoscaling-instances-label"><%=
+                                                polyglot.t('application.instances.app_instances') %></label>
+                                            
+                                            <div class="col-lg-8">
+                                                <input type="text" id="app-autoscaling-instances-label" class="slider-label" disabled>
+                                                <div id="slider-app-autoscaling-instances" class="slider-container"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><%= polyglot.t('application.instances.status') %></div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><%= polyglot.t('application.instances.instance') %></th>
+                                <th><%= polyglot.t('application.instances.state') %></th>
+                                <th><%= polyglot.t('application.instances.dea_ip') %></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_routes">
+                    <h2>
+                        <%= polyglot.t('application.routes')%>
+                        <div class="tab-actions pull-right">
+                            <button class="btn btn-primary btn-sm btn-map-route" style="display: none;"><i
+                                        class="icomoon-plus"></i> <%- polyglot.t('routes.map.add_route') %></button>
+                            </button>
+                        </div>
+                    </h2>
+                    <div class="routes-table">
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_services">
+                    <h2>
+                        <%= polyglot.t('application.services')%>
+                    </h2>
+                    <div class="services-table">
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_logs"></div>
+                <div class="tab-pane" id="tab_files"></div>
+                <div class="tab-pane" id="tab_env_vars"></div>
+                <div class="tab-pane" id="tab_settings"></div>
+            </div>
+        </div>
+        <!-- 
+        <div class="col-md-4">
+            
+            
+        </div>
+        <div class="col-md-8">
+            <ul class="nav nav-tabs nav-tabs-spaced" id="application_tabs">
+                <li class="active"><a href="#tab_timeline" data-toggle="tab"><%= polyglot.t('application.timeline')
+                    %></a></li>
+                <li><a href="#tab_instances" data-toggle="tab"><%= polyglot.t('application.instances') %></a></li>
+                <li><a href="#tab_logs" data-toggle="tab"><%= polyglot.t('application.logs') %></a></li>
+                <li><a href="#tab_files" data-toggle="tab"><%= polyglot.t('application.files') %></a></li>
+                <li><a href="#tab_env_vars" data-toggle="tab"><%= polyglot.t('application.environment_variables') %></a>
+                </li>
+                <li><a href="#tab_settings" data-toggle="tab"><%= polyglot.t('application.settings') %></a></li>
+            </ul>
+
+            
+        </div> -->
+    </div>
+</script>
+
+<script type="text/x-template" id="app-stop-restart-actions-template">
+    <div class="pull-right app-buttons btn-group">
+        <button class="btn btn-warning restart-app" style="display: none;"><span class="icomoon-loop"></span> <%= polyglot.t('application.restart') %>
+        </button>
+        <button class="btn btn-danger stop-app" style="display: none;"><span class="icomoon-stop-2"></span> <%= polyglot.t('application.stop') %></button>
+        <button class="btn btn-primary btn-launch-app pull-right" style="display:none;"><span class="icomoon-new-tab"></span> View App</button>
+    </div>
+</script>
+
+<script type="text/x-template" id="app-start-delete-actions-template">
+    <div class="pull-right app-buttons btn-group">
+        <button class="btn btn-primary start-app" style="display: none;"><span class="icomoon-play-2"></span> <%= polyglot.t('application.start') %></button>
+        <button class="btn btn-danger delete-app" style="display: none;"><span class="icomoon-remove"></span> <%= polyglot.t('application.delete') %>
+        </button>
+    </div>
+</script>
+
+<script type="text/x-template" id="app-staging-actions-template">
+    <div class="pull-right app-buttons btn-group">
+        <button class="btn btn-danger delete-app" style="display: none;"><span class="icomoon-remove"></span> <%= polyglot.t('application.delete') %>
+        </button>
+    </div>
+</script>
+
+<script type="text/x-template" id="application-usage-template">
+    <div class="usage-bar">
+        <div class="progress" style="margin: 0 0 5px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= (usage.mem / allocated.mem) * 100 %>"
+                 aria-valuemin="0" aria-valuemax="100" style="width: <%= (usage.mem / allocated.mem) * 100 %>%;">
+            </div>
+        </div>
+        <p class="text-right" style="margin: 0">
+            <%= Math.round(usage.mem / 1024 * 100) / 100 %> / <%= allocated.mem / 1024 %> MB
+        </p>
+    </div>
+</script>
+
+<script type="text/x-template" id="application-about-template">
+    <div class="about">
+        <div class="panel panel-default col-md-12">
+            <div class="panel-body row">
+                <button class="btn btn-primary btn-xs pull-right app_description_btn edit_btn" style="display:none"><i
+                                        class="icomoon-pencil"></i></button>
+                <button class="btn btn-primary pull-right app_description_btn placeholder_btn" style="display:none"><%= 
+                        polyglot.t('application.about.description.placeholder.button') %></button>
+                <span class="app_description_plain"></span>
+                <div class="app_description_edit" style="display: none;">
+                    <form id="app_description_edit_form">
+                    <textarea class="app_description_text form-control" name="app_description_text" id="app_description_text" rows="10" maxlength="2048"
+                              placeholder="<%= polyglot.t('application.about.description.placeholder') %>"
+                            ></textarea>
+                    <div class="pull-right">
+                        <button class="btn btn-sm btn-primary app_description_save"
+                                ><%= polyglot.t('application.about.description.save') %>
+                        </button>
+
+                        <button class="btn btn-sm btn-default app_description_cancel"
+                                ><%= polyglot.t('application.about.description.cancel') %>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <%= polyglot.t('application.about') %>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <strong><%= polyglot.t('application.about.buildpack') %>: </strong><span class="app_buildpack"><%= app.entity.detected_buildpack ||
+                            polyglot.t('application.about.buildpack_none') %></span>
+                        </div>
+                        <div>
+                            <strong><%= polyglot.t('application.about.created') %>:</strong> <span class="app_created_at pointer"><%- app.metadata.created_at_pretty %></span>
+                        </div>
+                        <div>
+                            <strong><%= polyglot.t('application.about.modified') %>:</strong> <span class="app_updated_at pointer"><%- app.metadata.updated_at_pretty %></span>
+                        </div>
+                        <div>
+                            <strong><%= polyglot.t('application.settings.sso') %>:</strong>
+                            <span class="app_sso_disabled"
+                                  title="<%= polyglot.t('application.about.sso.disabled.title') %>" style="display: none;">
+                                  <%= polyglot.t('applications.sso.public_access') %>
+                                  </span>
+                            <span class="app_sso_enabled"
+                                  title="<%= polyglot.t('application.about.sso.enabled.title') %>">
+                                  <%= polyglot.t('applications.sso.stackato_user_access', { product_name: product_name }) %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default usage-panel">
+                    <div class="panel-heading">
+                        <%= polyglot.t('application.usage.memory') %>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="application-settings-template">
+    <h2>
+        <%= polyglot.t('application.settings')%>
+    </h2>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <form class="form-horizontal app-settings-form" data-app-guid="<%- app.metadata.guid %>">
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label" for="input-disk-space"><%=
+                    polyglot.t('application.settings.disk_space') %></label>
+
+                <div class="col-lg-8 input-group">
+                    <input type="text" class="form-control" id="input-disk-space" name="disk"
+                           value="<%- app.entity.disk_quota %>">
+                     <span class="input-group-addon">MB</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label" for="input-memory-allotted"><%=
+                    polyglot.t('application.settings.memory') %></label>
+
+                <div class="col-lg-8 input-group">
+                    <input type="text" class="form-control" id="input-memory-allotted" name="mem"
+                           value="<%- app.entity.memory %>">
+                    <span class="input-group-addon">MB</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label" for="input-distribution-zone"><%=
+                    polyglot.t('application.settings.zone') %></label>
+
+                <div class="col-lg-8">
+                    <div id="input-distribution-zone"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label" for="input-single-signon">
+                    <%= polyglot.t('application.settings.sso', { product_name: product_name }) %><br><small>(<%=
+                            polyglot.t('application.requires_restart').toLowerCase() %>)</small> </label>
+                </label>
+
+                <div class="col-lg-8">
+                    <span data-toggle="tooltip"
+                          title="<%= polyglot.t('application.settings.sso.tooltip', { product_name: product_name }) %>">
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="input-single-signon" id="input-single-signon1" value="false" <% if (!app.entity.sso_enabled) { %>checked<% } %>>
+                                    <%= polyglot.t('applications.sso.public_access') %> </label> 
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="input-single-signon" id="input-single-signon2" value="true" <% if (app.entity.sso_enabled) { %>checked<% } %>>
+                                    <%= polyglot.t('applications.sso.stackato_user_access', { product_name: product_name }) %> </label>
+                              </label>
+                            </div>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+        <div class="pull-right settings-buttons">
+            <button class="btn btn-primary btn-save save-settings" style="display: none;"
+                    data-loading-text="<%= polyglot.t('application.settings.saving') %>" disabled="disabled"><%=
+                polyglot.t('application.settings.save') %>
+            </button>
+            <button class="btn btn-default btn-cancel cancel-settings" disabled="disabled" style="display: none;"><%=
+                polyglot.t('application.settings.cancel') %>
+            </button>
+        </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="application-404">
+    <div class="jumbotron center">
+        <h2><i class="icomoon-warning"></i> 404</h2>
+
+        <p>Application not found</p>
+    </div>
+</script>

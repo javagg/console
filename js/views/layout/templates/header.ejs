@@ -1,0 +1,93 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only"><%= polyglot.t('layout.header.toggle_nav') %></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="#"><img class="navbar-brand" src="<%- settings.product_logo_header_url %>" alt="<%= settings.product_name %>"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <div class="header-links-wrapper" style="display:none;">
+            <ul class="nav navbar-nav">
+                <li class="nav-applications"><a href="#applications"><%= polyglot.t('layout.header.applications') %></a></li>
+                <li class="nav-organizations"><a href="#organizations"><%= polyglot.t('layout.header.organizations') %></a></li>
+                <li class="dropdown nav-support"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= polyglot.t('layout.header.support') %> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="<% if(settings.use_local_docs === 'true'){print('/docs');} else {print(settings.external_docs_url);} %>"
+                               target="_blank"><%= polyglot.t('layout.header.documentation') %></a></li>
+                        <li><a href="#support"><%= polyglot.t('layout.header.contact_support') %></a></li>
+                        <li><a class="admin_only" href="#support/stackato_report"><%= polyglot.t('layout.header.stackato_report', {'product': settings.product_name}) %></a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href="#client"><%= polyglot.t('layout.header.get_client', { 'product': settings.product_name }) %></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown nav-admin admin-only">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= polyglot.t('layout.header.admin') %> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#admin/cluster"><%= polyglot.t('layout.header.cluster') %></a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" class="dropdown-header"><%= polyglot.t('layout.header.admin_entities') %></li>
+                        <li><a href="#admin/applications"><%= polyglot.t('layout.header.applications') %></a></li>
+                        <li><a href="#admin/organizations"><%= polyglot.t('layout.header.organizations') %></a></li>
+                        <li><a href="#admin/domains"><%= polyglot.t('layout.header.domains') %></a></li>
+                        <li><a href="#admin/services"><%= polyglot.t('layout.header.services') %></a></li>
+                        <li><a href="#admin/users"><%= polyglot.t('layout.header.users') %></a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" class="dropdown-header"><%= polyglot.t('layout.header.reports') %></li>
+                        <li><a href="#dashboard"><%= polyglot.t('layout.header.dashboard') %></a></li>
+                        <li><a href="#eventlog"><%= polyglot.t('layout.header.eventlog') %></a></li>
+                        <!-- <li><a href="#">Status Graphs</a></li>
+                        <li><a href="#">Cluster Features</a></li> -->
+                    </ul>
+                </li>
+                <li class="dropdown nav-settings admin-only">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= polyglot.t('layout.header.settings') %> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#settings/application"><%= polyglot.t('layout.header.settings.applications') %></a></li>
+                        <li><a href="#settings"><%= polyglot.t('layout.header.settings.cc') %></a></li>
+                        <li><a href="#settings/console"><%= polyglot.t('layout.header.settings.console') %></a></li>
+                        <!--
+                        Commented out until fully implemented...
+                        <li><a href="#settings/config"><%= polyglot.t('layout.header.settings.config') %></a></li>
+                        -->
+
+                        <li class="settings_link dea_link hide"><a href="#settings/dea"><%= polyglot.t('layout.header.settings.dea') %></a></li>
+                        <li class="settings_link logyard_link"><a href="#settings/logyard"><%= polyglot.t('layout.header.settings.logyard') %></a></li>
+                        <li><a href="#settings/quota"><%= polyglot.t('layout.header.settings.quotas') %></a></li>
+
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" class="dropdown-header"><%= polyglot.t('layout.header.service_settings') %></li>
+                        <li class="settings_link filesystem_link hide"><a href="#settings/file_system"><%= polyglot.t('layout.header.settings.file_system') %></a></li>
+                        <li class="settings_link harbor_link hide"><a href="#settings/harbor"><%= polyglot.t('layout.header.settings.harbor') %></a></li>
+                        <li class="settings_link memcached_link hide"><a href="#settings/memcached"><%= polyglot.t('layout.header.settings.memcached') %></a></li>
+                        <li class="settings_link mongodb_link hide"><a href="#settings/mongodb"><%= polyglot.t('layout.header.settings.mongodb') %></a></li>
+                        <li class="settings_link mysql_link hide"><a href="#settings/mysql"><%= polyglot.t('layout.header.settings.mysql') %></a></li>
+                        <li class="settings_link postgresql_link hide"><a href="#settings/postgresql"><%= polyglot.t('layout.header.settings.postgresql') %></a></li>
+                        <li class="settings_link rabbit_link hide"><a href="#settings/rabbitmq"><%= polyglot.t('layout.header.settings.rabbitmq') %></a></li>
+                        <li class="settings_link rabbit3_link hide"><a href="#settings/rabbitmq3"><%= polyglot.t('layout.header.settings.rabbitmq3') %></a></li>
+                        <li class="settings_link redis_link hide"><a href="#settings/redis"><%= polyglot.t('layout.header.settings.redis') %></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src=""
+                                                                                    class="profile-img"/> <span
+                            class="profile-name"><%= polyglot.t('layout.header.loading') %></span>
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="account-details" href="#"><%= polyglot.t('layout.header.account_details') %></a></li>
+                        <li><a class="logout" href="#"><%= polyglot.t('layout.header.logout') %></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

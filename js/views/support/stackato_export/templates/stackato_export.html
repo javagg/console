@@ -1,0 +1,32 @@
+<script type="text/x-template" id="support-template">
+    <h2><%= polyglot.t('support.stackato_export.stackato_export', {'product': settings.product_name}) %></h2>
+    <div class="row-fluid">
+        <div class="offset1 span10 well">
+            <p><%= polyglot.t('support.stackato_export.stackato_export_description', {'product': settings.product_name}) %></p>
+            <p><%= polyglot.t('support.stackato_export.stackato_export_note') %></p>
+            <div class="stackato_export_status">
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="not_in_maintenance_mode">
+    <div class="maintenance_mode_off">
+        <p><%= polyglot.t('support.stackato_export.maintenance_mode_required', {'product': settings.product_name}) %></p>
+    </div>
+</script>
+
+<script type="text/x-template" id="create_export">
+    <p><a class="btn btn-primary btn-lg btn-block" id="generate_stackato_export" href="/stackato/export?regen=1"><i class="icomoon-play-2"></i> <%= polyglot.t('support.stackato_export.generate_export') %></button></p>
+</script>
+
+<script type="text/x-template" id="export_in_progress">
+    <div class="export_in_progress">
+        <p><%= polyglot.t('support.stackato_export.export_in_progress') %></p>
+    </div>
+</script>
+
+
+<script type="text/x-template" id="download_export">
+    <p><a class="btn btn-success btn-lg btn-block" id="download_export" href="/stackato/export"><i class="icomoon-cloud-download"></i> <%= polyglot.t('support.stackato_export.download_export') %> (<%- export_timestamp %>)</button></p>
+</script>

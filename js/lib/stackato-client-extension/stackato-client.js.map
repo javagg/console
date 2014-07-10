@@ -1,0 +1,1 @@
+{"version":3,"file":"stackato-client.js","sources":["stackato-client.js.src.js"],"names":["define","Apps","Users","Api","extendCloudFoundryClient","extend"],"mappings":"AAIAA,QACI,8BACA,+BACA,8BACA,SAAUC,EAAMC,EAAOC,GAEnB,OAKIC,yBAA0B,WACtBD,EAAIE,SACJJ,EAAKI,SACLH,EAAMG"}

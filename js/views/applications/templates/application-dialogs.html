@@ -1,0 +1,47 @@
+<script type="text/x-template" id="delete-application-dialog-body">
+    <div class="alert alert-danger">
+        <%= polyglot.t('application.confirm_delete') %>
+    </div>
+
+    <div class="delete-services alert alert-info hide">
+    	<form class="form form-horizontal">
+		    <strong><%= polyglot.t('application.delete_services') %></strong>
+		    <ul id="services-to-delete">
+			</ul>
+			
+			<div class="form-group">
+				<label>
+					<input type="checkbox" name="yes-delete-services" id="yes-delete-services">
+					 	<%= polyglot.t('application.delete_services_confirm') %>
+					</input>
+				</label>
+			</div>
+		</form>
+	</div>
+</script>
+
+<script type="text/x-template" id="delete-application-dialog-services-list-item">
+	<li><%- service.entity.name %></li>
+</script>
+
+<script type="text/x-template" id="delete-application-dialog-footer">
+    <button class="btn btn-danger btn-delete" data-loading-text="<%= polyglot.t('deleting') %>"><%= polyglot.t('delete') %></button>
+</script>
+
+<script type="text/x-template" id="change-application-state-dialog-body">
+    <div class="alert alert-danger">
+        <%= polyglot.t('application.confirm_action', { 'action': action }) %>
+    </div>
+</script>
+
+<script type="text/x-template" id="change-application-state-dialog-footer">
+    <button class="btn btn-danger <%- button_class %>" data-loading-text="<%- loading_text %>..."><%- button_text %></button>
+</script>
+
+<script type="text/x-template" id="disable-sso-dialog-body">
+   <div class="alert alert-danger"><%- polyglot.t('application.sso.disable_prompt.body', { 'app_name': app_name }) %></div>
+</script>
+
+<script type="text/x-template" id="disable-sso-dialog-footer">
+    <button class="btn btn-danger btn-disable"><%= polyglot.t('application.sso.disable') %></button>
+</script>

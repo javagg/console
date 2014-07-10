@@ -1,0 +1,85 @@
+<script type="text/x-template" id="store-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <%= polyglot.t('store.app_store') %>
+        </h1>
+    </div>
+    <div class="messages"></div>
+    <ul class="thumbnails" id="store-apps">
+    </ul>
+</script>
+
+<script type="text/x-template" id="store-apps-template">
+    <% _.each(store_resources, function(resource) { %>
+        <% var a = 0  // app index%>
+        <% var store_name = resource.metadata.name %>
+        <% if (resource.entity.error || !resource.entity.enabled) { %>
+            <% return; %>
+        <% } %>
+        <% var store = resource.entity.content.store %>
+        <% var apps = resource.entity.content.apps %>
+        <% _.each(apps, function(app) { %>
+                  <% var icon = app.icon ? app.icon : '/img/' + app.framework.toLowerCase()  + ".png" %>
+
+    <li class="store-app" data-app-id="<%- app.id %>" data-repo-src="<%- app.src %>" <% if (app.commit) { %>data-repo-branch="<%- app.commit %>"<% } %>>
+        <div class="app-image" style="background-image: url(<%- icon %>)">
+        </div>
+        <div class="app-details">
+            <h4><%- app.name %>
+            </h4>
+
+            <p class="store-app-desc">
+                <%- app.desc %>
+            </p>
+
+            <h5>Requirements</h5>
+            <ul>
+                <li><%- app.mem %> MB <%= polyglot.t('store.memory') %></li>
+
+                <% if (app.services) { %>
+                    <% var services = app.services.split(', ') %>
+                    <% _.each(services, function(service) { %>
+                        <li><% if(_.indexOf(app.missing_services, service) != -1) { %><i class="icomoon-blocked service_unavailable"></i> 
+                        <% } else { %><i class="icomoon-checkmark-circle service_available"></i> <% }%><%= polyglot.t('service.' + service) %>
+                        </li>
+                    <% }) %>
+                <% } %>
+            </ul>
+
+            <p>
+                <% if (app.license) { %>
+                    <span class="label label-default"><%- app.license %></span>
+                <% } %>
+
+                <% if (app.runtime) { %>
+                    <span class="label label-default label-language"><%= polyglot.t('runtime.' + app.runtime) %></span>
+                <% } %>
+            </p>
+
+        </div>
+        <div class="store-app-footer">
+            <div class="app-actions">
+                <p>
+                    <a target="_blank" href="<%- app.info %>"><i class="icomoon-new-tab"></i> <%= polyglot.t('store.view_readme') %></a>
+                </p>
+                <p>
+                    <a class="clone_repo clickable"><i class="icomoon-github"></i> <%= polyglot.t('store.clone_repo') %></a>
+                </p>
+                <a href="#/store/deploy/<%= encodeURIComponent(store_name) %>/<%- a %>" class="btn btn-primary btn-block deploy_app" <% if (app.missing_services.length) { %>disabled <% } %>><%= polyglot.t('store.deploy_app') %></a>
+            </div>
+            <div class="app-store-source" title="<%- store.title %>">
+                <img src="<%- store.icon %>"> <%- store.title %>
+            </div>
+        </div>
+    </li>
+            <% a++ // increment app index %>
+        <% }); %>
+    <% }); %>
+</script>
+
+<script type="text/x-template" id="clone-app-dialog-body">
+<pre>git clone <%- repo_src %>
+cd <%- repo_name %>
+git checkout <%- repo_branch %></pre>
+</script>

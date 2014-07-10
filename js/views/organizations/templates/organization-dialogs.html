@@ -1,0 +1,231 @@
+<script type="text/x-template" id="create-organization-dialog-body">
+    <div class="alert alert-danger error" style="display: none;"></div>
+    <form class="form-horizontal create-organization-form" role="form">
+        <div class="form-group">
+            <label for="input-organization-name" class="col-sm-4 control-label"><%= polyglot.t('organizations.create.name') %></label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="name" id="input-organization-name" placeholder="<%= polyglot.t('organizations.create.name') %>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label"><%= polyglot.t('organizations.quota_definition') %></label>
+
+            <div class="col-sm-8">
+                <div class="quota-select"></div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="create-organization-dialog-footer">
+    <button class="btn btn-primary create-organization" data-loading-text="<%= polyglot.t('organizations.creating') %>"><%=
+        polyglot.t('organizations.create') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="set-as-default-dialog-body">
+    <div>
+        <form>
+            <%= polyglot.t('organization.set_as_default.info') %>
+            <div class="alert alert-info">
+                <%= polyglot.t('organization.set_as_default.confirm', { 'organization': organization_name }) %>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-template" id="set-as-default-dialog-footer">
+    <button class="btn btn-primary set-as-default-organization" data-loading-text="<%= polyglot.t('organization.setting_as_default') %>"><%=
+        polyglot.t('organization.set_as_default') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="unset-as-default-dialog-body">
+    <div>
+        <form>
+            <div class="alert alert-info">
+                <%= polyglot.t('organization.unset_as_default.confirm', { 'organization': organization_name }) %>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-template" id="unset-as-default-dialog-footer">
+    <button class="btn btn-primary unset-as-default-organization" data-loading-text="<%= polyglot.t('organization.unsetting_as_default') %>"><%=
+        polyglot.t('organization.unset_as_default') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="delete-organization-dialog-body">
+    <div>
+        <form>
+            <div class="alert alert-danger">
+                <%= polyglot.t('organizations.delete.confirm', { 'organization': $('<div>').text(organization_name).html() }) %>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="yes_delete_org"><input type="checkbox" name="yes_delete_org" id="yes_delete_org"> <%= polyglot.t('organizations.delete.yes_delete') %></label>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-template" id="delete-organization-dialog-footer">
+    <button class="btn btn-danger delete-organization" data-loading-text="<%= polyglot.t('organizations.deleting') %>" disabled><%=
+        polyglot.t('organizations.delete') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="create-space-dialog-body">
+    <div class="alert alert-danger error" style="display: none;"></div>
+    <form role="form" class="form-horizontal create-space-form">
+        <div class="form-group">
+            <label for="create-space-name" class="col-lg-3 control-label"><%= polyglot.t('spaces.create_space.name')
+                %></label>
+
+            <div class="col-lg-9">
+                <input type="text" id="create-space-name" name="name" class="form-control"
+                       placeholder="<%= polyglot.t('spaces.create_space.name') %>">
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="create-space-dialog-footer">
+    <button class="btn btn-primary btn-add btn-create-space"
+            data-loading-text="<%= polyglot.t('spaces.create_space.creating') %>"><%=
+        polyglot.t('spaces.create_space.create') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="add-user-dialog-body">
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-lg-12">
+                <div class="user-select"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-3">
+                <label><%= polyglot.t('organization.roles') %></label>
+            </div>
+            <div class="col-lg-9">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="manager" id="grant_manager"> <strong><%=
+                        polyglot.t('organization.role.manager') %></strong> - <%=
+                        polyglot.t('organization.role.manager.help') %>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="billing_manager" id="grant_billing_manager"> <strong><%=
+                        polyglot.t('organization.role.billing_manager') %></strong> - <%=
+                        polyglot.t('organization.role.billing_manager.help') %>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="auditor" id="grant_auditor"> <strong><%=
+                        polyglot.t('organization.role.auditor') %></strong> - <%=
+                        polyglot.t('organization.role.auditor.help') %>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="add-user-dialog-footer">
+    <button class="btn btn-primary btn-add btn-add-user" data-loading-text="<%= polyglot.t('space.add_user.adding') %>">
+        <%= polyglot.t('space.add_user.add') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="edit-user-dialog-body">
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-lg-3">
+                <label><%= polyglot.t('organization.roles') %></label>
+            </div>
+            <div class="col-lg-9">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="manager" id="grant_manager" <% if (user.entity.is_manager) {
+                        %>checked<% } %> > <strong><%=
+                        polyglot.t('organization.role.manager') %></strong> - <%=
+                        polyglot.t('organization.role.manager.help') %>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="billing_manager" id="grant_billing_manager" <% if
+                        (user.entity.is_billing_manager) { %>checked<% } %> > <strong><%=
+                        polyglot.t('organization.role.billing_manager') %></strong> - <%=
+                        polyglot.t('organization.role.billing_manager.help') %>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="auditor" id="grant_auditor" <% if (user.entity.is_auditor) {
+                        %>checked<% } %> > <strong><%=
+                        polyglot.t('organization.role.auditor') %></strong> - <%=
+                        polyglot.t('organization.role.auditor.help') %>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+
+<script type="text/x-template" id="edit-user-dialog-footer">
+    <button class="btn btn-primary btn-add btn-edit-user"
+            data-loading-text="<%= polyglot.t('organization.edit_user.saving') %>"><%=
+        polyglot.t('organization.edit_user.save') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="remove-user-dialog-body">
+    <div class="alert alert-danger"><%- polyglot.t('organization.remove_user.dialog_text', {username:
+        user.entity.username}) %>
+    </div>
+</script>
+
+<script type="text/x-template" id="remove-user-dialog-footer">
+    <button class="btn btn-danger btn-add btn-remove-user"
+            data-loading-text="<%= polyglot.t('organization.remove_user.removing') %>"><%=
+        polyglot.t('organization.remove_user.remove') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="edit-quota-dialog-body">
+    <div class="alert alert-danger error" style="display: none;"></div>
+    <form role="form" class="form-horizontal">
+        <div class="lead"><%= polyglot.t('organization.edit_quota.current_plan') %> <%- plan_name %></div>
+        <div class="form-group">
+            <label class="col-lg-4 control-label"><%= polyglot.t('organizations.quota_definition') %></label>
+
+            <div class="col-lg-8">
+                <div class="quota-select"></div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="edit-quota-dialog-footer">
+    <button class="btn btn-primary btn-add btn-edit-quota"
+            data-loading-text="<%= polyglot.t('organization.edit_quota.saving') %>"><%=
+        polyglot.t('organization.edit_quota.save') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="edit-quota-resource">
+    <div><strong><%- quota.entity.name %></strong></div>
+    <div><%= polyglot.t('settings.quotas.memory_limit') %>: <%- quota.entity.memory_limit %>MB</div>
+    <div><%= polyglot.t('settings.quotas.total_services') %>: <%- quota.entity.total_services %></div>
+    <div><%= polyglot.t('settings.quotas.allow_sudo') %>: <%- quota.entity.allow_sudo %></div>
+    <div><%= polyglot.t('settings.quotas.non_basic_services_allowed') %>: <%- quota.entity.non_basic_services_allowed %></div>
+    <div><%= polyglot.t('settings.quotas.trial_db_allowed') %>: <%- quota.entity.trial_db_allowed %></div>
+</script>

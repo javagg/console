@@ -1,0 +1,19 @@
+<tr id="<%- resource.metadata.guid %>" class="domain">
+    <td>
+        <% if (resource.entity.wildcard) {print('*.')} %><%- resource.entity.name %>
+    </td>
+    <td data-click="domainOrganizationClicked">
+        <% if (resource.entity.owning_organization_guid) {print('<a>');} %>
+        <%- resource.entity.owning_organization.entity.name %>
+        <% if (resource.entity.owning_organization_guid) {print('</a>');} %></td>
+    <td>
+        <button style="display: none;" class="btn btn-danger btn-xs btn-delete-domain pull-right" data-click="deleteDomainClicked">
+            <i
+                    class="icomoon-remove"></i>
+        </button>
+        <button style="display: none;" class="btn btn-primary btn-xs btn-update-domain pull-right"
+                data-click="updateDomainClicked"><i
+                    class="icomoon-pencil"></i>
+        </button>
+    </td>
+</tr>

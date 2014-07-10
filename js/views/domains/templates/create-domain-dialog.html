@@ -1,0 +1,24 @@
+<script type="text/x-template" id="create-domain-dialog-body">
+    <div class="alert alert-danger" style="display:none;"></div>
+    <div class="alert alert-info pubic-domain-message" style="display: none;">
+        <%= polyglot.t('domains.create_domain.public_domain') %>
+    </div>
+    <form role="form" class="form-horizontal create-domain-form">
+        <div class="form-group">
+            <label for="create-space-name" class="col-lg-3 control-label"><%= polyglot.t('domains.create_domain.name')
+                %></label>
+
+            <div class="col-lg-9">
+                <input type="text" id="create-domain-name" name="name" class="form-control"
+                       placeholder="<%= polyglot.t('domains.create_domain.name') %>">
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="create-domain-dialog-footer">
+    <button class="btn btn-primary btn-add btn-create-domain"
+            data-loading-text="<%= polyglot.t('spaces.create_space.creating') %>"><%=
+        polyglot.t('spaces.create_space.create') %>
+    </button>
+</script>

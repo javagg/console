@@ -1,0 +1,193 @@
+<script type="text/x-template" id="settings-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-cog"></span>
+            <span> <%= polyglot.t('settings.settings') %></span>
+
+            <div class="pull-right">
+            </div>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <ul class="nav nav-tabs tabs-left" id="settings_tabs">
+                <li class="active"><a href="#tab_maintenance_mode" data-toggle="tab"><%= polyglot.t('settings.maintenance_mode') %></a></li>
+                <li><a href="#tab_system" data-toggle="tab"><%= polyglot.t('settings.system_settings') %></a></li>
+                <li><a href="#tab_app_store_urls" data-toggle="tab"><%= polyglot.t('settings.app_store_urls') %></a></li>
+                <li><a href="#tab_allowed_repos" data-toggle="tab"><%= polyglot.t('settings.allowed_repos') %></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_maintenance_mode">
+                    
+                </div>
+                <div class="tab-pane" id="tab_system">
+                    
+                </div>
+                <div class="tab-pane" id="tab_app_store_urls">
+                    
+                </div>
+                <div class="tab-pane" id="tab_allowed_repos">
+                    
+                </div>
+        </div>
+    <div>
+</script>
+
+<script type="text/x-template" id="settings-maintenance-mode-config">
+        <div>
+            <h2><%= polyglot.t('settings.maintenance_mode') %></h2>
+            <form class="form-horizontal well" id="maintenance_mode_form">
+
+                <div class="form-group">
+                  <div class="col-lg-9">
+                    <label class="control-label">
+                        <input id="maintenance_mode" type="checkbox" name="maintenance_mode" <%- maintenance_mode %>>
+                        <%= polyglot.t('settings.maintenance_mode.enable') %>
+                    </label>
+                    <span class="help-block" id="maintenance_mode_help">
+                        <%= polyglot.t('settings.maintenance_mode.help') %>
+                    </span>
+                    <span class="help-block hide" id="export_in_progress">
+                        <strong><%= polyglot.t('settings.maintenance_mode.export_in_progress', {'product': settings.product_name}) %></strong>
+                    </span>
+                  </div>
+                </div>
+            </form>
+        </div>
+</script>
+
+<script type="text/x-template" id="settings-system-config">    
+        <div>
+            <h2><%= polyglot.t('settings.system_settings') %></h2>
+            <form class="form-horizontal well form-check-dirty" id="system_settings_form" role="form">
+                <div class="form-group">
+                  <label class="control-label col-lg-2" for="logging_level"><%= polyglot.t('settings.logging_level') %></label>
+                  <div class="col-lg-10">
+                    <select id="logging_level" name="logging_level" class="form-control">
+                        <option value="debug2">debug2</option>
+                        <option value="debug1">debug1</option>
+                        <option value="debug">debug</option>
+                        <option value="info">info</option>
+                        <option value="warn">warn</option>
+                        <option value="error">error</option>
+                        <option value="fatal">fatal</option>
+                        <option value="off">off</option>
+                    </select>
+                    <span class="help-block">
+                        <%= polyglot.t('settings.logging_level.help', {'product': settings.product_name}) %>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-lg-2" for="support_email"><%= polyglot.t('settings.support_email') %></label>
+                  <div class="col-lg-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                        <input id="support_email" type="text" class="form-control" name="support_email" value="<%- support_email %>">
+                    </div>
+                    <span class="help-block">
+                        <%= polyglot.t('settings.support_email.help', {'product': settings.product_name}) %>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="button" id="save_system_settings" class="btn btn-default disabled submit pull-right" data-loading-text="<%= polyglot.t('saving_changes') %>"><%= polyglot.t('save_changes') %></button>
+                    </div>
+                </div>
+
+                <div class="form-group has-error hide">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <span class="help-block system-settings-error">
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+</script>
+
+<script type="text/x-template" id="settings-app-stores">
+        <div>
+            <h2><%= polyglot.t('settings.app_store_urls') %></h2>
+            <table class="table table-striped">
+                <% _.each(app_stores_response.resources, function(resource) { %>
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="app_store_url_enabled"
+                                <% if (resource.entity.enabled) { %>checked="checked"<% } %>
+                                data-url="<%- resource.entity.content_url %>"
+                                data-app-store-name="<%- resource.metadata.name %>"
+                            >
+                        </td>
+                        <td>
+                            <strong><%- resource.metadata.name %></strong>
+                            <%- resource.entity.content_url %>
+                            <button class="delete_app_store btn btn-xs btn-danger pull-right" data-name="<%- resource.metadata.name %>" data-loading-text="<%= polyglot.t('deleting') %>"><span class="icomoon-remove"></span></button>
+                        </td>
+
+                    </tr>
+                <% }); %>
+                <tr>
+                    <td colspan=2>
+                        <form id="add_app_store_url_form">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <input type="checkbox" id="new_app_store_enabled" name="new_app_store_enabled" checked="checked">
+                                    </span>
+                                    <input type="text" id="new_app_store_name" name="new_app_store_name" placeholder="<%= polyglot.t('settings.app_store_urls.name') %>" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="text" id="new_app_store_content_url" name="new_app_store_content_url" placeholder="<%= polyglot.t('settings.app_store_urls.url') %>" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button" id="add_app_store_url" data-loading-text="<%= polyglot.t('adding') %>"><span class="icomoon-plus"></span> <%= polyglot.t('settings.add_app_store_urls') %></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</script>
+
+<script type="text/x-template" id="settings-allowed-repos">
+        <div>
+            <h2><%= polyglot.t('settings.allowed_repos') %></h2>
+            <div class="alert alert-info">
+                <%= polyglot.t('settings.allowed_repos.help') %>
+            </div>
+            <table class="table table-striped">
+                <% if(allowed_repos) { %>
+                <% _.each(allowed_repos, function(repo) { %>
+                    <tr>
+                        <td>
+                            <%- repo %>
+                            <button class="delete_allowed_repo_url btn btn-xs btn-danger pull-right" data-repo="<%- repo %>"><span class="icomoon-remove"></span></button>
+                        </td>
+                    </tr>
+                <% }); %>
+                <% } %>
+                <tr>
+                    <td>
+                        <div class="col-lg-7" style="padding-left:0;">
+                            <div class="input-group">
+                                <input type="text" id="new_allowed_repo" name="new_allowed_repo" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" id="add_allowed_repo" data-loading-text="<%= polyglot.t('settings.adding_repo') %>"><span class="icomoon-plus"></span> <%= polyglot.t('settings.add_repo') %></button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</script>

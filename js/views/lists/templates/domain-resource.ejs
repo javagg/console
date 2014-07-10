@@ -1,0 +1,19 @@
+<a href="#" class="list-group-item">
+    <%- resource.entity.name %>
+    <div class="pull-right">
+        <button style="display: none;" class="btn btn-primary btn-xs btn-update-domain"
+                data-click="updateDomainClicked"><i
+                    class="icomoon-pencil"></i>
+        </button>
+        <button style="display: none;" class="btn btn-warning btn-xs btn-dissociate-domain"
+                data-click="dissociateDomainClicked"><i
+                    class="icomoon-minus"></i>
+        </button>
+        <button style="display: none;" class="btn btn-danger btn-xs btn-delete-domain" data-click="deleteDomainClicked">
+            <i
+                    class="icomoon-remove"></i>
+        </button>
+        <span class="label label-info label-shared"
+              style="display: none;"><%= polyglot.t('domains.shared_domain') %></span>
+    </div>
+</a>

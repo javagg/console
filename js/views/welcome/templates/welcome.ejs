@@ -1,0 +1,156 @@
+<div>
+    <div class="page-header">
+	<h1><%= polyglot.t('welcome.greeting', {"username" : username}) %></h1>
+    </div>
+    <div class="row">
+	<div class="col-md-8">
+	    <div class="getting_started jumbotron hidden">
+		<h2><%= polyglot.t('welcome.getting_started', { 'product': settings.product_name, 'version': settings.vendor_version }) %></h2>
+		<p>
+		    From this interface you can:
+		    <% if (is_admin) { %>
+			<ul>
+			    <li><a href='#admin/users'>manage users and administrators</a></li>
+
+			    <li><a href='#applications'>manage user applications</a></li>
+
+			    <li>view system status graphs and <a href='#eventlog'>cloud events</a></li>
+
+			    <li>review Stackato apps sample code in the <a href='#store'>App Store</a></li>
+
+			    <li>deploy apps from the App Store</li>
+
+			    <li>configure system and service settings</li>
+
+			    <li>and much more</li>
+			</ul>
+		    <% } else { %>
+			<ul>
+			    <li>manage your applications in <a href="#organizations">your organizations</a></li>
+
+			    <li>review Stackato apps sample code in the <a href='#store'>App Store</a></li>
+
+			    <li>deploy apps from the <a href='#store'>App Store</a></li>
+
+			    <li>and much more</li>
+			</ul>
+		    <% } %>
+		</p>
+		<div class="row getting-started-dismissal">
+		    <div class="col-md-12">
+			<button id="dismiss-getting-started" class="btn btn-default btn-sm pull-right"><%= polyglot.t('welcome.getting_started.dismissal_button') %></button>
+		    </div>
+		</div>
+	    </div>
+	    <div class="welcome_content">
+		<div class="row">
+		    <div class="col-md-4">
+			<a class="thumbnail" target="_blank" href="<% if(settings.use_local_docs === 'true'){print('/docs');} else {print(settings.external_docs_url);} %>">
+			    <i class="thumbnail-icon icomoon-info"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.read_docs') %>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="thumbnail" target="_blank" href="#support">
+			    <i class="thumbnail-icon icomoon-bubble"></i>
+			    <span class="caption text-center">
+				<%= polyglot.t('welcome.getting_started.get_help') %>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="thumbnail" href="#client">
+			    <i class="thumbnail-icon icomoon-download"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.get_client') %>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="thumbnail" href="#store">
+			    <i class="thumbnail-icon icomoon-cloud-upload"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.deploy_app') %>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="thumbnail" href="#organizations">
+			    <i class="thumbnail-icon icomoon-globe"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.organization_membership') %>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="thumbnail account_details_block_link" href="#">
+			    <i class="thumbnail-icon icomoon-user"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.account_details') %>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="admin_only hidden thumbnail" href="#admin/cluster">
+			    <i class="thumbnail-icon icomoon-cogs"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.configure_services') %></a>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="admin_only hidden thumbnail" href="#organizations">
+			    <i class="thumbnail-icon icomoon-globe"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.configure_organizations') %></a>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="admin_only hidden thumbnail" href="#admin/users">
+			    <i class="thumbnail-icon icomoon-users"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.manage_users') %></a>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="admin_only hidden thumbnail" href="#applications">
+			    <i class="thumbnail-icon icomoon-screen"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.view_applications') %></a>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="admin_only hidden thumbnail" href="#eventlog">
+			    <i class="thumbnail-icon icomoon-console"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.cloud_events') %></a>
+			    </span>
+			</a>
+		    </div>
+		    <div class="col-md-4">
+			<a class="admin_only hidden thumbnail" href="#dashboard">
+			    <i class="thumbnail-icon icomoon-dashboard"></i>
+			    <span class="caption text-center">
+			      <%= polyglot.t('welcome.getting_started.dashboard') %></a>
+			    </span>
+			</a>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="col-md-4">
+	    <div class="admin_only hidden messages"></div>
+	    <div class="admin_only hidden" id="version_status"></div>
+	    <div class="admin_only hidden" id="about"></div>
+	    <div>
+		<h4><%= polyglot.t("welcome.news_title") %></h4>
+		<div id="blog_posts"></div>
+	    </div>
+	</div>
+    </div>
+</div>

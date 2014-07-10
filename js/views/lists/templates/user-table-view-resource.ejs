@@ -1,0 +1,10 @@
+<tr id="<%- resource.metadata.guid %>" class="user clickable">
+    <td class="linked_entity"><%- resource.entity.username %></td>
+    <td><% resource.entity.admin ? print(polyglot.t('user.role.admin')) : print(polyglot.t('user.role.user')); %></td>
+    <td><%- resource.entity.email %></td>
+    <td>
+        <% if (resource.metadata.guid != current_user_guid) { %>
+        <button class="btn btn-xs btn-danger delete-user pull-right" data-click="deleteUserClicked"><i class="icomoon-remove"></i></button>
+        <% } %>
+    </td>
+</tr>

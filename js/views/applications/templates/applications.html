@@ -1,0 +1,26 @@
+<script type="text/x-template" id="applications-template">
+    <div class="page-header">
+        <h1>
+            <span class="icomoon-screen"></span>
+            <span> <%= polyglot.t('applications.applications') %></span>
+            <div class="pull-right">
+                <button id="app_store_btn" class="btn btn-primary"><i class="icomoon-cloud-upload"></i> Deploy an app from the App Store</button>
+            </div>
+        </h1>
+        
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="apps-table">
+
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="application-state-template">
+    <span>
+       <%- application.state %> - <%- application.runningInstances %>/<%- application.instances %>
+   </span>
+</script>

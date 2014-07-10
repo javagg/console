@@ -1,0 +1,65 @@
+<script type="text/x-template" id="settings-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-cog"></span>
+            <span> <%= polyglot.t('settings.application.application_settings') %></span>
+
+            <div class="pull-right">
+            </div>
+        </h1>
+    </div>
+    <div class="allow_non_local_urls"></div>
+    <div class="reserved_uris"></div>
+</script>
+
+<script type="text/x-template" id="settings-allow-non-local-urls">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><%= polyglot.t('settings.application.nonlocal_urls') %></h4>
+            <form class="form-horizontal well" id="non_local_urls_form">
+
+                <div class="form-group">
+                    <div class="controls col-lg-10">
+                        <span id="nonlocal_urls_msg" class="help-inline pull-right"></span>
+                        <label for="nonlocal_urls" >
+                            <input id="nonlocal_urls" type="checkbox" name="nonlocal_urls" <%- allow_nonlocal_urls %>>
+                            <%= polyglot.t('settings.application.allow_nonlocal_urls') %>
+                        </label>
+                        <span class="help-block">
+                            <%= polyglot.t('settings.application.allow_nonlocal_urls.help', {'product': settings.product_name}) %>
+                        </span>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="settings-reserved-uris-config">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><%= polyglot.t('settings.application.reserved_uris') %></h4>
+            <table class="table table-striped">
+                <% _.each(reserved_uris, function(uri) { %>
+                    <tr>
+                        <td>
+                            <%- uri %>
+                            <button class="delete_reserved_uri btn btn-xs btn-danger pull-right" data-uri="<%- uri %>"><span class="icomoon-remove"></span></button>
+                        </td>
+
+                    </tr>
+                <% }); %>
+                <tr>
+                    <td colspan=2>
+                        <div class="input-append col-md-8">
+                            <input type="text" class="form-control" id="new_reserved_uri" name="new_reserved_uri">
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" type="button" id="add_reserved_uri"><span class="icomoon-plus"></span> <%= polyglot.t('settings.application.add_reserved_uri') %></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</script>

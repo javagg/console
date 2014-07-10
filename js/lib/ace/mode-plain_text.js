@@ -1,0 +1,2 @@
+define("ace/mode/plain_text",["require","exports","module","ace/lib/oop","ace/mode/text","ace/tokenizer","ace/mode/text_highlight_rules","ace/mode/behaviour"],function(e,t){var i=e("../lib/oop"),o=e("./text").Mode,h=(e("../tokenizer").Tokenizer,e("./text_highlight_rules").TextHighlightRules),n=e("./behaviour").Behaviour,r=function(){this.HighlightRules=h,this.$behaviour=new n};i.inherits(r,o),function(){this.type="text",this.getNextLineIndent=function(){return""}}.call(r.prototype),t.Mode=r});
+//# sourceMappingURL=mode-plain_text.js.map

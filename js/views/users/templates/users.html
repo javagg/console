@@ -1,0 +1,113 @@
+<script type="text/x-template" id="users-template">
+    <div class="page-header">
+        <h1>
+            <span class="icomoon-users"></span>
+            <span> <%= polyglot.t('users.users') %></span>
+
+            <div class="pull-right space-buttons">
+                <button class="btn btn-primary create-user"><span class="icomoon-plus"></span> <%=
+                    polyglot.t('users.new') %>
+                </button>
+            </div>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="users-table">
+
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="users-table-row">
+    <tr class="user">
+        <td><%- name %></td>
+        <td><%- role %></td>
+        <td><%- email %></td>
+        <td>
+            <button class="btn btn-xs btn-danger delete-user"><i class="icomoon-remove"></i></button>
+        </td>
+    </tr>
+</script>
+
+<script type="text/x-template" id="create-user-dialog-body">
+    <div class="error alert alert-danger" style="display:none;"></div>
+    <form class="form-horizontal create-user-form" role="form">
+
+        <div class="form-group">
+            <label for="input-username" class="col-lg-4 control-label"><%= polyglot.t('users.create_user.username')
+                %></label>
+
+            <div class="col-lg-8">
+                <input type="text" class="form-control" id="input-username" name="username"
+                       placeholder="<%= polyglot.t('users.create_user.username') %>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-email" class="col-lg-4 control-label"><%= polyglot.t('users.create_user.email') %></label>
+
+            <div class="col-lg-8">
+                <input type="email" class="form-control" id="input-email" name="email"
+                       placeholder="<%= polyglot.t('users.create_user.email') %>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-4 control-label"><%= polyglot.t('organizations.name') %></label>
+
+            <div class="col-lg-8 org-select">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-password" class="col-lg-4 control-label"><%= polyglot.t('users.password_label') %></label>
+
+            <div class="col-lg-8">
+                <input type="password" class="form-control" id="input-password" name="password"
+                       placeholder="<%= polyglot.t('users.password_label') %>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="input-password2" class="col-lg-4 control-label"><%= polyglot.t('users.confirm_password_label')
+                %></label>
+
+            <div class="col-lg-8">
+                <input type="password" class="form-control" id="input-password2" name="password2"
+                       placeholder="<%= polyglot.t('users.confirm_password_label') %>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-4 col-lg-8">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="input-make-admin" name="make-admin"> <%=
+                        polyglot.t('users.make_admin_label') %>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="create-user-dialog-footer">
+    <button class="btn btn-primary create-user" data-loading-text="<%= polyglot.t('users.creating') %>"><%=
+        polyglot.t('users.create') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="delete-user-dialog-body">
+    <div class="alert alert-danger">
+        <%= polyglot.t('users.confirm_delete', { 'user_name': $('<div>').text(user_name).html() }) %>
+    </div>
+</script>
+
+<script type="text/x-template" id="delete-user-dialog-footer">
+    <button class="btn btn-danger delete-user" data-loading-text="<%= polyglot.t('users.deleting') %>"><%=
+        polyglot.t('users.delete') %>
+    </button>
+</script>

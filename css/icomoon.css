@@ -1,0 +1,313 @@
+@font-face {
+	font-family: 'icomoon-ultimate';
+	src:url('../fonts/icomoon/icomoon-ultimate.eot?beqxse');
+	src:url('../fonts/icomoon/icomoon-ultimate.eot?#iefixbeqxse') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon-ultimate.woff?beqxse') format('woff'),
+		url('../fonts/icomoon/icomoon-ultimate.ttf?beqxse') format('truetype'),
+		url('../fonts/icomoon/icomoon-ultimate.svg?beqxse#icomoon-ultimate') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="icomoon-"], [class*=" icomoon-"] {
+	font-family: 'icomoon-ultimate';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icomoon-users:before {
+	content: "\e000";
+}
+.icomoon-users-2:before {
+	content: "\e001";
+}
+.icomoon-user:before {
+	content: "\e002";
+}
+.icomoon-user-plus:before {
+	content: "\e003";
+}
+.icomoon-user-minus:before {
+	content: "\e004";
+}
+.icomoon-user-2:before {
+	content: "\e005";
+}
+.icomoon-users-3:before {
+	content: "\e006";
+}
+.icomoon-wrench:before {
+	content: "\e007";
+}
+.icomoon-cogs:before {
+	content: "\e009";
+}
+.icomoon-cog:before {
+	content: "\e00a";
+}
+.icomoon-pencil:before {
+	content: "\e008";
+}
+.icomoon-dashboard:before {
+	content: "\e00b";
+}
+.icomoon-file:before {
+	content: "\e00c";
+}
+.icomoon-menu:before {
+	content: "\e00d";
+}
+.icomoon-screen:before {
+	content: "\e00e";
+}
+.icomoon-chart:before {
+	content: "\e00f";
+}
+.icomoon-pie:before {
+	content: "\e010";
+}
+.icomoon-bars:before {
+	content: "\e011";
+}
+.icomoon-bubble-notification:before {
+	content: "\e012";
+}
+.icomoon-warning:before {
+	content: "\e013";
+}
+.icomoon-warning-2:before {
+	content: "\e014";
+}
+.icomoon-notification:before {
+	content: "\e015";
+}
+.icomoon-notification-2:before {
+	content: "\e016";
+}
+.icomoon-play:before {
+	content: "\e017";
+}
+.icomoon-play-2:before {
+	content: "\e018";
+}
+.icomoon-stop:before {
+	content: "\e019";
+}
+.icomoon-stop-2:before {
+	content: "\e01a";
+}
+.icomoon-blocked:before {
+	content: "\e01b";
+}
+.icomoon-spinner:before {
+	content: "\e01c";
+}
+.icomoon-spinner-2:before {
+	content: "\e01d";
+}
+.icomoon-loop:before {
+	content: "\e01e";
+}
+.icomoon-share:before {
+	content: "\e01f";
+}
+.icomoon-new-tab:before {
+	content: "\e020";
+}
+.icomoon-link:before {
+	content: "\e021";
+}
+.icomoon-link-2:before {
+	content: "\e022";
+}
+.icomoon-upload:before {
+	content: "\e023";
+}
+.icomoon-plus-circle:before {
+	content: "\e024";
+}
+.icomoon-plus-circle-2:before {
+	content: "\e025";
+}
+.icomoon-plus:before {
+	content: "\e026";
+}
+.icomoon-plus-2:before {
+	content: "\e027";
+}
+.icomoon-remove:before {
+	content: "\e028";
+}
+.icomoon-minus-circle:before {
+	content: "\e029";
+}
+.icomoon-minus-circle-2:before {
+	content: "\e02a";
+}
+.icomoon-cancel-circle:before {
+	content: "\e02b";
+}
+.icomoon-cancel-circle-2:before {
+	content: "\e02c";
+}
+.icomoon-bubble:before {
+	content: "\e02d";
+}
+.icomoon-bubbles:before {
+	content: "\e02e";
+}
+.icomoon-bubbles-2:before {
+	content: "\e02f";
+}
+.icomoon-bubble-2:before {
+	content: "\e030";
+}
+.icomoon-bubbles-3:before {
+	content: "\e031";
+}
+.icomoon-bubbles-4:before {
+	content: "\e032";
+}
+.icomoon-bubble-plus:before {
+	content: "\e033";
+}
+.icomoon-star:before {
+	content: "\e034";
+}
+.icomoon-star-2:before {
+	content: "\e035";
+}
+.icomoon-question:before {
+	content: "\e036";
+}
+.icomoon-question-2:before {
+	content: "\e037";
+}
+.icomoon-info:before {
+	content: "\e038";
+}
+.icomoon-info-2:before {
+	content: "\e039";
+}
+.icomoon-cloud-upload:before {
+	content: "\e03a";
+}
+.icomoon-cloud-download:before {
+	content: "\e03b";
+}
+.icomoon-cloud:before {
+	content: "\e03c";
+}
+.icomoon-cloud-2:before {
+	content: "\e03d";
+}
+.icomoon-cloud-3:before {
+	content: "\e03e";
+}
+.icomoon-network:before {
+	content: "\e03f";
+}
+.icomoon-globe:before {
+	content: "\e040";
+}
+.icomoon-database:before {
+	content: "\e041";
+}
+.icomoon-database-2:before {
+	content: "\e042";
+}
+.icomoon-home:before {
+	content: "\e043";
+}
+.icomoon-droplet:before {
+	content: "\e044";
+}
+.icomoon-droplet-2:before {
+	content: "\e045";
+}
+.icomoon-box-add:before {
+	content: "\e046";
+}
+.icomoon-box-remove:before {
+	content: "\e047";
+}
+.icomoon-tag:before {
+	content: "\e048";
+}
+.icomoon-tag-2:before {
+	content: "\e049";
+}
+.icomoon-user-plus-2:before {
+	content: "\e04a";
+}
+.icomoon-user-minus-2:before {
+	content: "\e04b";
+}
+.icomoon-user-cancel:before {
+	content: "\e04c";
+}
+.icomoon-grid:before {
+	content: "\e04d";
+}
+.icomoon-tree:before {
+	content: "\e04e";
+}
+.icomoon-upload-2:before {
+	content: "\e04f";
+}
+.icomoon-download:before {
+	content: "\e050";
+}
+.icomoon-eye:before {
+	content: "\e051";
+}
+.icomoon-weather-lightning:before {
+	content: "\e052";
+}
+.icomoon-weather-rain:before {
+	content: "\e053";
+}
+.icomoon-minus:before {
+	content: "\e054";
+}
+.icomoon-minus-2:before {
+	content: "\e055";
+}
+.icomoon-play-3:before {
+	content: "\e056";
+}
+.icomoon-circle:before {
+	content: "\e057";
+}
+.icomoon-radio-unchecked:before {
+	content: "\e058";
+}
+.icomoon-console:before {
+	content: "\e059";
+}
+.icomoon-list:before {
+	content: "\e05a";
+}
+.icomoon-support:before {
+	content: "\e05b";
+}
+.icomoon-file-download:before {
+	content: "\e05c";
+}
+.icomoon-checkmark-circle:before {
+	content: "\e05d";
+}
+.icomoon-github:before {
+	content: "\e05e";
+}
+.icomoon-lock:before {
+	content: "\e05f";
+}
+.icomoon-unlocked:before {
+	content: "\e060";
+}

@@ -1,0 +1,32 @@
+<div class="modal" id="startup-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="col-md-12 centered-col">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"> <%= polyglot.t('layout.bootstrap.loading') %></h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <% for(var i = 0; i < steps.length; i++) {
+                                            if(steps[i].start){
+                                    %>
+                                    <li class="list-group-item">
+                                        <span class="text-<%= steps[i].id %>"><%= polyglot.t(steps[i].start) %></span>
+                                        <i class="pull-right activity-indicator img-<%= steps[i].id %>"></i>
+                                    </li>
+                                    <% }} %>
+                                </ul>
+                                <div class="alert alert-danger center bootstrap-alert" style="display: none;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<script type="text/x-template" id="support-template">
+    <h2><%= polyglot.t('support.stackato_report.stackato_report', {'product': settings.product_name}) %></h2>
+    <div class="row-fluid">
+        <div class="offset1 span10 well">
+            <p><%= polyglot.t('support.stackato_report.stackato_report.description') %></p>
+            <p><%= polyglot.t('support.stackato_report.stackato_report.note') %></p>
+            <div>
+                <a target="_blank" class="btn btn-primary btn-lg btn-download-report"><%= polyglot.t('support.stackato_report.generate_link') %></a>
+                <a target="_blank" class="hidden btn btn-success btn-lg" id="download-report-link"><i class="icomoon-download"></i> <%= polyglot.t('support.stackato_report.download_report') %></a>
+            </div>
+        </div>
+    </div>
+</script>

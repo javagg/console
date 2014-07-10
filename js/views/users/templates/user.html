@@ -1,0 +1,191 @@
+<script type="text/x-template" id="user-template">
+    <div class="page-header">
+        <h1>
+            <img class="gravatar" src="<%- user_img %>">
+            <span> <%- display_name %></span>
+
+            <div class="pull-right user-buttons">
+            </div>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group user-contact-list">
+
+            </div>
+            <div class="list-group user-list">
+                <div class="list-group-item active">
+                    <%= polyglot.t('user.metadata') %>
+                </div>
+                <div class="list-group-item">
+                    <strong><%= polyglot.t('user.created') %>:</strong> <%- user.metadata.created_at %>
+                </div>
+                <div class="list-group-item">
+                    <strong><%= polyglot.t('user.modified') %>:</strong> <%- user.metadata.updated_at ? user.metadata.updated_at : polyglot.t('user.not_modified') %>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h3><%= polyglot.t('welcome.getting_started.organization_membership') %></h3>
+            <div class="organizations-table"></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="user-change-password-template">
+    <button class="btn btn-primary btn-change-password"><%= polyglot.t('user.change_password') %></button>
+</script>
+
+<script type="text/x-template" id="user-grant-admin-template">
+    <button class="btn btn-primary btn-grant-admin admin-btn"><span class="icomoon-plus"></span> <%= polyglot.t('user.grant_admin') %></button>
+</script>
+
+<script type="text/x-template" id="user-revoke-admin-template">
+    <button class="btn btn-warning btn-revoke-admin admin-btn"><span class="icomoon-minus"></span> <%= polyglot.t('user.revoke_admin') %></button>
+</script>
+
+<script type="text/x-template" id="user-contact-info-template">
+    <div class="list-group-item active">
+        <%= polyglot.t('user.contact') %>
+        <button class="btn btn-xs btn-primary pull-right btn-edit-user-details"><i
+                class="icomoon-pencil"></i></button>
+    </div>
+    <div class="list-group-item">
+        <strong><%= polyglot.t('user.name.given_name') %>:</strong> <%- user.attributes.name.givenName || polyglot.t('n/a') %>
+    </div>
+    <div class="list-group-item">
+        <strong><%= polyglot.t('user.name.family_name') %>:</strong> <%- user.attributes.name.familyName || polyglot.t('n/a') %>
+    </div>
+    <div class="list-group-item">
+        <strong><%= polyglot.t('user.email') %>:</strong> <a href="mailto:<%- user.attributes.email %>"><%- user.attributes.email %></a>
+    </div>
+    <!--<div class="list-group-item">
+    <strong><%= polyglot.t('user.phone') %>:</strong> <%- user.attributes.phone || polyglot.t('n/a') %>
+    </div> -->
+</script>
+
+<script type="text/x-template" id="user-membership-template">
+    <tr class="organization clickable">
+        <td><%- organization.entity.name %></td>
+        <td><%- organization.entity.spaces.length %></td>
+        <td><%- organization.entity.domains.length %></td>
+    </tr>
+</script>
+
+<script type="text/x-template" id="user-usage-template">
+    <h6><%- polyglot.t('user.allocated_vs_limit_memory') %></h6>
+
+    <div class="progress">
+        <div class="bar" style="width: <% print((usage.memory/limits.memory) * 100); %>%;"></div>
+        <span><%- usage.memory %> MB <%= polyglot.t('of') %> <%- limits.memory %> MB</span>
+    </div>
+
+    <h6><%= polyglot.t('user.used_vs_allocated_memory') %></h6>
+
+    <div class="progress">
+        <div class="bar" style="width: <% print((app_mem_used/app_mem_allocated) * 100); %>%;"></div>
+        <span><%- app_mem_used %> MB <%= polyglot.t('of') %> <%- app_mem_allocated %> MB</span>
+    </div>
+
+    <h6><%= polyglot.t('user.used_vs_limit_applications') %></h6>
+
+    <div class="progress">
+        <div class="bar" style="width: <% print((usage.apps/limits.apps) * 100); %>%;"></div>
+        <span><%- usage.apps %> <%= polyglot.t('of') %> <%- limits.apps %></span>
+    </div>
+
+    <h6><%= polyglot.t('user.used_vs_limit_services') %></h6>
+
+    <div class="progress">
+        <div class="bar" style="width: <% print((usage.services/limits.services) * 100); %>%;"></div>
+        <span><%- usage.services %> <%= polyglot.t('of') %> <%- limits.services %></span>
+    </div>
+</script>
+
+<script type="text/x-template" id="user-groups-template">
+    <table class="table group-table">
+        <tbody>
+        <% _.each(groups, function(group) { %>
+        <tr class="group">
+            <td><a href="#groups/<%- group %>"><%- group %></a></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/x-template" id="user-applications-template">
+
+    <% if(applications.length === 0) { %>
+    <div class="alert alert-info center">No applications have been deployed.</div>
+    <p>
+        You can
+        <% if(settings.getSetting('hide_docs_link')) { %>
+        deploy your own application
+        <% } else { %>
+        <a target="_new" href="/docs/deploy/index.html">deploy your own application</a>
+        <% } %>
+
+        with the <a href="/console/client/"><%= settings.getSetting('product_name') %> client</a>.<br/><br/>
+            <span class="app_store_link no_show">You can also install <%= settings.getSetting('product_name') %>-ready apps from the
+            <a href="/console/store/"><%= settings.getSetting('product_name') %> App Store</a>.</span>
+    </p>
+    <% } else { %>
+    <table class="table">
+        <thead>
+        <tr>
+            <th><%= polyglot.t('application.state') %></th>
+            <th><%= polyglot.t('application.name') %></th>
+            <th><%= polyglot.t('application.framework') %></th>
+            <th><%= polyglot.t('application.services') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(applications, function(application) { %>
+        <tr class="application" data-app-name="<%- application.name %>">
+            <td><%- application.state %></td>
+            <td><a href="#applications/<%- user_name %>/<%- application.name %>"><%- application.name %></a></td>
+            <td><%- application.staging.model %></td>
+            <td><%- application.services.length %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <% } %>
+</script>
+
+<script type="text/x-template" id="user-services-template">
+
+    <% if(services.length === 0) { %>
+    <div class="alert alert-info center">No services have been provisioned.</div>
+    <% } else { %>
+    <table class="table">
+        <thead>
+        <tr>
+            <th><%= polyglot.t('services.type') %></th>
+            <th><%= polyglot.t('services.name') %></th>
+            <th><%= polyglot.t('services.bindings') %></th>
+            <th><%= polyglot.t('services.actions') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(services, function(service) { %>
+        <tr class="service">
+            <td><%- service.vendor %></td>
+            <td><%- service.name %></td>
+            <td><%- service.binding_count %></td>
+            <td>
+                <% if (!service.binding_count) { %>
+                <button class="btn btn-sm btn-danger"
+                        title="<%= polyglot.t('services.delete') %>"><i
+                        class="icon-white icon-trash"></i>
+                </button>
+                <% } %>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <% } %>
+</script>

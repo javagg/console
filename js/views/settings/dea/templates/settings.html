@@ -1,0 +1,25 @@
+<script type="text/x-template" id="settings-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-cog"></span>
+            <span> <%= polyglot.t('settings.dea.dea_settings') %></span>
+
+            <div class="pull-right">
+                <span class="role-count-container"></span>
+            </div>
+        </h1>
+    </div>
+    <div class="dea_config">
+        <div class="row">
+        <div class="col-xs-3">
+            <ul class="nav nav-tabs tabs-left settings-menu">
+                <li class="active"><a href="#general-dea-settings" class="general-dea-settings" data-toggle="tab"><%= polyglot.t('settings.dea.dea_settings') %></a></li>
+                <li><a href="#dea-distribution-zones-settings" class="dea-distribution-zones-settings" data-toggle="tab"><%= polyglot.t('settings.dea.distribution_zones_settings') %></a></li>
+                <li><a href="#dea-availability-zones-settings" class="dea-availability-zones-settings" data-toggle="tab"><%= polyglot.t('settings.dea.availability_zones_settings') %></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-9 settings-container">
+        </div>
+    </div>
+    </div>
+</script>

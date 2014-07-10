@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=100">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/console.css"/>
+    <script src="../../js/lib/jquery/jquery-1.10.1.min.js"></script>
+    <script src="../../js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../js/lib/jquery-ui/jquery-ui-1.10.4.custom.min.js"></script>
+    <link id="favicon" rel="shortcut icon" type="image/png" href=""/>
+    <link rel="stylesheet" href="../js/lib/highlight-js/styles/monokai.css">
+    <script src="../../js/lib/highlight-js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Stackato Management Console - UX Guide</title>
+    <style>
+        .colour_swatch {
+            height: 100px;
+            width: 100px;
+            padding: 10px;
+            text-align: center;
+            float: left;
+        }
+
+        .colour_swatch_dark {
+            color: #fff;
+        }
+
+        .panel .example:before {
+            content: "Example";
+            font-variant: small-caps;
+            font-weight: bold;
+            color: #999;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">UX Guide</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" data-target='design_considerations'>Informing the User</a></li>
+            <li><a href="#" data-target='navigation'>Navigation</a></li>
+            <li><a href="#" data-target='components'>Components</a></li>
+            <li><a href="#" data-target='typography'>Typography</a></li>
+            <li><a href="#" data-target='css'>CSS</a></li>
+            <li><a href="#" data-target='ux_checklist'>UX Checklist</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+
+<!--
+
+$$$$$$\            $$$$$$\                                   $$\                                 $$\     $$\                       $$\   $$\                               
+\_$$  _|          $$  __$$\                                  \__|                            $$ |    $$ |                      $$ |  $$ |                              
+  $$ |  $$$$$$$\  $$ /  \__|$$$$$$\   $$$$$$\  $$$$$$\$$$$\  $$\ $$$$$$$\   $$$$$$\        $$$$$$\   $$$$$$$\   $$$$$$\        $$ |  $$ | $$$$$$$\  $$$$$$\   $$$$$$\  
+  $$ |  $$  __$$\ $$$$\    $$  __$$\ $$  __$$\ $$  _$$  _$$\ $$ |$$  __$$\ $$  __$$\       \_$$  _|  $$  __$$\ $$  __$$\       $$ |  $$ |$$  _____|$$  __$$\ $$  __$$\ 
+  $$ |  $$ |  $$ |$$  _|   $$ /  $$ |$$ |  \__|$$ / $$ / $$ |$$ |$$ |  $$ |$$ /  $$ |        $$ |    $$ |  $$ |$$$$$$$$ |      $$ |  $$ |\$$$$$$\  $$$$$$$$ |$$ |  \__|
+  $$ |  $$ |  $$ |$$ |     $$ |  $$ |$$ |      $$ | $$ | $$ |$$ |$$ |  $$ |$$ |  $$ |        $$ |$$\ $$ |  $$ |$$   ____|      $$ |  $$ | \____$$\ $$   ____|$$ |      
+$$$$$$\ $$ |  $$ |$$ |     \$$$$$$  |$$ |      $$ | $$ | $$ |$$ |$$ |  $$ |\$$$$$$$ |        \$$$$  |$$ |  $$ |\$$$$$$$\       \$$$$$$  |$$$$$$$  |\$$$$$$$\ $$ |      
+\______|\__|  \__|\__|      \______/ \__|      \__| \__| \__|\__|\__|  \__| \____$$ |         \____/ \__|  \__| \_______|       \______/ \_______/  \_______|\__|      
+                                                                           $$\   $$ |                                                                                  
+                                                                           \$$$$$$  |                                                                                  
+                                                                            \______/
+
+ -->
+
+            <div id="design_considerations" class="content row">
+                <div class="col-sm-10">
+                    <div class="page-header">
+                        <h1>Informing the User</h1>
+                    </div>
+
+                    <!-- Add content about most-useful-content-first, de-emphasizing less important/frequent actions, notifications -->
+
+                    <div class="page-header">
+                        <h2 id="blank_slate">The "Blank Slate" State</h2>
+                    </div>
+                    <p>
+                        Instead of displaying empty tables, lists or areas in the UI, the console should provide helpful text and actions.
+                    </p>
+
+                    <p>
+                        For example, instead of displaying an empty table with a search bar when there are no deployed applications, encourage
+                        the user to deploy an app and link them to the appstore, to the client, and to the online docs about deploy apps.
+                    </p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <ul class="nav nav-tabs tabs-left">
+                                        <li class="active"><a href="#">Users</a></li>
+                                        <li><a href="#">Spaces</a></li>
+                                        <li><a href="#">Domains</a></li>
+                                        <li><a href="#">Quota Usage</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-3-9">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="users">
+                                            <h4>It doesn't look like there's anyone here.</h4>
+                                            <button class="btn btn-primary">Add a user to this organization</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info"><strong>Note:</strong> You may need to present different content to different users depending on their roles and permissions.</div>
+
+                    <div class="alert alert-info"><strong>Note:</strong> You may need to present different content to depending on the state of the system. If there are no organizations, spaces or apps, a user landing on the applications view should be instructed to create an org, then a space, add themselves to both and then deploy the app.</div>
+
+                    <div class="page-header">
+                        <h2 id="inline_help">Inline Help</h2>
+                    </div> 
+                    <p>
+                        Wherever possible, users should be presented with inline help.
+                    </p>
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <h4>Reserved URIs
+                                <br>
+                                <small>URIs which cannot be used for end user applications.</small>    
+                            </h4>
+                            <input type="text"></input> <button class="btn btn-primary">Add Reserved URI</button>
+                        </div>
+                        <div class="panel-body hilight">
+                            <pre><code class="html">&lt;h4&gt;Reserved URIs
+  &lt;br&gt;
+  &lt;small&gt;URIs which cannot be used for end user applications.&lt;/small&gt;    
+&lt;/h4&gt;
+&lt;input type=&quot;text&quot;&gt;&lt;/input&gt; &lt;button class=&quot;btn btn-primary&quot;&gt;Add Reserved URI&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <form class="form-horizontal well form-check-dirty" id="system_settings_form" role="form">
+                                <div class="form-group">
+                                  <label class="control-label col-lg-2" for="logging_level">Logging Level</label>
+                                  <div class="col-lg-10">
+                                    <select id="logging_level" name="logging_level" class="form-control">
+                                        <option value="debug2">debug2</option>
+                                        <option value="debug1">debug1</option>
+                                        <option value="debug">debug</option>
+                                        <option value="info">info</option>
+                                        <option value="warn">warn</option>
+                                        <option value="error">error</option>
+                                        <option value="fatal">fatal</option>
+                                        <option value="off">off</option>
+                                    </select>
+                                    <span class="help-block">
+                                        Changes the verbosity of Stackato logs from 'debug2' (most verbose) through 'off' (silent).
+                                    </span>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code class="html">&lt;form class=&quot;form-horizontal well form-check-dirty&quot; id=&quot;system_settings_form&quot; role=&quot;form&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+      &lt;label class=&quot;control-label col-lg-2&quot; for=&quot;logging_level&quot;&gt;Logging Level&lt;/label&gt;
+      &lt;div class=&quot;col-lg-10&quot;&gt;
+        &lt;select id=&quot;logging_level&quot; name=&quot;logging_level&quot; class=&quot;form-control&quot;&gt;
+            &lt;option value=&quot;debug2&quot;&gt;debug2&lt;/option&gt;
+            &lt;option value=&quot;debug1&quot;&gt;debug1&lt;/option&gt;
+            &lt;option value=&quot;debug&quot;&gt;debug&lt;/option&gt;
+            &lt;option value=&quot;info&quot;&gt;info&lt;/option&gt;
+            &lt;option value=&quot;warn&quot;&gt;warn&lt;/option&gt;
+            &lt;option value=&quot;error&quot;&gt;error&lt;/option&gt;
+            &lt;option value=&quot;fatal&quot;&gt;fatal&lt;/option&gt;
+            &lt;option value=&quot;off&quot;&gt;off&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;span class=&quot;help-block&quot;&gt;
+            Changes the verbosity of Stackato logs from 'debug2' (most verbose) through 'off' (silent).
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="page-header">
+                        <h2 id="destructive_actions">Destructive Actions</h2>
+                    </div>
+
+                    <p>Users should <strong>always</strong> be warned and presented with confirmation before a destructive action is performed.</p>
+                    <p>Destructive actions should always be marked by red and clearly indicate that they will delete the entity.</p>
+
+                    <div class="alert alert-info"><strong>Note:</strong> This should not be confused with non-destructive removals. (eg. removing a user from an organization doesn't destroy the user) In this case, the action should be in orange (our warning colour) instead of red.</div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <h4>App Store URLs</h4>
+                            <table class="table table-striped">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="app_store_url_enabled" checked="checked">
+                                    </td>
+                                    <td>
+                                        <strong>activestate-apps</strong>
+                                         http://get.stackato.com/store/3.0/activestate-apps.yaml
+                                        <button class="delete_app_store btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code class="html">&lt;h4&gt;App Store URLs&lt;/h4&gt;
+&lt;table class=&quot;table table-striped&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;input type=&quot;checkbox&quot; class=&quot;app_store_url_enabled&quot; checked=&quot;checked&quot;&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;strong&gt;activestate-apps&lt;/strong&gt;
+             http://get.stackato.com/store/3.0/activestate-apps.yaml
+            &lt;button class=&quot;delete_app_store btn btn-xs btn-danger pull-right&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt; Delete&lt;/button&gt;
+        &lt;/td&gt;
+
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="page-header">
+                        <h2 id="who_is_that">Who is That?</h2>
+                    </div>
+
+                    <p>It is important to show users who performed actions, and give them context in the timeline and when displaying lists of users.</p>
+
+                    <p>
+                        It is insufficient to just show a Gravatar.  At minimum, Gravatars must have tooltips that display the user's email address and/or username.  
+                        Preferably, Gravatars would be accompanied by display of the user's email address, user and display name (if set).
+                    </p>
+
+                    <div class="alert alert-info"><strong>Note:</strong> We may want to consider implementing <a target="_blank" href="http://patternry.com/p=user-card/">User Cards</a>.</div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <li class="media event" style="list-style: none; padding-top: 15px;">
+                            <a class="pull-left event-source" href="">
+                                <img class="media-object user-icon img-circle" src="https://www.gravatar.com/avatar/7d25b04c2ead3072f63120b3dca75f47.jpg?s=32">
+                            </a>
+                            <div class="media-body">
+                                <div class="pull-right event-info">
+                                    <small class="event-status label">
+                                        info
+                                    </small>
+                                    <i class="clickable glyphicon event-star glyphicon-star-empty"></i>
+                                </div>
+                                <h4 class="media-heading">New Version Deployed by <a href="">stackato-user</a></h4>
+                                <div class="event-wrap well">
+                                    <div class="pull-right text-muted">
+                                        <small class="event-created-at pull-left"><i class="icon-time"></i> 2 days ago</small>
+                                        <span class="event-applications pull-left  hide"><i class="icomoon-eye"></i> </span>
+                                    </div>
+                                    <div class="event-content">
+                                        New application code has been deployed to env-mpjw4.
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="media-links event-links pull-right">
+                                        <small>
+                                            <a class="event-edit clickable"><i class="icomoon-pencil"></i> edit</a>
+                                            <a class="event-delete clickable"><i class="icomoon-remove"></i> delete</a>
+                                        </small>
+                                    </div>
+                                    <div class="event-tags">
+                                        <i class="icomoon-tag"></i>
+                                        <div class="not-clickable tag label label-tag">application</div>
+                                        <div class="not-clickable tag label label-tag">deployed</div>
+                                        <div class="not-clickable tag label label-tag">discussion</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-2" id="design_considerations_nav">
+                    <ul class="nav nav-stacked affix">
+                        <li><a href="#blank_slate">Blank Slate</a></li>
+                        <li><a href="#inline_help">Inline Help</a></li>
+                        <li><a href="#destructive_actions">Destructive Actions</a></li>
+                        <li><a href="#who_is_that">Who Is That?</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+<!--
+
+$$\   $$\                     $$\                      $$\     $$\                     
+$$$\  $$ |                    \__|                     $$ |    \__|                    
+$$$$\ $$ | $$$$$$\ $$\    $$\ $$\  $$$$$$\   $$$$$$\ $$$$$$\   $$\  $$$$$$\  $$$$$$$\  
+$$ $$\$$ | \____$$\\$$\  $$  |$$ |$$  __$$\  \____$$\\_$$  _|  $$ |$$  __$$\ $$  __$$\ 
+$$ \$$$$ | $$$$$$$ |\$$\$$  / $$ |$$ /  $$ | $$$$$$$ | $$ |    $$ |$$ /  $$ |$$ |  $$ |
+$$ |\$$$ |$$  __$$ | \$$$  /  $$ |$$ |  $$ |$$  __$$ | $$ |$$\ $$ |$$ |  $$ |$$ |  $$ |
+$$ | \$$ |\$$$$$$$ |  \$  /   $$ |\$$$$$$$ |\$$$$$$$ | \$$$$  |$$ |\$$$$$$  |$$ |  $$ |
+\__|  \__| \_______|   \_/    \__| \____$$ | \_______|  \____/ \__| \______/ \__|  \__|
+                                  $$\   $$ |                                           
+                                  \$$$$$$  |                                           
+                                   \______/                                            
+
+-->
+
+            <div id="navigation" class="content row" style="display:none;">
+                <div class="col-sm-10">
+                    <div class="page-header">
+                        <h1>Navigation</h1>
+                    </div>
+
+                    <!-- TODO: Add content about links & clickable rows -->
+
+                    <div class="page-header" id="breadcrumbs">
+                        <h2>Breadcrumbs</h2>
+                    </div>
+
+                    <p>
+                        Breadcrumbs should be used when the user is multiple-levels deep (ie: viewing an app, which is part of a space, which is part of an org). They should always be placed below the view's page header. Each piece of the breadcrumb should be linked to it's corresponding view.
+                    </p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <div class="page-header">
+                                <h1>
+                                    <span class="glyphicon glyphicon-th-large"></span>
+                                    <span class="app-name"> env-123ab</span>
+                                </h1>
+                                <span class="text-small">
+                                    <a href="">my_org</a> /
+                                    <a href="">my_space</a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code style="html">&lt;div class=&quot;page-header&quot;&gt;
+    &lt;h1&gt;
+        &lt;span class=&quot;glyphicon glyphicon-th-large&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;app-name&quot;&gt; env-123ab&lt;/span&gt;
+    &lt;/h1&gt;
+    &lt;span class=&quot;text-small&quot;&gt;
+        &lt;a href=&quot;&quot;&gt;my_org&lt;/a&gt; /
+        &lt;a href=&quot;&quot;&gt;my_space&lt;/a&gt;
+    &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="page-header" id="in_view">
+                        <h2>In-View Navigation</h2>
+                    </div>
+
+                    <p>
+                        When there is too much content to display all at once, vertical navigation tabs should be used. This gives us
+                        room to expand the views in the future to display even more information.
+                    </p>
+
+                    <div class="alert alert-info"><strong>Note:</strong> If there is information in a view that is contextually relevent to information
+                        presented in multiple tab panels, it should be displayed outside of the tabbed navigation</div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <ul class="nav nav-tabs tabs-left">
+                                        <li class="active"><a href="#users_tab" data-toggle="tab">Users</a></li>
+                                        <li><a href="#spaces" data-toggle="tab">Spaces</a></li>
+                                        <li><a href="#domains" data-toggle="tab">Domains</a></li>
+                                        <li><a href="#quotas" data-toggle="tab">Quota Usage</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-3-9">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="users_tab">
+                                            [Users content here]
+                                        </div>
+                                        <div class="tab-pane" id="spaces">
+                                            [Spaces content here]
+                                        </div>
+                                        <div class="tab-pane" id="domains">
+                                            [Domains content here]
+                                        </div>
+                                        <div class="tab-pane" id="quotas">
+                                            [Quota Usage content here]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code class="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-xs-3&quot;&gt;
+        &lt;ul class=&quot;nav nav-tabs tabs-left&quot;&gt;
+            &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#users&quot; data-toggle=&quot;tab&quot;&gt;Users&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#spaces&quot; data-toggle=&quot;tab&quot;&gt;Spaces&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#domains&quot; data-toggle=&quot;tab&quot;&gt;Domains&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#quotas&quot; data-toggle=&quot;tab&quot;&gt;Quota Usage&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-xs-3-9&quot;&gt;
+        &lt;div class=&quot;tab-content&quot;&gt;
+            &lt;div class=&quot;tab-pane active&quot; id=&quot;users&quot;&gt;
+                [Users content here]
+            &lt;/div&gt;
+            &lt;div class=&quot;tab-pane&quot; id=&quot;spaces&quot;&gt;
+                [Spaces content here]
+            &lt;/div&gt;
+            &lt;div class=&quot;tab-pane&quot; id=&quot;domains&quot;&gt;
+                [Domains content here]
+            &lt;/div&gt;
+            &lt;div class=&quot;tab-pane&quot; id=&quot;quotas&quot;&gt;
+                [Quota Usage content here]
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-2" id="navigation_nav">
+                    <ul class="nav nav-stacked affix">
+                        <li><a href="#breadcrumbs">Breadcrumbs</a></li>
+                        <li><a href="#in_view">In-View Navigation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+<!--
+
+ $$$$$$\                                                                             $$\               
+$$  __$$\                                                                            $$ |              
+$$ /  \__| $$$$$$\  $$$$$$\$$$$\   $$$$$$\   $$$$$$\  $$$$$$$\   $$$$$$\  $$$$$$$\ $$$$$$\    $$$$$$$\ 
+$$ |      $$  __$$\ $$  _$$  _$$\ $$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\\_$$  _|  $$  _____|
+$$ |      $$ /  $$ |$$ / $$ / $$ |$$ /  $$ |$$ /  $$ |$$ |  $$ |$$$$$$$$ |$$ |  $$ | $$ |    \$$$$$$\  
+$$ |  $$\ $$ |  $$ |$$ | $$ | $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$   ____|$$ |  $$ | $$ |$$\  \____$$\ 
+\$$$$$$  |\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |\$$$$$$  |$$ |  $$ |\$$$$$$$\ $$ |  $$ | \$$$$  |$$$$$$$  |
+ \______/  \______/ \__| \__| \__|$$  ____/  \______/ \__|  \__| \_______|\__|  \__|  \____/ \_______/ 
+                                  $$ |                                                                 
+                                  $$ |                                                                 
+                                  \__|                                                                 
+
+-->
+
+            <div id="components" class="content row" style="display:none;">
+                <div class="col-sm-10">
+                    <div class="page-header">
+                        <h1>Components</h1>
+                    </div>
+                    
+                    <div class="page-header">
+                        <h2 id="buttons">Buttons</h2>
+                    </div>
+
+                    <p>Buttons that exist outside of tables and lists, should have both an icon and a text description</p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"> Add User</span></button>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code style="html">&lt;button class=&quot;btn btn-primary&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-plus&quot;&gt; Add User&lt;/span&gt;&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <p>Buttons in table rows or lists should just be an icon, with text in a tool-tip.</p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <table class="table table-striped" style="width:100%" id="buttons-in-table-row-example">
+                                <thead>
+                                    <tr><th>User</th><th></th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bob Bobson</td>
+                                        <td><small><button class="btn btn-xs btn-warning pull-right" data-toggle="tooltip" data-placement="left" title="Remove Bob Bobson from this organization"><span class="glyphicon glyphicon-minus"></span></button></small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jane Janeville</td>
+                                        <td><small><button class="btn btn-xs btn-warning pull-right" data-toggle="tooltip" data-placement="left" title="Remove Jane Janeville from this organization"><span class="glyphicon glyphicon-minus"></span></button></small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <script>
+                                $('#buttons-in-table-row-example button').tooltip();
+                            </script>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code style="html">
+&lt;table class=&quot;table table-striped&quot; style=&quot;width:100%&quot; id=&quot;buttons-in-table-row-example&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;User&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Bob Bobson&lt;/td&gt;
+            &lt;td&gt;&lt;small&gt;&lt;button class=&quot;btn btn-xs btn-warning pull-right&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;left&quot; title=&quot;Remove Bob Bobson from this organization&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-minus&quot;&gt;&lt;/span&gt;&lt;/button&gt;&lt;/small&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Jane Janeville&lt;/td&gt;
+            &lt;td&gt;&lt;small&gt;&lt;button class=&quot;btn btn-xs btn-warning pull-right&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;left&quot; title=&quot;Remove Jane Janeville from this organization&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-minus&quot;&gt;&lt;/span&gt;&lt;/button&gt;&lt;/small&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;script&gt;
+    $('#buttons-in-table-row-example button').tooltip();
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <p>Buttons should be colour coded to their actions.  Safe actions should be blue, non-destructive removals should be orange, and destructive actions should be red.</p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Safe action</button>
+                            <button class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span> Non-destructive removal action</button>
+                            <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Destructive action</button>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code class="html">&lt;button class=&quot;btn btn-primary&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-plus&quot;&gt;&lt;/span&gt; Safe action&lt;/button&gt;
+&lt;button class=&quot;btn btn-warning&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-minus&quot;&gt;&lt;/span&gt; Non-destructive removal action&lt;/button&gt;
+&lt;button class=&quot;btn btn-danger&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt; Destructive action&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="page-header">
+                        <h2 id="button-icons">Standard Button Icons</h2>
+                    </div>                    
+
+                    <table class="table">
+                        <tr><th>Icon</th><th>Class names</th><th>Use</th></tr>
+
+                        <tr>
+                            <td><span class="icomoon-pencil"></span></td>
+                            <td>icomoon-pencil</td>
+                            <td>Editing values</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="icomoon-plus"></span></td>
+                            <td>icomoon-plus</td>
+                            <td>Creation of entities/addition of records</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="icomoon-remove"></span></td>
+                            <td>icomoon-remove</td>
+                            <td>Destructive removal (ie: deleting a user)</td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="icomoon-minus"></span></td>
+                            <td>icomoon-minus</td>
+                            <td>Non-destructive removal (ie: removing admin status from a user)</td>
+                        </tr>
+                    </table>
+
+                    <div class="page-header">
+                        <h2 id="sliders">Sliders</h2>
+                    </div>
+
+                    <p>Sliders should be used when settings require a range of values.  The values should be displayed to the user above the slider, and if the slider saves automatically, there should be a notice that appears to the right of the values showing the result of the save.</p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">CPU Autoscaling</div>
+                                <div class="panel-body">
+                                    <div class="col-md-12 col-lg-6 slider-block" id="cpu-threshold">
+                                        <p>
+                                            <small class="label label-default slider-saving" id="cpu-threshold-saving">Saving...
+                                            </small>
+                                            <small class="label label-success slider-saved" id="cpu-threshold-saved">Saved!
+                                            </small>
+                                            <small class="label label-danger slider-failed" id="cpu-threshold-failed">Save failed!
+                                            </small>
+                                            <label for="cpu-threshold-label">
+                                                CPU Threshold:</label>
+                                            <input type="text" id="cpu-threshold-label" class="slider-label">
+                                        </p>
+                                        <div id="slider-cpu-threshold" class="slider-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code style="html">&lt;div class=&quot;panel panel-default&quot;&gt;
+    &lt;div class=&quot;panel-heading&quot;&gt;CPU Autoscaling&lt;/div&gt;
+    &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;div class=&quot;col-md-12 col-lg-6 slider-block&quot; id=&quot;cpu-threshold&quot;&gt;
+            &lt;p&gt;
+                &lt;small class=&quot;label label-default slider-saving&quot; id=&quot;cpu-threshold-saving&quot;&gt;Saving...
+                &lt;/small&gt;
+                &lt;small class=&quot;label label-success slider-saved&quot; id=&quot;cpu-threshold-saved&quot;&gt;Saved!
+                &lt;/small&gt;
+                &lt;small class=&quot;label label-danger slider-failed&quot; id=&quot;cpu-threshold-failed&quot;&gt;Save failed!
+                &lt;/small&gt;
+                &lt;label for=&quot;cpu-threshold-label&quot;&gt;
+                    CPU Threshold:&lt;/label&gt;
+                &lt;input type=&quot;text&quot; id=&quot;cpu-threshold-label&quot; class=&quot;slider-label&quot;&gt;
+            &lt;/p&gt;
+            &lt;div id=&quot;slider-cpu-threshold&quot; class=&quot;slider-container&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    sliderSlid = function (slider_el, unit_indicator, ui) {
+        $(&quot;.slider-label&quot;, slider_el).val(ui.values[ 0 ] + unit_indicator + &quot; - &quot; + ui.values[ 1 ] + unit_indicator);
+    },
+
+    $(&quot;#slider-cpu-threshold&quot;).slider({
+        range: true,
+        min: 0,
+        max: 100,
+        values: [0, 50],
+        slide: function (event, ui) {
+            sliderSlid('#cpu-threshold', &quot;%&quot;, ui);
+        }
+    });
+    $(&quot;#cpu-threshold .slider-label&quot;).val($(&quot;#cpu-threshold .slider-container&quot;).slider(&quot;values&quot;, 0) +
+        &quot;% - &quot; + $(&quot;#cpu-threshold .slider-container&quot;).slider(&quot;values&quot;, 1) + &quot;%&quot;);
+&lt;/script&gt;</code></pre>
+                        </div>
+                        <script>
+                            sliderSlid = function (slider_el, unit_indicator, ui) {
+                                $(".slider-label", slider_el).val(ui.values[ 0 ] + unit_indicator + " - " + ui.values[ 1 ] + unit_indicator);
+                            },
+
+                            $("#slider-cpu-threshold").slider({
+                                range: true,
+                                min: 0,
+                                max: 100,
+                                values: [0, 50],
+                                slide: function (event, ui) {
+                                    sliderSlid('#cpu-threshold', "%", ui);
+                                }
+                            });
+                            $("#cpu-threshold .slider-label").val($("#cpu-threshold .slider-container").slider("values", 0) +
+                                "% - " + $("#cpu-threshold .slider-container").slider("values", 1) + "%");
+                        </script>
+                    </div>
+
+                    <div class="page-header">
+                        <h2 id="usage_bars">Usage Bars</h2>
+                    </div>
+
+                    <p>Usage bars should show the used vs. unused values in the bar, as well as numerically below the bar.</p>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body example">
+                            <div class="progress" style="margin: 0 0 5px;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="80"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                                </div>
+                            </div>
+                            <p class="text-right" style="margin: 0">
+                                102 / 128 MB
+                            </p>
+                        </div>
+                        <div class="panel-body">
+                            <pre><code class="html">&lt;div class=&quot;progress&quot; style=&quot;margin: 0 0 5px;&quot;&gt;
+    &lt;div class=&quot;progress-bar&quot; role=&quot;progressbar&quot; aria-valuenow=&quot;80&quot;
+         aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot; style=&quot;width: 80%;&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;text-right&quot; style=&quot;margin: 0&quot;&gt;
+    102 / 128 MB
+&lt;/p&gt;</code></pre>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-2" id="components_nav">
+                    <ul class="nav nav-stacked affix">
+                        <li><a href="#buttons">Buttons</a></li>
+                        <li><a href="#button-icons">Button Icons</a></li>
+                        <li><a href="#sliders">Sliders</a></li>
+                        <li><a href="#usage_bars">Usage Bars</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+<!--
+
+$$$$$$$$\                                                                   $$\                 
+\__$$  __|                                                                  $$ |                
+   $$ |$$\   $$\  $$$$$$\   $$$$$$\   $$$$$$\   $$$$$$\  $$$$$$\   $$$$$$\  $$$$$$$\  $$\   $$\ 
+   $$ |$$ |  $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\ \____$$\ $$  __$$\ $$  __$$\ $$ |  $$ |
+   $$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |$$ /  $$ |$$ |  \__|$$$$$$$ |$$ /  $$ |$$ |  $$ |$$ |  $$ |
+   $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |
+   $$ |\$$$$$$$ |$$$$$$$  |\$$$$$$  |\$$$$$$$ |$$ |     \$$$$$$$ |$$$$$$$  |$$ |  $$ |\$$$$$$$ |
+   \__| \____$$ |$$  ____/  \______/  \____$$ |\__|      \_______|$$  ____/ \__|  \__| \____$$ |
+       $$\   $$ |$$ |                $$\   $$ |                   $$ |                $$\   $$ |
+       \$$$$$$  |$$ |                \$$$$$$  |                   $$ |                \$$$$$$  |
+        \______/ \__|                 \______/                    \__|                 \______/ 
+
+-->
+
+            <div id="typography" class="content row" style="display:none;">
+                <div class="col-sm-10">
+                    <div class="page-header">
+                        <h1>Typography</h1>
+                    </div>
+                </div>
+                <div class="col-sm-2" id="colour_palette_nav">
+                    <ul class="nav nav-stacked affix">
+                        <li>Links will go here</li>
+                    </ul>
+                </div>
+            </div>
+
+
+<!--
+
+ $$$$$$\   $$$$$$\   $$$$$$\  
+$$  __$$\ $$  __$$\ $$  __$$\ 
+$$ /  \__|$$ /  \__|$$ /  \__|
+$$ |      \$$$$$$\  \$$$$$$\  
+$$ |       \____$$\  \____$$\ 
+$$ |  $$\ $$\   $$ |$$\   $$ |
+\$$$$$$  |\$$$$$$  |\$$$$$$  |
+ \______/  \______/  \______/ 
+
+-->
+
+            <div id="css" class="content row" style="display:none;">
+                <div class="col-sm-10">
+                    <div class="page-header">
+                        <h1>CSS</h1>
+                    </div>
+                </div>
+                <div class="col-sm-2" id="colour_palette_nav">
+                    <ul class="nav nav-stacked affix">
+                        <li>Links will go here</li>
+                    </ul>
+                </div>
+            </div>
+
+
+<!--
+
+$$\   $$\ $$\   $$\        $$$$$$\  $$\                           $$\       $$\ $$\             $$\     
+$$ |  $$ |$$ |  $$ |      $$  __$$\ $$ |                          $$ |      $$ |\__|            $$ |    
+$$ |  $$ |\$$\ $$  |      $$ /  \__|$$$$$$$\   $$$$$$\   $$$$$$$\ $$ |  $$\ $$ |$$\  $$$$$$$\ $$$$$$\   
+$$ |  $$ | \$$$$  /       $$ |      $$  __$$\ $$  __$$\ $$  _____|$$ | $$  |$$ |$$ |$$  _____|\_$$  _|  
+$$ |  $$ | $$  $$<        $$ |      $$ |  $$ |$$$$$$$$ |$$ /      $$$$$$  / $$ |$$ |\$$$$$$\    $$ |    
+$$ |  $$ |$$  /\$$\       $$ |  $$\ $$ |  $$ |$$   ____|$$ |      $$  _$$<  $$ |$$ | \____$$\   $$ |$$\ 
+\$$$$$$  |$$ /  $$ |      \$$$$$$  |$$ |  $$ |\$$$$$$$\ \$$$$$$$\ $$ | \$$\ $$ |$$ |$$$$$$$  |  \$$$$  |
+ \______/ \__|  \__|       \______/ \__|  \__| \_______| \_______|\__|  \__|\__|\__|\_______/    \____/ 
+
+-->
+
+            <div id="ux_checklist" class="content row" style="display:none;">
+                <div class="col-sm-10">
+                    <div class="page-header">
+                        <h1>UX Checklist</h1>
+                    </div>
+
+                    <ul id="checklist" class="list-group">
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Is there appropriate content and/or actions presented in the view's blank state?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Are different pieces of blank slate content required for different roles/permissions?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Is there sufficient inline help?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Are all destructive actions marked in red?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Do all destructive actions require confirmation by the user?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Are non-destructive removals marked in orange?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> If this view requires breadcrumbs, are they positioned below the view title?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Should the content on this view be presented in tabbed panels?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Is any information that is contextually relevent to all tabs in the view presented outside the tab panels?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> If there is tabbed navigation in this view, is it presented vertically?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Are we clearly indicating who each user is in this view?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Do all Gravatars have tooltips presenting further user information?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Do all Gravatars link to user profiles?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Do all sliders on the page display their values numerically above the slider?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Do all auto-saving sliders on the page display save status?</label>
+                        </li>
+                        <li class="list-group-item">
+                            <label><input type="checkbox"></input> Do all usage bars on the page display their values below the bar?</label>
+                        </li>
+                    </ul>
+                    <button class="btn btn-danger bg-danger" id="reset_checklist">Reset checklist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+
+ $$$$$$\                      $$\            $$\               
+$$  __$$\                     \__|           $$ |              
+$$ /  \__| $$$$$$$\  $$$$$$\  $$\  $$$$$$\ $$$$$$\    $$$$$$$\ 
+\$$$$$$\  $$  _____|$$  __$$\ $$ |$$  __$$\\_$$  _|  $$  _____|
+ \____$$\ $$ /      $$ |  \__|$$ |$$ /  $$ | $$ |    \$$$$$$\  
+$$\   $$ |$$ |      $$ |      $$ |$$ |  $$ | $$ |$$\  \____$$\ 
+\$$$$$$  |\$$$$$$$\ $$ |      $$ |$$$$$$$  | \$$$$  |$$$$$$$  |
+ \______/  \_______|\__|      \__|$$  ____/   \____/ \_______/ 
+                                  $$ |                         
+                                  $$ |                         
+                                  \__|
+
+-->
+
+<script>
+    $(document).ready(function () {
+        $('.navbar-nav a').click(function(e) {
+            e.preventDefault();
+
+            var menu_link = $(e.target);
+            var active_content = menu_link.data('target');
+
+            $('.content').hide();
+            $('.content#' + active_content).show();
+
+            $('.navbar-nav li').removeClass('active');
+            menu_link.parent('li').addClass('active');
+        });
+
+        $('#reset_checklist').click(function () {
+            $('#checklist li input').attr('checked', false);
+        });
+    });
+</script>
+
+</body>
+</html>

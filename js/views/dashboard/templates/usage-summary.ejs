@@ -1,0 +1,183 @@
+<script type="text/x-template" id="usage-summary-template">
+    <h2><%= polyglot.t('usage.summary') %></h2>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong><%- polyglot.t('usage.provisioned_as_quota') %></strong>
+                    </div>
+                    <div class="col-md-2">
+        <%= usage.cluster.total_assigned %> MB
+                    </div>
+                    <div class="col-md-7">
+                        <div class="progress" title="<%- polyglot.t('usage.provisioned_as_quota.desc') %>">
+                            <div class="progress-bar <% usage.cluster.total_assigned > usage.cluster.total_physical ? print('progress-bar-warning') : print('progress-bar-info') %>"
+                                 role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                 aria-valuemax="<%= max_usage_value %>"
+                                 style="width: <%= usage.cluster.total_assigned / max_usage_value * 100 %>%">
+                                <span class="sr-only"><%= usage.cluster.total_assigned %> MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong><%- polyglot.t('usage.physical_memory') %></strong>
+                    </div>
+                    <div class="col-md-2">
+        <%= usage.cluster.total_physical %> MB
+                    </div>
+                    <div class="col-md-7">
+                        <div class="progress" title="<%- polyglot.t('usage.physical_memory.desc') %>">
+                            <div class="progress-bar progress-bar-info"
+                                 role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                 aria-valuemax="<%= max_usage_value %>"
+                                 style="width: <%= usage.cluster.total_physical / max_usage_value * 100 %>%">
+                                <span class="sr-only"><%= usage.cluster.total_physical %> MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong><%- polyglot.t('usage.total_memory') %></strong>
+                    </div>
+                    <div class="col-md-2">
+			<%= total_memory %> MB
+                    </div>
+                    <div class="col-md-7">
+                        <div class="progress" title="<%- polyglot.t('usage.total_memory.desc') %>">
+                            <div class="progress-bar <% total_memory > usage.cluster.total_physical ? print('progress-bar-warning') : print('progress-bar-info') %>"
+                                 role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                 aria-valuemax="<%= max_usage_value %>"
+                                 style="width: <%= total_memory / max_usage_value * 100 %>%">
+                                <span class="sr-only"><%= total_memory %> MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong><%- polyglot.t('usage.available_memory') %></strong>
+                    </div>
+                    <div class="col-md-2">
+			<%= usage.cluster.total_available%> MB
+                    </div>
+                    <div class="col-md-7">
+                        <div class="progress" title="<%- polyglot.t('usage.available_memory.desc') %>">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                 aria-valuemin="0" aria-valuemax="<%= max_usage_value %>"
+                                 style="width: <%= usage.cluster.total_available / total_memory * 100 %>%">
+                                <span class="sr-only"><%= usage.cluster.total_available %> MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong><%- polyglot.t('usage.allocated_to_apps') %></strong>
+                    </div>
+                    <div class="col-md-2">
+        <%= usage.cluster.total_allocated %> MB
+                    </div>
+                    <div class="col-md-7">
+                        <div class="progress" title="<%- polyglot.t('usage.allocated_to_apps.desc') %>">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                 aria-valuemin="0" aria-valuemax="<%= max_usage_value %>"
+                                 style="width: <%= usage.cluster.total_allocated / total_memory * 100 %>%">
+                                <span class="sr-only"><%= usage.cluster.total_allocated %> MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong><%- polyglot.t('usage.used_by_apps') %></strong>
+                    </div>
+                    <div class="col-md-2">
+        <%= usage.cluster.total_used %> MB
+                    </div>
+                    <div class="col-md-7">
+                        <div class="progress" title="<%- polyglot.t('usage.used_by_apps.desc') %>">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                 aria-valuemin="0" aria-valuemax="<%= max_usage_value %>"
+                                 style="width: <%= usage.cluster.total_used / usage.cluster.total_physical * 100 %>%">
+                                <span class="sr-only"><%= usage.cluster.total_used %> MB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row usage-section">
+        <h3><%- polyglot.t('usage.reported_usage') %></h3>
+
+        <div class="col-md-4">
+            <div class="usage-stat">
+                <div class="label label-primary"><%- (usage.cluster.total_assigned / total_memory * 100).toFixed(2) %>
+                    %
+                </div>
+                <div>
+					<%- polyglot.t('usage.of_available_assigned_as_quota') %>
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="usage-stat">
+                <div class="label label-primary"><%- (usage.cluster.total_allocated / total_memory * 100).toFixed(2) %>
+                    %
+                </div>
+                <div>
+					<%- polyglot.t('usage.of_available_allocated_to_apps') %>
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="usage-stat">
+                <div class="label label-primary"><%- (usage.cluster.total_used / total_memory * 100).toFixed(2) %>%
+                </div>
+                <div>
+					<%- polyglot.t('usage.of_available_in_use_by_apps') %>
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="row usage-section">
+        <h3><%- polyglot.t('usage.physical_usage') %></h3>
+
+        <div class="col-md-4">
+            <div class="usage-stat">
+                <div class="label label-primary"><%- (usage.cluster.total_assigned / usage.cluster.total_physical * 100).toFixed(2) %>
+                    %
+                </div>
+                <div>
+					<%- polyglot.t('usage.of_physical_assigned_as_quota') %>
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="usage-stat">
+                <div class="label label-primary"><%- (usage.cluster.total_allocated / usage.cluster.total_physical * 100).toFixed(2) %>
+                    %
+                </div>
+                <div>
+					<%- polyglot.t('usage.of_physical_allocated_to_apps') %>
+				</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="usage-stat">
+                <div class="label label-primary"><%- (usage.cluster.total_used / usage.cluster.total_physical * 100).toFixed(2) %>
+                    %
+                </div>
+                <div>
+					<%- polyglot.t('usage.of_physical_in_use_by_apps') %>
+				</div>
+            </div>
+        </div>
+    </div>
+</script>
+

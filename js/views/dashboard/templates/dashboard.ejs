@@ -1,0 +1,20 @@
+<div class="page-header">
+    <h1>
+        <span class="glyphicon glyphicon-dashboard"></span>
+        <span> <%= polyglot.t('dashboard') %></span>
+    </h1>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        <ul class="nav nav-tabs tabs-left dashboard-tabs">
+            <li class="active"><a href="#memory-usage-summary" class="memory-usage-summary" data-toggle="tab"><%= polyglot.t('usage.summary') %></a></li>
+            <li><a href="#dea-usage" class="dea-usage" data-toggle="tab"><%= polyglot.t('usage.dea_usage') %></a></li>
+            <li><a href="#placement-zone-usage" class="placement-zone-usage" data-toggle="tab"><%= polyglot.t('usage.placement_zone_usage') %></a></li>
+            <li><a href="#availability-zone-usage" class="availability-zone-usage" data-toggle="tab"><%= polyglot.t('usage.availability_zone_usage') %></a></li>
+            <li><a href="#router-stats" class="router-stats" data-toggle="tab"><%= polyglot.t('dashboard.router') %></a></li>
+            <li><a href="#primary-node-stats" class="primary-node-stats" data-toggle="tab"><%= polyglot.t('dashboard.primary_node') %></a></li>
+        </ul>
+    </div>
+    <div class="col-xs-9 dashboard-content">
+    </div>
+</div>

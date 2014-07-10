@@ -1,0 +1,13 @@
+<script type="text/x-template" id="delete-domain-dialog-body">
+    <div class="alert alert-danger error" style="display:none;"></div>
+    <div class="alert alert-danger">
+        <%= polyglot.t('domains.delete_domain.confirm_delete', { 'domain': domain.entity.name }) %>
+    </div>
+</script>
+
+<script type="text/x-template" id="delete-domain-dialog-footer">
+    <button class="btn btn-danger btn-add btn-delete-domain"
+            data-loading-text="<%= polyglot.t('space.delete_space.deleting') %>"><%=
+        polyglot.t('space.delete_space.delete') %>
+    </button>
+</script>

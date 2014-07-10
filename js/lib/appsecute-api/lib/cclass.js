@@ -1,0 +1,2 @@
+define([],function(){return function(){this.CClass=function(){},this.CClass.create=function(t){var n=this,i=function(){this._super=n;var i,e=t.apply(this,arguments),s=this,o=function(t,n){s[i]="function"!=typeof t||"function"!=typeof n?t:function(){return this._super=n,t.apply(this,arguments)}};for(i in e)o(e[i],s[i])};return i.prototype=new this,i.prototype.constructor=i,i.extend=this.extend||this.create,i}}(),window.CClass});
+//# sourceMappingURL=cclass.js.map

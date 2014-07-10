@@ -1,0 +1,2 @@
+!function(t){t.fn.equalHeights=function(){var e=0,i=t(this);return i.each(function(){var i=t(this).innerHeight();i>e&&(e=i)}),i.height(e)},t('[data-heights="equal"]').each(function(){var e=t(this),i=e.data("targets");e.find(i).equalHeights()})}(jQuery);
+//# sourceMappingURL=jquery.equalheights.js.map

@@ -1,0 +1,97 @@
+<h2><%= polyglot.t('settings.console.product') %></h2>
+<div class="alert alert-info">
+    <%= polyglot.t('settings.console.product.description', {'product': settings.product_name}) %>
+</div>
+<form class="form-horizontal" id="product-settings-form" role="form">
+    <div class="form-group">
+        <label for="inputProductName" class="col-lg-3 control-label"><%= polyglot.t('settings.console.product.product_name') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputProductName" placeholder=""
+                       value="<%- settings.product_name %>" required>
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-product-name"
+                                                      type="button"><i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputCompanyName" class="col-lg-3 control-label"><%= polyglot.t('settings.console.product.company_name') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputCompanyName" placeholder=""
+                       value="<%- settings.company_name %>" required>
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-company-name"
+                                                      type="button"><i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputVendorVersion" class="col-lg-3 control-label"><%= polyglot.t('settings.console.product.vendor_version') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputVendorVersion" placeholder=""
+                       value="<%- settings.vendor_version %>" required>
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-version" type="button">
+                        <i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputDefaultLocale" class="col-lg-3 control-label"><%= polyglot.t('settings.console.product.default_locale') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputDefaultLocale" placeholder=""
+                       value="<%- settings.default_locale %>" required>
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-locale" type="button">
+                        <i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputDocsUrl" class="col-lg-3 control-label"><%= polyglot.t('settings.console.product.external_docs_url') %></label>
+
+        <div class="col-lg-9">
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputDocsUrl" name="inputDocsUrl" placeholder=""
+                       value="<%- settings.external_docs_url %>"
+                        <% if (settings.use_local_docs === "true") {print('disabled="disabled"');} %>
+                        required
+                        >
+                <span class="input-group-btn"><button class="btn btn-default btn-reset btn-reset-docs-url"
+                                                      type="button"><i class="icomoon-loop"></i></button></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-9">
+            <div class="checkbox">
+                <label>
+                    <input id="checkboxUseLocalDocs" type="checkbox"
+                            <% if (settings.use_local_docs === "true") {print('checked="checked"');} %>
+                            > <%= polyglot.t('settings.console.product.use_local_docs') %>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-9">
+            <div class="checkbox">
+                <label>
+                    <input id="checkboxDisablePingback" type="checkbox"
+                            <% if (settings.disable_pingback === "true") {print('checked="checked"');} %>
+                            > <%= polyglot.t('settings.console.product.disable_pingback') %>
+                </label>
+                <span class="help-block"><%= polyglot.t('settings.console.product.disable_pingback.help', {'product': settings.product_name}) %></span>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="pull-right">
+    <button class="btn btn-primary btn-save" data-loading-text="<%= polyglot.t('saving') %>" disabled="disabled"><%= polyglot.t('save_and_reload') %></button>
+    <button class="btn btn-default btn-cancel" disabled="disabled"><%= polyglot.t('cancel') %></button>
+</div>
+<div class="clearfix"></div>

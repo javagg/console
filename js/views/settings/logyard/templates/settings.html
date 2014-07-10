@@ -1,0 +1,53 @@
+<script type="text/x-template" id="settings-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-cog"></span>
+            <span> <%= polyglot.t('settings.logyard.logyard_settings') %></span>
+
+            <div class="pull-right">
+            </div>
+        </h1>
+    </div>
+    <div class="logyard_drains"></div>
+    <div class="logyard_retry_limits"></div>
+</script>
+
+<script type="text/x-template" id="settings-logyard-drains">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><%= polyglot.t('settings.logyard.drains') %></h4>
+            <table class="table table-striped">
+                <% _.each(drains, function(drain, drain_location) { %>
+                    <tr>
+                        <td>
+                            <%- drain %>
+                        </td>
+                        <td>
+                            <%- drain_location %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="settings-logyard-retry-limits">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><%= polyglot.t('settings.logyard.retry_limits') %></h4>
+            <table class="table table-striped">
+                <% _.each(limits, function(retry_limit, retry_target) { %>
+                    <tr>
+                        <td>
+                            <%- retry_target %>
+                        </td>
+                        <td>
+                            <%- retry_limit %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+    </div>
+</script>

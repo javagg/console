@@ -1,0 +1,82 @@
+<div class="page-header">
+    <h1>
+        <span class="icomoon-globe"></span>
+        <span class="org-name"> <%- organization.entity.name %></span>
+
+        <div class="pull-right org-buttons">
+        </div>
+    </h1>
+</div>
+<div class="messages"></div>
+<div class="row">
+    <div class="col-xs-3">
+        <ul class="nav nav-tabs tabs-left" id="organization_tabs">
+            <li class="active"><a href="#tab_spaces" data-toggle="tab"><%- polyglot.t('organization.spaces') %></a></li>
+            <li><a href="#tab_users" data-toggle="tab"><%- polyglot.t('organization.users') %></a></li>
+            <li><a href="#tab_quota" data-toggle="tab"><%= polyglot.t('organization.quota_usage') %></a></li>
+            <li><a href="#tab_domains" data-toggle="tab"><%- polyglot.t('organization.domains') %></a></li>
+        </ul>
+        <div class="sub-tab-content">
+            <ul class="list-no-decoration no-padding">
+                <li><a class="btn-unset-as-default"
+                style="display:none;"><span class="glyphicon glyphicon-remove"></span> <%= polyglot.t('organization.unset_as_default') %></a></li>
+                <li><a class="btn-set-as-default"
+                    style="display:none;"><span class="glyphicon glyphicon-ok"></span> <%= polyglot.t('organization.set_as_default') %></a></li>
+                <li><a class="btn-rename"
+                    style="display:none;"><span class="icomoon-pencil"></span> <%= polyglot.t('organization.rename') %></a></li>
+                <li><a class="text-danger btn-delete"
+                    style="display:none;"><span class="icomoon-remove"></span> <%= polyglot.t('organization.delete') %></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-9">
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_spaces">
+                <h2>
+                    <%- polyglot.t('organization.spaces') %>
+                    <div class="tab-actions pull-right">
+                        <button class="btn btn-sm btn-primary btn-add-space" style="display:none;"><i
+                                    class="icomoon-plus"></i> <%- polyglot.t('organization.spaces.add') %></button>
+                    </div>
+                </h2>
+                <div class="spaces-table"></div>
+            </div>
+            <div class="tab-pane" id="tab_users">
+                <h2>
+                    <%- polyglot.t('organization.users') %>
+                    <div class="tab-actions pull-right">
+                        <button class="btn btn-sm btn-primary btn-add-user-to-org" style="display:none;"><i
+                                    class="icomoon-plus"></i> <%- polyglot.t('organization.users.add') %></button>
+                    </div>
+                </h2>
+                <div class="users-table"></div>
+            </div>
+            <div class="tab-pane" id="tab_quota">
+                <h2>
+                    <%- polyglot.t('organization.quota_usage') %>
+                    <div class="tab-actions pull-right">
+                        <button class="btn btn-primary btn-sm btn-edit-quota" style="display: none;"><i
+                                    class="icomoon-pencil"></i> <%- polyglot.t('organization.change_plan') %>
+                        </button>
+                    </div>
+                </h2>
+                <div class="list-group apps-list quota-usage">
+                </div>
+            </div>
+            <div class="tab-pane" id="tab_domains">
+                <h2>
+                    <%- polyglot.t('organization.domains') %>
+                    <div class="tab-actions pull-right">
+                        <button class="btn btn-primary btn-sm btn-create-domain" style="display: none;"><i
+                                    class="icomoon-plus"></i> <%- polyglot.t('organization.add_domain') %></button>
+                    </div>
+                </h2>
+                <div class="domain-list"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,45 @@
+<script type="text/x-template" id="usage-availability-zone-template">
+	<h2><%= polyglot.t('usage.availability_zone_usage') %></h2>
+	<table class="table" id="availability-zone-usage-table">
+		<thead>
+			<tr>
+				<th rowspan="2"><%- polyglot.t('usage.availability_zone') %></th>
+				<th><%- polyglot.t('usage.table.physical_memory') %></th>
+				<th><%- polyglot.t('usage.table.available_memory') %></th>
+				<th><%- polyglot.t('usage.table.allocated_to_apps') %></th>
+				<th><%- polyglot.t('usage.table.used_by_apps') %></th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</script>
+
+<script type="text/x-template" id="usage-availability-zone-table-row-template">
+	<tr>
+		<td rowspan="2"><strong><%- az.name %><strong></td>
+		<td><%- az.total_physical %> MB</td>
+		<td><%- az.total_available %> MB</td>
+		<td><%- az.total_allocated %> MB</td>
+		<td><%- az.total_used %> MB</td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<div class="progress no-margin">
+			  <div class="progress-bar progress-bar-success" style="width: <%- az.used_by_apps %>%">
+			    <span class="sr-only"><%- az.used_by_apps %>% <%- az.total_used %> </span>
+			  </div>
+			  <div class="progress-bar progress-bar-info" style="width: <%-  az.allocated_to_apps %>%">
+			    <span class="sr-only"><%- az.allocated_to_apps %>% <%- az.total_allocated %></span>
+			  </div>
+			</div>
+			<small class="pull-right">
+				<%- az.used_by_apps.toFixed(2) %>% <%- polyglot.t('usage.table.used_by_apps') %>
+				&amp;
+				<%-  az.allocated_to_apps.toFixed(2) %>% <%- polyglot.t('usage.table.allocated_to_apps') %>
+				<%- polyglot.t('of') %>
+				<%- az.total_physical %> MB <%- polyglot.t('usage.table.physical_memory') %>
+			</small>
+		</td>
+	</tr>
+</script>

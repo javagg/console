@@ -1,0 +1,2 @@
+define(["./extensions/apps-extension","./extensions/users-extension","./extensions/api-extension"],function(e,n,t){return{extendCloudFoundryClient:function(){t.extend(),e.extend(),n.extend()}}});
+//# sourceMappingURL=stackato-client.js.map

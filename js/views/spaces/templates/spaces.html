@@ -1,0 +1,32 @@
+<script type="text/x-template" id="spaces-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-th-large"></span>
+            <span><%= polyglot.t('spaces.spaces') %></span>
+
+            <div class="pull-right space-buttons">
+                <button class="btn btn-primary btn-create"><span class="icomoon-plus"></span> <%= polyglot.t('spaces.new') %></button>
+            </div>
+        </h1>
+    </div>
+    <div id="messages">
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group space-list">
+                <div class="list-group-item active">
+                    <%= polyglot.t('spaces.spaces') %>
+                </div>
+            </div>
+            <div class="list-group user-list">
+                <div class="list-group-item active">
+                    <%= polyglot.t('spaces.users') %>
+                    <button class="btn btn-default btn-xs btn-add-users pull-right"><%= polyglot.t('spaces.add_users') %></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 stream">
+
+        </div>
+    </div>
+</script>

@@ -1,0 +1,9 @@
+<tr id="<%- resource.metadata.guid %>" class="quota_definition" data-guid="<%- resource.metadata.guid %>">
+    <td><%- resource.entity.name %></td>
+    <td><%- resource.entity.memory_limit %> MB</td>
+    <td><%- resource.entity.total_services %></td>
+    <td><% if (resource.entity.allow_sudo) { %>Yes<% } else { %>No<% } %></td>
+    <td align="right">
+        <button class="btn btn-xs btn-primary" data-click="editQuotaClicked"><i class="glyphicon glyphicon-edit"></i></button>
+    </td>
+</tr>

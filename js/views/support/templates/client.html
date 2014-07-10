@@ -1,0 +1,28 @@
+<script type="text/x-template" id="client-template">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-download"></span>
+            <span><%= polyglot.t('client.get_client', { 'product': settings.product_name }) %></span>
+        </h1>
+    </div>
+    <div class="row">
+        <div id="suggested_download" class="col-md-6">
+        </div>
+        <div class="col-md-6">
+            <h4><%= polyglot.t('client.platforms.other') %></h4>
+            <ul>
+                <li><a id="mac" href="<%- host %>/static/stackato-<%- client_version %>-macosx10.5-i386-x86_64.zip"><%= polyglot.t('client.platforms.mac') %></a></li>
+                <li><a id="win" href="<%- host %>/static/stackato-<%- client_version %>-win32-ix86.zip"><%= polyglot.t('client.platforms.windows') %></a></li>
+                <li><a id="linux32" href="<%- host %>/static/stackato-<%- client_version %>-linux-glibc2.3-ix86.zip"><%= polyglot.t('client.platforms.linux') %></a></li>
+                <li><a id="linux64" href="<%- host %>/static/stackato-<%- client_version %>-linux-glibc2.3-x86_64.zip"><%= polyglot.t('client.platforms.linux64') %></a></li>
+        </div>
+
+    </div>
+</script>
+
+
+<script type="text/x-template" id="suggested-download-template">
+    <div>
+        <a class="btn btn-primary btn-lg btn-block" href="<%- url %>"><h3><%= polyglot.t('client.suggested_download', { 'version': client_version, 'platform': polyglot.t(OSDisplay) }) %></h3></a>
+    </div>
+</script>

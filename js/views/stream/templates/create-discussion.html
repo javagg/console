@@ -1,0 +1,30 @@
+<script type="text/x-template" id="discussion-template">
+    <ul>
+        <li class="media event">
+            <a class="pull-left event-source" href="#users/<%- user.id %>">
+                <img class="media-object user-icon img-circle" src="<%- user.image_url %>">
+            </a>
+            <div class="media-body well">
+                <h4 class="media-heading">
+                    <form class="create-discussion-form">
+                        <h5><%= polyglot.t('stream.start_new_discussion') %></h5>
+                        <div class="form-group">
+                            <input type="text" placeholder="<%= polyglot.t('stream.create_discussion.subject') %>" class="event-name-input form-control" name="name">
+                        </div>
+                        <div class="form-group">
+                            <ul class="form-control discussion-tags"></ul>
+                        </div>
+                    </form>
+
+                    <select class="selectpicker app-list" role="menu" data-style="btn-info">
+                    </select>
+                </h4>
+
+                <div class="event-content">
+
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</script>

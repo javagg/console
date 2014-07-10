@@ -1,0 +1,10 @@
+<tr id="<%- resource.metadata.guid %>" class="application">
+    <td><%- resource.entity.name %></td>
+    <td>
+        <ul class='no-padding list-no-decoration'>
+            <% _.each(resource.entity.deas, function(dea) { %>
+            <li><%= dea %></li>
+            <% }); %>
+        </ul>
+    </td>
+</tr>

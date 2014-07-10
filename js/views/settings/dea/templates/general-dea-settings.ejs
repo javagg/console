@@ -1,0 +1,45 @@
+<div class="tab-content">
+<h2><%= polyglot.t('settings.dea.dea_settings') %></h2>
+<form class="form-horizontal well form-check-dirty" id="dea_settings_form">
+    <div class="form-group">
+      <label class="control-label col-lg-4" for="memory_max_percent"><%= polyglot.t('settings.dea.memory_max_percent') %></label>
+      <div class="col-lg-8">
+        <div class="input-group">
+            <input id="memory_max_percent" type="text" class="form-control" name="memory_max_percent" value="<%- memory_max_percent %>">
+            <span class="input-group-addon">%</span>
+        </div>
+        <span class="help-block">
+            <%= polyglot.t('settings.dea.memory_max_percent.help') %>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-lg-4" for="max_staging_duration"><%= polyglot.t('settings.dea.max_staging_duration') %></label>
+      <div class="col-lg-8">
+        <div class="input-group">
+            <input id="max_staging_duration" type="text" class="form-control" name="max_staging_duration" value="<%- max_staging_duration %>">
+            <span class="input-group-addon"><%= polyglot.t('seconds') %></span>
+        </div>
+        <span class="help-block">
+            <%= polyglot.t('settings.dea.max_staging_duration.help') %>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-4 col-lg-8">
+            <button type="button" id="save_dea_settings" class="btn disabled submit btn-default pull-right" data-loading-text="<%= polyglot.t('saving_changes') %>" data-done-text="<%= polyglot.t('changes_saved') %>"><%= polyglot.t('save_changes') %></button>
+        </div>
+    </div>
+
+    <div class="form-group has-error hide">
+        <div class="col-lg-offset-4 col-lg-8">
+            <span class="help-block dea-settings-error alert alert-danger">
+            </span>
+        </div>
+    </div>
+</form>
+<div id="restart_role" class="alert alert-danger hide">
+    <i class="icomoon-warning"></i> <%= polyglot.t('settings.restart_role_after_save', {role: "dea"}) %></p>
+</div>
+</div>

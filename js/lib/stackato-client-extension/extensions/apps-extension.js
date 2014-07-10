@@ -1,0 +1,2 @@
+define(["cloud-foundry-client/lib/apps"],function(t){return{extend:function(){t.prototype.getLogTail=function(t,n,o,e){"function"==typeof o&&"undefined"==typeof e&&(e=o,o=null),o=o||{},o.query="?num="+(n||25)+"&monolith=1",o.status_code=200,this.api.get(this.getCollectionUrl()+"/"+t+"/stackato_logs",o,e)}}}});
+//# sourceMappingURL=apps-extension.js.map

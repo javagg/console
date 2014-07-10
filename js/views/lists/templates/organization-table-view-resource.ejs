@@ -1,0 +1,13 @@
+<tr id="<%- resource.metadata.guid %>" class="organization clickable">
+    <td class="linked_entity"><%- resource.entity.name %></td>
+    <% if (is_admin) { %>
+    <td>
+    	<% if (resource.entity.is_default) { %><label class="label label-info default-org-label"><%= polyglot.t('organization.is_default') %></label><% } %>
+    </td>
+    <% } %>
+    <td><%- resource.entity.status %></td>
+    <td>
+        <button class="btn btn-xs btn-danger btn-delete-org pull-right" style="display:none;" data-click="deleteOrganizationClicked"><span
+                    class="icomoon-remove"></span></button>
+    </td>
+</tr>

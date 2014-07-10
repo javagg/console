@@ -1,0 +1,46 @@
+<script type="text/x-template" id="service-template">
+    <div class="page-header">
+        <h1>
+            <span><i class="icomoon-database"></i> <%- service.entity.name %></span>
+
+            <div class="pull-right service-buttons">
+                <small><%- service.entity.service_plan.entity.service.entity.label %> <%- service.entity.service_plan.entity.service.entity.version %></small>
+            </div>
+        </h1>
+        <span class="text-small">
+            <a href="#organizations/<%- service.entity.space.entity.organization.metadata.guid %>"><%- service.entity.space.entity.organization.entity.name %></a> /
+            <a href="#spaces/<%- service.entity.space.metadata.guid %>"><%- service.entity.space.entity.name %></a>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group service-data-list">
+                <div class="list-group-item active"><%= polyglot.t('service_instances.details') %></div>
+                <div class="list-group-item">
+                    <strong>Description:</strong> <%- service.entity.service_plan.entity.service.entity.description %>
+                </div>
+                <div class="list-group-item">
+                    <strong><%= polyglot.t('service_instances.created') %>:</strong> <%= service.metadata.created_at_pretty %>
+                </div>
+                <div class="list-group-item">
+                    <strong><%= polyglot.t('service_instances.modified') %>:</strong> <%= service.metadata.updated_at_pretty %>
+                </div>
+                <div class="list-group-item">
+                    <strong><%= polyglot.t('service_instances.host') %>:</strong> <%= service.entity.credentials.host %>
+                </div>
+                <div class="list-group-item">
+                    <strong><%= polyglot.t('service_instances.port') %>:</strong> <%= service.entity.credentials.port %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h4>Application Bindings</h4>
+            <div class="application_bindings">
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="delete-service-template">
+    <button class="btn btn-danger btn-delete-service"><%= polyglot.t('delete') %></button>
+</script>

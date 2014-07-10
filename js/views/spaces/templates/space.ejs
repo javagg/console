@@ -1,0 +1,92 @@
+<div class="page-header">
+    <h1>
+        <span class="glyphicon glyphicon-th-large"></span>
+            <span class="space-name"> <%- space.name %></span>
+
+        <div class="pull-right space-buttons">
+        </div>
+    </h1>
+    <span class="text-small">
+        <a href="#organizations/<%- space.organization.metadata.guid %>"><%-
+                    space.organization.entity.name %></a>
+    </span>
+</div>
+<div class="messages"></div>
+<div class="row">
+    <div class="col-xs-3">
+        <ul class="nav nav-tabs tabs-left" id="space_tabs">
+            <li class="active"><a href="#tab_applications" data-toggle="tab"><%- polyglot.t('space.apps') %></a></li>
+            <li><a href="#tab_stream" data-toggle="tab"><%- polyglot.t('space.timeline') %></a></li>
+            <li><a href="#tab_services" data-toggle="tab"><%- polyglot.t('space.services') %></a></li>
+            <li><a href="#tab_managers" data-toggle="tab"><%- polyglot.t('space.managers') %></a></li>
+            <li><a href="#tab_developers" data-toggle="tab"><%- polyglot.t('space.developers') %></a></li>
+            <li><a href="#tab_auditors" data-toggle="tab"><%- polyglot.t('space.auditors') %></a></li>
+        </ul>
+        <div class="sub-tab-content">
+            <ul class="list-no-decoration no-padding">
+                <li> <a class="btn-unset-as-default"
+                    style="display:none;"><span class="glyphicon glyphicon-remove"></span> <%= polyglot.t('space.unset_as_default') %></a></li>
+                <li><a class="btn-set-as-default"
+                    style="display:none;"><span class="glyphicon glyphicon-ok"></span> <%= polyglot.t('space.set_as_default') %></a></li>
+                <li><a class="btn-rename" 
+                    style="display: none;"><span class="icomoon-pencil"></span> <%= polyglot.t('space.rename') %></a></li>
+                <li><a class="text-danger btn-delete" 
+                    style="display: none;"><span class="icomoon-remove"></span> <%= polyglot.t('space.delete') %></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-9">
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_applications">
+                <h2>
+                    <%- polyglot.t('space.apps') %>
+                </h2>
+                <div class="apps-table">
+                </div>
+            </div>
+            <div class="tab-pane" id="tab_stream">
+                <div class="stream"></div>
+            </div>
+            <div class="tab-pane" id="tab_services">
+                <h2>
+                    <%- polyglot.t('space.services') %>
+                </h2>
+                <div class="services-table">
+                </div>
+            </div>
+            <div class="tab-pane" id="tab_managers">
+                <h2>
+                    <%- polyglot.t('space.managers') %>
+                    <div style="display: none;" class="tab-actions pull-right">
+                        <button class="btn btn-primary btn-sm btn-add-manager-to-space"><i class="icomoon-plus"></i>
+                            <%- polyglot.t('space.managers.add') %>
+                        </button>
+                    </div>
+                </h2>
+                <div class="managers-table"></div>
+            </div>
+            <div class="tab-pane" id="tab_developers">
+                <h2>
+                    <%- polyglot.t('space.developers') %>
+                    <div style="display: none;" class="tab-actions pull-right">
+                        <button class="btn btn-primary btn-sm btn-add-developer-to-space"><i
+                                    class="icomoon-plus"></i> <%- polyglot.t('space.developers.add') %>
+                        </button>
+                    </div>
+                </h2>
+                <div class="developers-table"></div>
+            </div>
+            <div class="tab-pane" id="tab_auditors">
+                <h2>
+                    <%- polyglot.t('space.auditors') %>
+                    <div style="display: none;" class="tab-actions pull-right">
+                        <button class="btn btn-primary btn-sm btn-add-auditor-to-space"><i class="icomoon-plus"></i>
+                            <%- polyglot.t('space.auditors.add') %>
+                        </button>
+                    </div>
+                </h2>
+                <div class="auditors-table"></div>
+            </div>
+        </div>
+    </div>
+</div>

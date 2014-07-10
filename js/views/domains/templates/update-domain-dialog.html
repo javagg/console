@@ -1,0 +1,22 @@
+<script type="text/x-template" id="update-domain-dialog-body">
+    <div class="alert alert-danger" style="display:none;"></div>
+    <form role="form" class="form-horizontal update-domain-form">
+        <div class="form-group">
+            <label for="create-space-name" class="col-lg-3 control-label"><%= polyglot.t('domains.create_domain.name')
+                %></label>
+
+            <div class="col-lg-9">
+                <input type="text" id="create-domain-name" name="name" class="form-control"
+                       placeholder="<%= polyglot.t('domains.create_domain.name') %>"
+                       value="<%- domain.entity.name %>">
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="update-domain-dialog-footer">
+    <button class="btn btn-primary btn-add btn-update-domain"
+            data-loading-text="<%= polyglot.t('domains.update_domain.updating') %>"><%=
+        polyglot.t('domains.update_domain.update') %>
+    </button>
+</script>

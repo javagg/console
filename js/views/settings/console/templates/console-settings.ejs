@@ -1,0 +1,27 @@
+<div class="page-header">
+    <h1>
+        <span class="glyphicon glyphicon-cog"></span>
+        <span> <%= polyglot.t('settings.console_settings') %></span>
+
+        <div class="pull-right">
+            <button class="btn btn-danger btn-load-defaults"><i class="glyphicon glyphicon-warning-sign"></i> 
+                <%= polyglot.t('settings.console.load_defaults') %>
+            </button>
+        </div>
+    </h1>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        <ul class="nav nav-tabs tabs-left setting-menu">
+            <li class="active"><a class="product-settings" href="#product-settings" data-toggle="tab"><%= polyglot.t('settings.console.product') %></a></li>
+            <li><a href="#theme-settings" class="theme-settings" data-toggle="tab"><%= polyglot.t('settings.console.theme') %></a></li>
+            <li><a href="#welcome-settings" class="welcome-settings" data-toggle="tab"><%= polyglot.t('settings.console.welcome') %></a></li>
+            <li><a href="#settings-support" class="support-settings" data-toggle="tab"><%= polyglot.t('settings.console.support') %></a></li>
+            <li><a href="#settings-eula" class="eula-settings" data-toggle="tab"><%= polyglot.t('settings.console.eula') %></a></li>
+            <li><a href="#settings-style" class="style-settings" data-toggle="tab"><%= polyglot.t('settings.console.style') %></a></li>
+        </ul>
+    </div>
+    <div class="col-xs-9 settings-container tab-content">
+
+    </div>
+</div>

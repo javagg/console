@@ -1,0 +1,10 @@
+<tr class="route clickable">
+    <td class="linked_entity">
+        <% if(resource.entity.host){print(resource.entity.host + '.')} %><%- resource.entity.domain.entity.name %>
+    </td>
+    <td>
+        <button style="display: none;" class="btn btn-danger btn-xs btn-unmap-route pull-right" data-click="unmapRouteClicked"><i
+                    class="icomoon-remove"></i>
+        </button>
+    </td>
+</tr>

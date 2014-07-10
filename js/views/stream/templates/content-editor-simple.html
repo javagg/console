@@ -1,0 +1,15 @@
+<script type="text/x-template" id="editor-template">
+    <div class="editor-container">
+        <div class="editor">
+            <textarea class="editor-content form-control"><%- content %></textarea>
+        </div>
+        <div class="clearfix"></div>
+        <div class="editor-controls pull-right">
+            <button class="btn btn-sm btn-primary editor-save" data-loading-text="<%= polyglot.t('stream.content_editor.submitting') %>"><%- save_text %></button>
+            <% if(!hide_cancel) { %>
+            <button class="btn btn-default btn-sm editor-cancel"><%= polyglot.t('stream.content_editor.cancel') %></button>
+            <% } %>
+        </div>
+        <div class="clearfix"/>
+    </div>
+</script>

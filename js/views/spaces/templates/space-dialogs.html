@@ -1,0 +1,90 @@
+<script type="text/x-template" id="delete-space-dialog-body">
+    <div class="alert alert-danger">
+        <%= polyglot.t('space.delete_space.confirm') %>
+    </div>
+</script>
+
+<script type="text/x-template" id="delete-space-dialog-footer">
+    <button class="btn btn-danger btn-delete" data-loading-text="<%= polyglot.t('space.delete_space.deleting') %>"><%= polyglot.t('space.delete_space.delete') %></button>
+</script>
+
+<script type="text/x-template" id="no-user-eligible-dialog-body">
+    <div class="alert alert-info"><%= polyglot.t('spaces.no_eligible_users') %></div>
+</script>
+
+<script type="text/x-template" id="add-user-dialog-body">
+    <form role="form" class="form-horizontal add-user-form">
+        <div class="alert alert-info role-description">
+        </div>
+        <div class="form-group">
+            <div class="col-lg-12">
+	         <div class="user-select"></div>
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="add-user-dialog-footer">
+    <button class="btn btn-primary btn-add btn-add-user" data-loading-text="<%= polyglot.t('space.add_user.adding') %>"><%= polyglot.t('space.add_user.add') %></button>
+</script>
+
+<script type="text/x-template" id="remove-user-dialog-body">
+    <div class="alert alert-danger">
+        <%= polyglot.t('space.remove_user.confirm') %>
+    </div>
+</script>
+
+<script type="text/x-template" id="remove-user-dialog-footer">
+    <button class="btn btn-danger btn-remove" data-loading-text="<%= polyglot.t('space.remove_user.removing') %>"><%= polyglot.t('space.remove_user.remove') %></button>
+</script>
+
+<script type="text/x-template" id="create-space-dialog-body">
+    <form role="form" class="form-horizontal create-space-form">
+        <div class="form-group">
+            <label for="create-space-name" class="col-lg-3 control-label"><%= polyglot.t('spaces.create_space.name') %></label>
+            <div class="col-lg-9">
+                    <input type="text" id="create-space-name" name="name" class="form-control" placeholder="<%= polyglot.t('spaces.create_space.name') %>">
+            </div>
+        </div>
+    </form>
+</script>
+
+<script type="text/x-template" id="create-space-dialog-footer">
+    <button class="btn btn-primary btn-add btn-create-space" data-loading-text="<%= polyglot.t('spaces.create_space.creating') %>"><%= polyglot.t('spaces.create_space.create') %></button>
+</script>
+
+<script type="text/x-template" id="set-as-default-dialog-body">
+    <div>
+        <form>
+            <%= polyglot.t('space.set_as_default.info') %>
+            <div class="alert alert-info">
+                <%= polyglot.t('space.set_as_default.confirm', { 'space': space_name }) %>
+                <% if (! org_is_default) { %>
+                    <%= polyglot.t('space.set_as_default.org_is_not_default', { 'space': space_name, 'org': org_name }) %>
+                <% } %>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-template" id="set-as-default-dialog-footer">
+    <button class="btn btn-primary set-as-default-space" data-loading-text="<%= polyglot.t('space.setting_as_default') %>"><%=
+        polyglot.t('space.set_as_default') %>
+    </button>
+</script>
+
+<script type="text/x-template" id="unset-as-default-dialog-body">
+    <div>
+        <form>
+            <div class="alert alert-info">
+                <%= polyglot.t('space.unset_as_default.confirm', { 'space': space_name }) %>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-template" id="unset-as-default-dialog-footer">
+    <button class="btn btn-primary unset-as-default-space" data-loading-text="<%= polyglot.t('space.unsetting_as_default') %>"><%=
+        polyglot.t('space.unset_as_default') %>
+    </button>
+</script>

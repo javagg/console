@@ -1,0 +1,82 @@
+<script type="text/x-template" id="cluster-template">
+    <div class="page-header">
+        <h1>
+            <span class="icomoon-network"></span>
+            <%= polyglot.t('cluster.management') %>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div id="stackato_info">
+            </div>
+        </div>
+        <div class="col-xs-9 cluster-content">
+            <table class="cluster-nodes">
+            </table>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="cluster-info-template">
+    <ul class="list-group">
+        <li class="list-group-item"><strong><%= polyglot.t('welcome.version') %>:</strong> <%- settings.product_name
+            %> <%- settings.vendor_version %>
+        </li>
+        <li class="list-group-item"><strong><%= polyglot.t('welcome.mbus_ip') %>:</strong> <%- info.mbusip %></li>
+        <li class="list-group-item"><strong><%= polyglot.t('welcome.api_endpoint') %>:</strong> <%- info.endpoint %>
+        </li>
+    </ul>
+</script>
+
+<script type="text/x-template" id="cluster-node-template">
+    <tr class="cluster-node">
+        <td class="node-ip"><%- node_ip %></td>
+        <td class="cluster-node-roles">
+            <ul class="node-<%- index %>">
+            </ul>
+        </td>
+        <td>
+            <button class="btn btn-primary btn-node-settings" data-nodeip="<%- node_ip %>"><i class="icomoon-cog"></i>
+            </button>
+        </td>
+    </tr>
+</script>
+
+<script type="text/x-template" id="node-role-template">
+    <li class="node-role <%- role %>">
+        <%- role %>
+    </li>
+</script>
+
+<script type="text/x-template" id="node-settings-dialog-body">
+    <h4><%= polyglot.t('cluster.node_settings.active_roles') %> <%- node_ip %></h4>
+    <div class="alert alert-danger" style="display: none;"></div>
+    <div class="alert alert-info"><%= polyglot.t('cluster.node.disabled_controls_help', {docs_url: docs_url,
+        product_name: product_name}) %>
+    </div>
+    <form class="form-horizontal node-settings-form" role="form">
+        <div class="form-controls">
+            <div class="form-group">
+
+            </div>
+        </div>
+    </form>
+    <div class="clearfix activity"></div>
+</script>
+
+<script type="text/x-template" id="node-settings-dialog-role-input">
+    <div class="col-lg-offset-1 col-lg-5 control-node-setting">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="input-<%- role %>" name="<%- role %>" <% if (status) { %>checked<% } %>>
+                <%- role %>
+            </label>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="node-settings-dialog-footer">
+    <button class="save-settings btn btn-primary" disabled="disabled" data-loading-text="<%= polyglot.t('saving') %>">
+        <%= polyglot.t('save') %>
+    </button>
+</script>

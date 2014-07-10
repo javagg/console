@@ -1,0 +1,1 @@
+{"version":3,"file":"app-store.js","sources":["app-store.js.src.js"],"names":["define","Collection","appstore","api","this","collection","prototype","Object","create"],"mappings":"AAIAA,QACI,uCACA,SAAUC,GAGN,GAAIC,GAAW,SAAUC,GACrBC,KAAKD,IAAMA,EACXC,KAAKC,WAAa,WAKtB,OAFAH,GAASI,UAAYC,OAAOC,OAAO,GAAIP,IAEhCC"}
