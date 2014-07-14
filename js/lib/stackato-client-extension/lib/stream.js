@@ -1,2 +1,70 @@
-define([],function(){var t=function(t){this.api=t};return t.prototype={getTags:function(t,n){"function"==typeof t&&"undefined"==typeof n&&(n=t,t=null),t=t||{},t.status_code=200,this.api.get("/srest/applications/tags",t,function(t,e){return t?n(t):void n(null,e.body)})},createEvent:function(t,n,e,o,i,s,a){var u="/srest/applications/"+t+"/events",c={status:o,name:n,content:e,tags:i};"function"==typeof s&&"undefined"==typeof a&&(a=s,s=null),s=s||{},s.data=c,s.status_code=201,this.api.post(u,s,function(t,n){return t?a(t):void a(null,n.body)})},searchEvents:function(t,n,e,o){e=e||{},e.data={search_filters:n},e.status_code=200,this.api.post(t,e,function(t,n){return t?o(t):void o(null,n.body)})}},t});
-//# sourceMappingURL=stream.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([],
+    function () {
+
+        var stream = function (api) {
+            this.api = api;
+        };
+
+        stream.prototype = {
+
+            getTags: function (options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.get('/srest/applications/tags', options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            createEvent: function (application_guid, name, content, status, tags, options, done) {
+
+                var url = '/srest/applications/' + application_guid + '/events',
+                    data = {
+                        status: status,
+                        name: name,
+                        content: content,
+                        tags: tags
+                    };
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                options = options || {};
+                options.data = data;
+                options.status_code = 201;
+
+                this.api.post(url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            searchEvents: function (search_url, search_filters, options, done) {
+
+                options = options || {};
+                options.data = {search_filters: search_filters};
+                options.status_code = 200;
+
+                this.api.post(search_url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            }
+        };
+
+        return stream;
+    }
+);

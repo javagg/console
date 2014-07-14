@@ -1,1 +1,0 @@
-{"version":3,"file":"theme-terminal.js","sources":["theme-terminal.js.src.js"],"names":["define","e","t","isDark","cssClass","cssText","r","importCssString"],"mappings":"AAAAA,OAAO,sBAAsB,UAAU,UAAU,SAAS,eAAe,SAASC,EAAEC,GAAKA,EAAEC,QAAO,EAAGD,EAAEE,SAAS,qBAAqBF,EAAEG,QAAQ,gqFAAiqF,IAAIC,GAAEL,EAAE,aAAcK,GAAEC,gBAAgBL,EAAEG,QAAQH,EAAEE"}

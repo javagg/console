@@ -1,2 +1,141 @@
-define(["jquery","appsecute-api/lib/utils","appsecute-api/lib/logger","appsecute-api/lib/start"],function(e,t,a,r){var n=new a("HttpClient"),o=function(e){try{return JSON.parse(e.responseText)}catch(t){return e.responseText}},s=function(e){var a=e.headers||{};"GET"!==e.verb&&(a["X-CSRF-Token"]=t.getCookie("authenticity_token"));var r=t.getCookie("cf_token");return r&&(a.Authorization="bearer "+r),a},i=function(a,r,i,c){try{a.handle=e.ajax({url:a.url,accept:"application/json",contentType:a.data?"application/json":"",dataType:"text",type:a.verb,async:!0,data:a.data?JSON.stringify(a.data):null,timeout:r,headers:s(a),processData:!1,cache:!1,success:function(e,r,n){if(t.isFunction(i)){var s={status_code:n.status,body:o(n),headers:t.processHttpHeaders(n.getAllResponseHeaders()),jqXHR:n};201===s.status_code&&s.body&&(s.body.id||s.body.location)&&(s.headers.id=s.body.id,s.headers.location=s.body.location),i(a,s)}},error:function(e){if(t.isFunction(c)){var r={status_code:e.status,body:o(e),headers:t.processHttpHeaders(e.getAllResponseHeaders()),jqXHR:e};c(a,r)}}})}catch(u){n.error("An exception occurred processing an HTTP Request: "+u)}};return{executeHttpRequest:function(e,a,n,o){t.isUrl(e.url)?i(e,a,n,o):r.getUri(e.url,function(t){e.url=t,i(e,a,n,o)},function(){i(e,a,n,o)})}}});
-//# sourceMappingURL=http-client.js.map
+//
+// Copyright (c) Appsecute 2013 - ALL RIGHTS RESERVED.
+//
+
+/**
+ * @description An HttpClient capable of executing GET, PUT, POST and DELETE.
+ */
+define([
+    'jquery',
+    'appsecute-api/lib/utils',
+    'appsecute-api/lib/logger',
+    'appsecute-api/lib/start'],
+    function ($, Utils, Logger, StartDocument) {
+
+        /**
+         * @description A logger used for logging within the HttpClient object.
+         */
+        var _logger = new Logger("HttpClient");
+
+        /**
+         * Parses the response to an HTTP request to JSON.
+         * If parsing fails the original response string will be returned.
+         */
+        var parseResponse = function (jqXHR) {
+            try {
+                return JSON.parse(jqXHR.responseText)
+            } catch (e) {
+                return jqXHR.responseText;
+            }
+        };
+
+        /**
+         * Gets HTTP request headers that should be sent with the request.
+         */
+        var getRequestHeaders = function (httpRequest) {
+
+            var headers = httpRequest.headers || {};
+
+            if (httpRequest.verb !== "GET") {
+                headers['X-CSRF-Token'] = Utils.getCookie('authenticity_token');
+            }
+
+            var token = Utils.getCookie('cf_token');
+            if (token) {
+                headers['Authorization'] = 'bearer ' + token;
+            }
+
+            return headers;
+        };
+
+        /**
+         * @description Executes an HttpRequest.
+         */
+        var _doRequest = function (httpRequest, timeout, success, error) {
+            try {
+                httpRequest.handle = $.ajax({
+                        url: httpRequest.url,
+                        accept: "application/json",
+                        contentType: httpRequest.data ? "application/json" : "",
+                        dataType: "text",
+                        type: httpRequest.verb,
+                        async: true,
+                        data: httpRequest.data ? JSON.stringify(httpRequest.data) : null,
+                        timeout: timeout,
+                        headers: getRequestHeaders(httpRequest),
+                        processData: false,
+                        cache: false,
+                        success: function (data, textStatus, jqXHR) {
+                            if (Utils.isFunction(success)) {
+
+                                var httpResponse = {
+                                    status_code: jqXHR.status,
+                                    body: parseResponse(jqXHR),
+                                    headers: Utils.processHttpHeaders(jqXHR.getAllResponseHeaders()),
+                                    jqXHR: jqXHR
+                                };
+
+                                // Workaround for Firefox not exposing http response headers on CORS requests.
+                                // This workaround expects the server to set the location and id properties in the response
+                                // body when resources are created (status code 201).
+                                if (httpResponse.status_code === 201 &&
+                                    httpResponse.body &&
+                                    (httpResponse.body.id || httpResponse.body.location )) {
+                                    httpResponse.headers.id = httpResponse.body.id;
+                                    httpResponse.headers.location = httpResponse.body.location;
+                                }
+
+                                success(httpRequest, httpResponse);
+                            }
+                        },
+                        error: function (jqXHR) {
+                            if (Utils.isFunction(error)) {
+
+                                var httpResponse = {
+                                    status_code: jqXHR.status,
+                                    body: parseResponse(jqXHR),
+                                    headers: Utils.processHttpHeaders(jqXHR.getAllResponseHeaders()),
+                                    jqXHR: jqXHR
+                                };
+
+                                error(httpRequest, httpResponse);
+                            }
+                        }}
+                );
+            } catch (e) {
+                _logger.error("An exception occurred processing an HTTP Request: " + e);
+            }
+        };
+
+        return {
+
+            /**
+             * @description Executes the provided http request.
+             * @param {Object} request The http request to execute.
+             * @param {int} timeout The maximum time in milliseconds the request may be in-progress
+             * before being aborted.
+             * @param {function} success A function that will be called if the request succeeds.
+             * @param {function} error A function that will be called if the request fails.
+             */
+            executeHttpRequest: function (request, timeout, success, error) {
+
+                // If the request contains a url then use it
+                if (Utils.isUrl(request.url)) {
+                    _doRequest(request, timeout, success, error);
+                } else {
+                    // Otherwise the request contains the name of a start document uri.
+                    StartDocument.getUri(
+                        request.url,
+                        function (url) {
+                            request.url = url;
+                            _doRequest(request, timeout, success, error);
+                        },
+                        function (errorReason) {
+                            _doRequest(request, timeout, success, error);
+                        }
+                    );
+                }
+            }
+        }
+    }
+);

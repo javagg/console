@@ -1,2 +1,1 @@
-define("ace/snippets/glsl",["require","exports","module"],function(e,s){s.snippetText="",s.scope="glsl"});
-//# sourceMappingURL=glsl.js.map
+ace.define("ace/snippets/glsl",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="glsl"})

@@ -1,2 +1,100 @@
-define([],function(){var t=function(t){this.api=t},e="/srest/settings/namespace/",n="console";return t.prototype={deleteBucket:function(t,n,u){"function"==typeof n&&"undefined"==typeof u&&(u=n,n=null);var i=e+t;n=n||{},n.status_code=200,this.api.delete_(i,n,function(t,e){return t?u(t):void u(null,e.body)})},getBucket:function(t,n,u){"function"==typeof n&&"undefined"==typeof u&&(u=n,n=null);var i=e+t;n=n||{},n.status_code=200,this.api.get(i,n,function(t,e){return t?u(t):void u(null,e.body)})},updateSettings:function(t,n,u,i){"function"==typeof u&&"undefined"==typeof i&&(i=u,u=null);var o=e+t;u=u||{},u.data=n,u.status_code=200,this.api.put(o,u,function(t,e){return t?i(t):void i(null,e.body)})},updateSetting:function(t,e,n,u,i){var o={};o[e]=n,this.updateSettings(t,o,u,i)},deleteConsoleBucket:function(t,e){this.deleteBucket(n,t,e)},getConsoleBucket:function(t,e){this.getBucket(n,t,e)},updateConsoleSettings:function(t,e,u){this.updateSettings(n,t,e,u)},updateConsoleSetting:function(t,e,u,i){this.updateSetting(n,t,e,u,i)}},t});
-//# sourceMappingURL=settings.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([],
+    function () {
+
+        var settings = function (api) {
+            this.api = api;
+        };
+
+        var settings_base_url = '/srest/settings/namespace/';
+
+        var console_bucket_name = 'console';
+
+        settings.prototype = {
+
+            deleteBucket: function (bucket, options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                var url = settings_base_url + bucket;
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.delete_(url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            getBucket: function (bucket, options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                var url = settings_base_url + bucket;
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.get(url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            updateSettings: function (bucket, settings_hash, options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                var url = settings_base_url + bucket;
+
+                options = options || {};
+                options.data = settings_hash;
+                options.status_code = 200;
+
+                this.api.put(url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            updateSetting: function (bucket, key, value, options, done) {
+
+                var data = {};
+                data[key] = value;
+
+                this.updateSettings(bucket, data, options, done);
+            },
+
+            deleteConsoleBucket: function (options, done) {
+                this.deleteBucket(console_bucket_name, options, done);
+            },
+
+            getConsoleBucket: function (options, done) {
+                this.getBucket(console_bucket_name, options, done);
+            },
+
+            updateConsoleSettings: function (settings_hash, options, done) {
+                this.updateSettings(console_bucket_name, settings_hash, options, done);
+            },
+
+            updateConsoleSetting: function (key, value, options, done) {
+                this.updateSetting(console_bucket_name, key, value, options, done);
+            }
+        };
+
+        return settings;
+    }
+);

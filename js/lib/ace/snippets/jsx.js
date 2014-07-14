@@ -1,2 +1,1 @@
-define("ace/snippets/jsx",["require","exports","module"],function(e,s){s.snippetText="",s.scope="jsx"});
-//# sourceMappingURL=jsx.js.map
+ace.define("ace/snippets/jsx",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="jsx"})

@@ -1,2 +1,1 @@
-define("ace/snippets/batchfile",["require","exports","module"],function(e,i){i.snippetText="",i.scope="batchfile"});
-//# sourceMappingURL=batchfile.js.map
+ace.define("ace/snippets/batchfile",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="batchfile"})

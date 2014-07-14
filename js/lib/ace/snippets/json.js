@@ -1,2 +1,1 @@
-define("ace/snippets/json",["require","exports","module"],function(e,n){n.snippetText="",n.scope="json"});
-//# sourceMappingURL=json.js.map
+ace.define("ace/snippets/json",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="json"})

@@ -1,2 +1,1 @@
-define("ace/snippets/mysql",["require","exports","module"],function(e,s){s.snippetText="",s.scope="mysql"});
-//# sourceMappingURL=mysql.js.map
+ace.define("ace/snippets/mysql",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="mysql"})

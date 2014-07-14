@@ -1,2 +1,98 @@
-!function(s){var t=function(t,e){var n=this;n.items=null,n.status=null,n.showText=null,n.hideText=null;var h={length:10,showText:"More",showClass:"show",hideText:"Less",hideClass:"hide",startStatus:"hidden",showCountHiddenItems:!1},e=s.extend(h,e),i=function(){n.status=e.startStatus,n.items=t.children(),n.items.length>e.length&&(n.items.each(function(t){t+1>e.length&&s(this).addClass("more-less-item").css("display","none")}),n.showContent=s(".more-less-item",t),n.showText=(e.showCountHiddenItems?e.showText+" ("+(n.items.length-e.length)+") ":e.showText)+"...",n.hideText=e.hideText+"...",n.showLink=s("<li>").addClass("more-less-link").append(n.showText),t.append(n.showLink),a(),o())},o=function(){switch(e.startStatus){case"hidden":n.hideItems();break;case"show":n.showItems();break;default:throw"InvalidStartStatusException"}},a=function(){n.showLink.click(function(){return"hidden"==n.status?n.showItems():n.hideItems(),!1})};n.hideItems=function(){n.showContent.hide(),n.showLink.text(n.showText).addClass(e.hideClass).removeClass(e.showClass),n.status="hidden"},n.showItems=function(){n.showContent.show(),n.showLink.text(n.hideText).addClass(e.showClass).removeClass(e.hideClass),n.status="show"},i()};s.fn.lTruncate=function(e){return this.each(function(){new t(s(this),e)})}}(jQuery);
-//# sourceMappingURL=jquery.ltruncate.js.map
+(function($) {
+
+    var lTruncate = function(container, options) {
+
+        var self = this;
+        
+        self.items = null;
+        self.status = null;
+        self.showText = null;
+        self.hideText = null;
+        
+        var defaultOptions = {
+            length: 10,
+            showText: "More",
+            showClass: "show",
+            hideText: "Less",
+            hideClass: "hide",
+            startStatus: "hidden",
+            showCountHiddenItems: false
+        };
+        
+        var options = $.extend(defaultOptions, options);
+        
+        var init = function() {
+            
+            self.status = options.startStatus;
+            self.items = container.children();
+            
+            if (self.items.length > options.length) {
+                
+                self.items.each(function(index) {
+                    if (index + 1 > options.length) {
+                        $(this).addClass('more-less-item').css('display', 'none');
+                    }
+                });
+                
+                self.showContent = $('.more-less-item', container);
+                
+                self.showText = (options.showCountHiddenItems ? options.showText + ' (' + (self.items.length - options.length) + ') ' : options.showText) + '...';
+                self.hideText = options.hideText + '...';
+                
+                self.showLink = $('<li>').addClass("more-less-link").append(self.showText);
+                container.append(self.showLink);
+                
+                createTrigger();
+                
+                setStartStatus();
+            }
+            
+        };
+        
+        var setStartStatus = function() {
+            switch(options.startStatus) {
+                case "hidden" :
+                    self.hideItems();
+                    break;
+                case "show" :
+                    self.showItems();
+                    break;
+                default:
+                    throw "InvalidStartStatusException";
+            }
+        };
+        
+        var createTrigger = function() {            
+            self.showLink.click(function() {
+                if (self.status == "hidden") {
+                    self.showItems();
+                } else {
+                    self.hideItems();
+                }
+                return false;
+            });
+        };
+        
+        self.hideItems = function() {
+            self.showContent.hide();
+            self.showLink.text(self.showText).addClass(options.hideClass).removeClass(options.showClass);
+            self.status = "hidden";
+        };
+        
+        self.showItems = function() {
+            self.showContent.show();
+            self.showLink.text(self.hideText).addClass(options.showClass).removeClass(options.hideClass);
+            self.status = "show";
+        };
+        
+        init();
+        
+    };
+    
+    $.fn.lTruncate = function(options) {
+        return this.each(function() {
+            new lTruncate($(this), options);
+        });
+    };
+    
+})(jQuery);

@@ -1,2 +1,33 @@
-define([],function(){var t=function(t){this.api=t};return t.prototype={getInfo:function(t,n){"function"==typeof t&&"undefined"==typeof n&&(n=t,t=null),t=t||{},t.status_code=200,this.api.get("/v2/stackato/export_info",t,function(t,o){return t?n(t):void n(null,o.body)})}},t});
-//# sourceMappingURL=export.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([],
+    function () {
+
+        var export_ = function (api) {
+            this.api = api;
+        };
+
+        export_.prototype = {
+
+            getInfo: function (options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.get('/v2/stackato/export_info', options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            }
+        };
+
+        return export_;
+    }
+);

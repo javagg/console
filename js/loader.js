@@ -135,8 +135,8 @@ require.config({
     }
 });
 
-require(["domready", "console", "startup/startup-manager", "startup/step-register-namespace", "startup/step-localize", "startup/step-wait-auth", "startup/step-wait-cc", "startup/step-wait-srest", "startup/step-first-setup", "startup/step-settings", "startup/step-get-user", "startup/step-pingback", "startup/step-routers", "startup/step-page", "startup/step-routing", "cloud-foundry-client/api", "stackato-client-extension/stackato-client", "access/access-control"], function (t, e) {
-    t(function () {
-        e.initialize()
+require(["domready", "console", "startup/startup-manager", "startup/step-register-namespace", "startup/step-localize", "startup/step-wait-auth", "startup/step-wait-cc", "startup/step-wait-srest", "startup/step-first-setup", "startup/step-settings", "startup/step-get-user", "startup/step-pingback", "startup/step-routers", "startup/step-page", "startup/step-routing", "cloud-foundry-client/api", "stackato-client-extension/stackato-client", "access/access-control"], function (domReady, console) {
+    domReady(function () {
+        console.initialize()
     })
 });

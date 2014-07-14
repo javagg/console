@@ -1,2 +1,1 @@
-define("ace/snippets/forth",["require","exports","module"],function(e,t){t.snippetText="",t.scope="forth"});
-//# sourceMappingURL=forth.js.map
+ace.define("ace/snippets/forth",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="forth"})

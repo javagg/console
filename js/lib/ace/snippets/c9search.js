@@ -1,2 +1,1 @@
-define("ace/snippets/c9search",["require","exports","module"],function(e,c){c.snippetText="",c.scope="c9search"});
-//# sourceMappingURL=c9search.js.map
+ace.define("ace/snippets/c9search",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="c9search"})

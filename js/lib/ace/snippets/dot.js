@@ -1,2 +1,1 @@
-define("ace/snippets/dot",["require","exports","module"],function(e,t){t.snippetText="",t.scope="dot"});
-//# sourceMappingURL=dot.js.map
+ace.define("ace/snippets/dot",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="dot"})

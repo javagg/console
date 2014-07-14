@@ -1,2 +1,1 @@
-define("ace/snippets/ejs",["require","exports","module"],function(e,s){s.snippetText="",s.scope="ejs"});
-//# sourceMappingURL=ejs.js.map
+ace.define("ace/snippets/ejs",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="ejs"})

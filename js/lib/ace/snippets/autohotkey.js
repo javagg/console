@@ -1,2 +1,1 @@
-define("ace/snippets/autohotkey",["require","exports","module"],function(e,t){t.snippetText="",t.scope="autohotkey"});
-//# sourceMappingURL=autohotkey.js.map
+ace.define("ace/snippets/autohotkey",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="autohotkey"})

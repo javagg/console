@@ -1,2 +1,29 @@
-define(["cloud-foundry-client/lib/apps"],function(t){return{extend:function(){t.prototype.getLogTail=function(t,n,o,e){"function"==typeof o&&"undefined"==typeof e&&(e=o,o=null),o=o||{},o.query="?num="+(n||25)+"&monolith=1",o.status_code=200,this.api.get(this.getCollectionUrl()+"/"+t+"/stackato_logs",o,e)}}}});
-//# sourceMappingURL=apps-extension.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([
+    'cloud-foundry-client/lib/apps'],
+    function (Apps) {
+
+        return  {
+
+            extend: function () {
+
+                Apps.prototype.getLogTail = function (guid, line_count, options, done) {
+
+                    if (typeof options === 'function' && typeof done === 'undefined') {
+                        done = options;
+                        options = null;
+                    }
+
+                    options = options || {};
+                    options.query = '?num=' + (line_count || 25) + '&monolith=1';
+                    options.status_code = 200;
+
+                    this.api.get(this.getCollectionUrl() + '/' + guid + '/stackato_logs', options, done)
+                };
+            }
+        }
+    }
+);

@@ -1,2 +1,101 @@
-define([],function(){var t=function(t){this.api=t};return t.prototype={getUsage:function(t,n){"function"==typeof t&&"undefined"==typeof n&&(n=t,t=null),t=t||{},t.status_code=200,this.api.get("/v2/usage",t,function(t,o){return t?n(t):void n(null,o.body)})},getStatus:function(t,n){"function"==typeof t&&"undefined"==typeof n&&(n=t,t=null),t=t||{},t.status_code=200,this.api.get("/v2/stackato/status",t,function(t,o){return t?n(t):void n(null,o.body)})},getPrimaryNodeStats:function(t,n,o,e,u,i){"function"==typeof u&&"undefined"==typeof i&&(i=u,u=null);var a="/v2/stackato/stats/collectd?host=stackato";t&&(a=a+"&plugin="+t),n&&(a=a+"&args="+n),o&&(a=a+"&start="+o),e&&(a=a+"&finish="+e),u=u||{},u.status_code=200,this.api.get(a,u,function(t,n){return t?i(t):void i(null,n.body)})},generateClusterReport:function(t,n,o){"function"==typeof n&&"undefined"==typeof o&&(o=n,n=null);var e="/v2/stackato/report/token/"+encodeURIComponent(t);n=n||{},n.status_code=200,this.api.put(e,n,function(t,n){return t?o(t):void o(null,n.body)})}},t});
-//# sourceMappingURL=cluster.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([],
+    function () {
+
+        var cluster = function (api) {
+            this.api = api;
+        };
+
+        cluster.prototype = {
+
+            getUsage: function (options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.get('/v2/usage', options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            getStatus: function (options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.get('/v2/stackato/status', options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            getPrimaryNodeStats: function (plugin, plugin_args, start, finish, options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                var url = '/v2/stackato/stats/collectd?host=stackato';
+
+                if (plugin) {
+                    url = url + '&plugin=' + plugin;
+                }
+
+                if (plugin_args) {
+                    url = url + '&args=' + plugin_args;
+                }
+
+                if (start) {
+                    url = url + '&start=' + start;
+                }
+
+                if (finish) {
+                    url = url + '&finish=' + finish;
+                }
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.get(url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            },
+
+            generateClusterReport: function (secret, options, done) {
+
+                if (typeof options === 'function' && typeof done === 'undefined') {
+                    done = options;
+                    options = null;
+                }
+
+                var url = '/v2/stackato/report/token/' + encodeURIComponent(secret);
+
+                options = options || {};
+                options.status_code = 200;
+
+                this.api.put(url, options, function (err, res) {
+                    if (err) {return done(err);}
+                    done(null, res.body);
+                });
+            }
+        };
+
+        return cluster;
+    }
+);

@@ -1,2 +1,1 @@
-define("ace/snippets/mushcode_high_rules",["require","exports","module"],function(e,s){s.snippetText="",s.scope="mushcode_high_rules"});
-//# sourceMappingURL=mushcode_high_rules.js.map
+ace.define("ace/snippets/mushcode_high_rules",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="mushcode_high_rules"})

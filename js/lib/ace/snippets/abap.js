@@ -1,2 +1,1 @@
-define("ace/snippets/abap",["require","exports","module"],function(e,p){p.snippetText="",p.scope="abap"});
-//# sourceMappingURL=abap.js.map
+ace.define("ace/snippets/abap",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="abap"})

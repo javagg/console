@@ -1,2 +1,1 @@
-define("ace/snippets/handlebars",["require","exports","module"],function(e,n){n.snippetText="",n.scope="handlebars"});
-//# sourceMappingURL=handlebars.js.map
+ace.define("ace/snippets/handlebars",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="handlebars"})

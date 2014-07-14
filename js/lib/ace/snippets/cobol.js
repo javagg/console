@@ -1,2 +1,1 @@
-define("ace/snippets/cobol",["require","exports","module"],function(e,o){o.snippetText="",o.scope="cobol"});
-//# sourceMappingURL=cobol.js.map
+ace.define("ace/snippets/cobol",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="cobol"})

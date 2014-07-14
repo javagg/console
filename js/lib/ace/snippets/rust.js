@@ -1,2 +1,1 @@
-define("ace/snippets/rust",["require","exports","module"],function(e,s){s.snippetText="",s.scope="rust"});
-//# sourceMappingURL=rust.js.map
+ace.define("ace/snippets/rust",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="rust"})

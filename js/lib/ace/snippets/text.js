@@ -1,2 +1,1 @@
-define("ace/snippets/text",["require","exports","module"],function(e,t){t.snippetText="",t.scope="text"});
-//# sourceMappingURL=text.js.map
+ace.define("ace/snippets/text",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="text"})

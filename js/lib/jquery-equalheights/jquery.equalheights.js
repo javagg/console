@@ -1,2 +1,33 @@
-!function(t){t.fn.equalHeights=function(){var e=0,i=t(this);return i.each(function(){var i=t(this).innerHeight();i>e&&(e=i)}),i.height(e)},t('[data-heights="equal"]').each(function(){var e=t(this),i=e.data("targets");e.find(i).equalHeights()})}(jQuery);
-//# sourceMappingURL=jquery.equalheights.js.map
+/*
+ * Simple jQuery Equal Heights
+ *
+ * Copyright (c) 2012 Matt Banks
+ * Dual licensed under the MIT and GPL licenses.
+ * Uses the same license as jQuery, see:
+ * http://docs.jquery.com/License
+ *
+ * @version 1.4.2
+ */
+(function($) {
+
+    $.fn.equalHeights = function() {
+        var maxHeight = 0,
+            $this = $(this);
+
+        $this.each( function() {
+            var height = $(this).innerHeight();
+
+            if ( height > maxHeight ) { maxHeight = height; }
+        });
+
+        return $this.height(maxHeight);
+    };
+
+    // auto-initialize plugin
+    $('[data-heights="equal"]').each(function(){
+        var $this = $(this),
+            target = $this.data('targets');
+        $this.find(target).equalHeights();
+    });
+
+})(jQuery);

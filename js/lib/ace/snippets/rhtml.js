@@ -1,2 +1,1 @@
-define("ace/snippets/rhtml",["require","exports","module"],function(e,t){t.snippetText="",t.scope="rhtml"});
-//# sourceMappingURL=rhtml.js.map
+ace.define("ace/snippets/rhtml",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="rhtml"})

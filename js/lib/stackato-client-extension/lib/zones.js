@@ -1,2 +1,18 @@
-define(["cloud-foundry-client/lib/collection"],function(e){var n=function(e){this.api=e,this.collection="zones"};return n.prototype=Object.create(new e),n});
-//# sourceMappingURL=zones.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([
+    'cloud-foundry-client/lib/collection'],
+    function (Collection) {
+
+        var zones = function (api) {
+            this.api = api;
+            this.collection = 'zones';
+        };
+
+        zones.prototype = Object.create(new Collection());
+
+        return zones;
+    }
+);

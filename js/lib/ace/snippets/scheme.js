@@ -1,2 +1,1 @@
-define("ace/snippets/scheme",["require","exports","module"],function(e,s){s.snippetText="",s.scope="scheme"});
-//# sourceMappingURL=scheme.js.map
+ace.define("ace/snippets/scheme",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="scheme"})

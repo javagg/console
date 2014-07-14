@@ -1,2 +1,19 @@
-define(["cloud-foundry-client/lib/collection"],function(t){var e=function(t){this.api=t,this.collection="appstore"};return e.prototype=Object.create(new t),e});
-//# sourceMappingURL=app-store.js.map
+/**
+ * Copyright (c) ActiveState 2014 - ALL RIGHTS RESERVED.
+ */
+
+define([
+    'cloud-foundry-client/lib/collection'],
+    function (Collection) {
+
+        // Yes, this really is different from stackato/app_stores
+        var appstore = function (api) {
+            this.api = api;
+            this.collection = 'appstore';
+        };
+
+        appstore.prototype = Object.create(new Collection());
+
+        return appstore;
+    }
+);

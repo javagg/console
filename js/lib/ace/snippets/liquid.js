@@ -1,2 +1,1 @@
-define("ace/snippets/liquid",["require","exports","module"],function(e,i){i.snippetText="",i.scope="liquid"});
-//# sourceMappingURL=liquid.js.map
+ace.define("ace/snippets/liquid",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="liquid"})

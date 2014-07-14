@@ -1,2 +1,282 @@
-$.fn.toggles=function(t){t=t||{};var e=$.extend({drag:!0,click:!0,text:{on:"ON",off:"OFF"},on:!1,animate:250,transition:"ease-in-out",checkbox:null,clicker:null,width:50,height:20,type:"compact"},t),i="select"==e.type;e.checkbox=$(e.checkbox),e.clicker&&(e.clicker=$(e.clicker));var o="margin-left "+e.animate+"ms "+e.transition,n={"-webkit-transition":o,"-moz-transition":o,transition:o},a={"-webkit-transition":"","-moz-transition":"",transition:""},c=function(t,o,c,s){var g=t.toggleClass("active").hasClass("active");if(s!==g){var r=t.find(".toggle-inner").css(n);if(t.find(".toggle-off").toggleClass("active"),t.find(".toggle-on").toggleClass("active"),e.checkbox.prop("checked",g),!i){var l=g?0:-o+c;r.css("margin-left",l),setTimeout(function(){r.css(a),r.css("margin-left",l)},e.animate)}}};return this.each(function(){var t=$(this),o=t.height(),n=t.width();o&&n||(t.height(o=e.height),t.width(n=e.width));var a='<div class="toggle-',s=$(a+'slide">'),g=$(a+'inner">'),r=$(a+'on">'),l=$(a+'off">'),h=$(a+'blob">'),f=o/2,m=n-f;if(r.css({height:o,width:m,textAlign:"center",textIndent:i?"":-f,lineHeight:o+"px"}).html(e.text.on),l.css({height:o,width:m,marginLeft:i?"":-f,textAlign:"center",textIndent:i?"":f,lineHeight:o+"px"}).html(e.text.off).addClass("active"),h.css({height:o,width:o,marginLeft:-f}),g.css({width:2*n-o,marginLeft:i?0:-n+o}),i&&(s.addClass("toggle-select"),t.css("width",2*m),h.hide()),t.html(s.html(g.append(r,h,l))),s.on("toggle",function(e,i){e&&e.stopPropagation(),c(s,n,o),t.trigger("toggle",!i)}),t.on("toggleOn",function(){c(s,n,o,!1)}),t.on("toggleOff",function(){c(s,n,o,!0)}),e.on&&c(s,n,o),!e.click||e.clicker&&e.clicker.has(t).length||t.on("click touchstart",function(t){t.stopPropagation(),t.target==h[0]&&e.drag||s.trigger("toggle",s.hasClass("active"))}),e.clicker&&e.clicker.on("click touchstart",function(t){t.stopPropagation(),t.target==h[0]&&e.drag||s.trigger("toggle",s.hasClass("active"))}),e.drag&&!i){var u,d=(n-o)/4,v=function(i){t.off("mousemove touchmove"),s.off("mouseleave"),h.off("mouseup touchend");var a=s.hasClass("active");return!u&&e.click&&"mouseleave"!==i.type?void s.trigger("toggle",a):void(a?-d>u?s.trigger("toggle",a):g.animate({marginLeft:0},e.animate/2):u>d?s.trigger("toggle",a):g.animate({marginLeft:-n+o},e.animate/2))},p=-n+o;h.on("mousedown touchstart",function(e){u=0,h.off("mouseup touchend"),s.off("mouseleave");var i=e.pageX;t.on("mousemove touchmove",h,function(t){u=t.pageX-i;var e;s.hasClass("active")?(e=u,u>0&&(e=0),p>u&&(e=p)):(e=u+p,0>u&&(e=p),u>-p&&(e=0)),g.css("margin-left",e)}),h.on("mouseup touchend",v),s.on("mouseleave",v)})}})};
-//# sourceMappingURL=toggles.js.map
+/**
+@license jQuery Toggles v2.0.5
+Copyright 2013 Simon Tabor - MIT License
+https://github.com/simontabor/jquery-toggles / http://simontabor.com/labs/toggles
+*/
+$.fn['toggles'] = function(options) {
+  options = options || {};
+
+  // extend default opts with the users options
+  var opts = $.extend({
+    'drag': true, // can the toggle be dragged
+    'click': true, // can it be clicked to toggle
+    'text': {
+      'on': 'ON', // text for the ON position
+      'off': 'OFF' // and off
+    },
+    'on': false, // is the toggle ON on init
+    'animate': 250, // animation time
+    'transition': 'ease-in-out', // animation transition,
+    'checkbox': null, // the checkbox to toggle (for use in forms)
+    'clicker': null, // element that can be clicked on to toggle. removes binding from the toggle itself (use nesting)
+    'width': 50, // width used if not set in css
+    'height': 20, // height if not set in css
+    'type': 'compact' // defaults to a compact toggle, other option is 'select' where both options are shown at once
+  },options);
+
+  var selectType = (opts['type'] == 'select');
+
+  // ensure these are jquery elements
+  opts['checkbox'] = $(opts['checkbox']); // doesnt matter for checkbox
+
+  if (opts['clicker']) opts['clicker'] = $(opts['clicker']); // leave as null if not set
+
+  // use native transitions if possible
+  var transition = 'margin-left '+opts['animate']+'ms '+opts['transition'];
+  var transitions = {
+    '-webkit-transition': transition,
+    '-moz-transition': transition,
+    'transition': transition
+  };
+
+  // for resetting transitions to none
+  var notransitions = {
+    '-webkit-transition': '',
+    '-moz-transition': '',
+    'transition': ''
+  };
+
+  // this is the actual toggle function which does the toggling
+  var doToggle = function(slide, width, height, state) {
+    var active = slide.toggleClass('active').hasClass('active');
+
+    if (state === active) return;
+
+    var inner = slide.find('.toggle-inner').css(transitions);
+
+    slide.find('.toggle-off').toggleClass('active');
+    slide.find('.toggle-on').toggleClass('active');
+
+    // toggle the checkbox, if there is one
+    opts['checkbox'].prop('checked',active);
+
+    if (selectType) return;
+
+    var margin = active ? 0 : -width + height;
+
+    // move the toggle!
+    inner.css('margin-left',margin);
+
+    // ensure the toggle is left in the correct state after animation
+    setTimeout(function() {
+      inner.css(notransitions);
+      inner.css('margin-left',margin);
+    },opts['animate']);
+
+  };
+
+  // start setting up the toggle(s)
+  return this.each(function() {
+    var toggle = $(this);
+
+    var height = toggle.height();
+    var width = toggle.width();
+
+    // if the element doesnt have an explicit height/width in css, set them
+    if (!height || !width) {
+      toggle.height(height = opts.height);
+      toggle.width(width = opts.width);
+    }
+
+    var div = '<div class="toggle-';
+    var slide = $(div+'slide">'); // wrapper inside toggle
+    var inner = $(div+'inner">'); // inside slide, this bit moves
+    var on = $(div+'on">'); // the on div
+    var off = $(div+'off">'); // off div
+    var blob = $(div+'blob">'); // the grip toggle blob
+
+    var halfheight = height/2;
+    var onoffwidth = width - halfheight;
+
+    // set up the CSS for the individual elements
+    on
+      .css({
+        height: height,
+        width: onoffwidth,
+        textAlign: 'center',
+        textIndent: selectType ? '' : -halfheight,
+        lineHeight: height+'px'
+      })
+      .html(opts['text']['on']);
+
+    off
+      .css({
+        height: height,
+        width: onoffwidth,
+        marginLeft: selectType ? '' : -halfheight,
+        textAlign: 'center',
+        textIndent: selectType ? '' : halfheight,
+        lineHeight: height+'px'
+      })
+      .html(opts['text']['off'])
+      .addClass('active');
+
+    blob.css({
+      height: height,
+      width: height,
+      marginLeft: -halfheight
+    });
+
+    inner.css({
+      width: width * 2 - height,
+      marginLeft: selectType ? 0 : -width + height
+    });
+
+    if (selectType) {
+      slide.addClass('toggle-select');
+      toggle.css('width', onoffwidth*2);
+      blob.hide();
+    }
+
+    // construct the toggle
+    toggle.html(slide.html(inner.append(on,blob,off)));
+
+    // when toggle is fired, toggle the toggle
+    slide.on('toggle', function(e,active) {
+
+      // stop bubbling
+      if (e) e.stopPropagation();
+
+      doToggle(slide,width,height);
+      toggle.trigger('toggle',!active);
+    });
+
+    // setup events for toggling on or off
+    toggle.on('toggleOn', function() {
+      doToggle(slide, width, height, false);
+    });
+    toggle.on('toggleOff', function() {
+      doToggle(slide, width, height, true);
+    });
+
+    if (opts['on']) {
+
+      // toggle immediately to turn the toggle on
+      doToggle(slide,width,height);
+    }
+
+    // if click is enabled and toggle isn't within the clicker element (stops double binding)
+    if (opts['click'] && (!opts['clicker'] || !opts['clicker'].has(toggle).length)) {
+
+      // bind the click, ensuring its not the blob being clicked on
+      toggle.on('click touchstart',function(e) {
+        e.stopPropagation();
+
+        if (e.target !=  blob[0] || !opts['drag']) {
+          slide.trigger('toggle', slide.hasClass('active'));
+        }
+      });
+    }
+
+    // setup the clicker element
+    if (opts['clicker']) {
+      opts['clicker'].on('click touchstart',function(e) {
+        e.stopPropagation();
+
+        if (e.target !=  blob[0] || !opts['drag']) {
+          slide.trigger('toggle', slide.hasClass('active'));
+        }
+      });
+    }
+
+    // we're done with all the non dragging stuff
+    if (!opts['drag'] || selectType) return;
+
+    // time to begin the dragging parts/blob clicks
+    var diff;
+    var slideLimit = (width - height) / 4;
+
+    // fired on mouseup and mouseleave events
+    var upLeave = function(e) {
+      toggle.off('mousemove touchmove');
+      slide.off('mouseleave');
+      blob.off('mouseup touchend');
+
+      var active = slide.hasClass('active');
+
+      if (!diff && opts.click && e.type !== 'mouseleave') {
+
+        // theres no diff so nothing has moved. only toggle if its a mouseup
+        slide.trigger('toggle', active);
+        return;
+      }
+
+      if (active) {
+
+        // if the movement enough to toggle?
+        if (diff < -slideLimit) {
+          slide.trigger('toggle',active);
+        } else {
+
+          // go back
+          inner.animate({
+            marginLeft: 0
+          },opts.animate/2);
+        }
+      } else {
+
+        // inactive
+        if (diff > slideLimit) {
+          slide.trigger('toggle',active);
+        } else {
+
+          // go back again
+          inner.animate({
+            marginLeft: -width + height
+          },opts.animate/2);
+        }
+      }
+
+    };
+
+    var wh = -width + height;
+
+    blob.on('mousedown touchstart', function(e) {
+
+      // reset diff
+      diff = 0;
+
+      blob.off('mouseup touchend');
+      slide.off('mouseleave');
+      var cursor = e.pageX;
+
+      toggle.on('mousemove touchmove', blob, function(e) {
+        diff = e.pageX - cursor;
+        var marginLeft;
+        if (slide.hasClass('active')) {
+
+          marginLeft = diff;
+
+          // keep it within the limits
+          if (diff > 0) marginLeft = 0;
+          if (diff < wh) marginLeft = wh;
+        } else {
+
+          marginLeft = diff + wh;
+
+          if (diff < 0) marginLeft = wh;
+          if (diff > -wh) marginLeft = 0;
+
+        }
+
+        inner.css('margin-left',marginLeft);
+      });
+
+      blob.on('mouseup touchend', upLeave);
+      slide.on('mouseleave', upLeave);
+    });
+
+
+  });
+
+};

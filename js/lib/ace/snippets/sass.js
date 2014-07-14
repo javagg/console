@@ -1,2 +1,1 @@
-define("ace/snippets/sass",["require","exports","module"],function(e,s){s.snippetText="",s.scope="sass"});
-//# sourceMappingURL=sass.js.map
+ace.define("ace/snippets/sass",["require","exports","module"],function(e,t,n){t.snippetText="",t.scope="sass"})
