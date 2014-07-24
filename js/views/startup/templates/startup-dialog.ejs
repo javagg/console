@@ -10,18 +10,20 @@
                             </div>
                             <div class="panel-body">
                                 <ul class="list-group">
-                                    <% for(var i = 0; i < steps.length; i++) {
-                                            if(steps[i].start){
-                                    %>
+                                <%
+                                for(var i = 0; i < steps.length; i++) {
+                                    if (steps[i].start) {
+                                %>
                                     <li class="list-group-item">
                                         <span class="text-<%= steps[i].id %>"><%= polyglot.t(steps[i].start) %></span>
                                         <i class="pull-right activity-indicator img-<%= steps[i].id %>"></i>
                                     </li>
-                                    <% }} %>
+                                <%
+                                    }
+                                }
+                                %>
                                 </ul>
-                                <div class="alert alert-danger center bootstrap-alert" style="display: none;">
-
-                                </div>
+                                <div class="alert alert-danger center bootstrap-alert" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
